@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export const siteTitle = "바름"
 
-export default function Layout({ children, home }) {
+export default function Layout({ children }) {
     return (
         <div className={styles.container}>
             <Head>
@@ -19,10 +19,12 @@ export default function Layout({ children, home }) {
                 <meta name="og:title" content={siteTitle} />
             </Head>
             <header className={styles.header}>
+                헤더
                 {/*TODO("header 구현")*/}
             </header>
             <main>{children}</main>
             <footer className={styles.footer}>
+                푸터
                 {/*TODO("footer 구현")*/}
             </footer>
         </div>
