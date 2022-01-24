@@ -19,7 +19,11 @@ export default function Layout({ children }) {
                 <meta name="og:title" content={siteTitle} />
             </Head>
             <header className={styles.header}>
-                헤더
+                <Link href="/">
+                    <div className={styles.logo}>
+                        바름
+                    </div>
+                </Link>
                 {/*TODO("header 구현")*/}
             </header>
             <main>{children}</main>
