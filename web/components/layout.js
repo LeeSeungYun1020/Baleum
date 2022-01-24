@@ -20,9 +20,9 @@ export default function Layout({ children }) {
             </Head>
             <header className={styles.header}>
                 <Link href="/">
-                    <div className={styles.logo}>
+                    <a className={styles.logo}>
                         바름
-                    </div>
+                    </a>
                 </Link>
                 {/*TODO("header 구현")*/}
             </header>
