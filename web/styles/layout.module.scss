@@ -1,9 +1,28 @@
-.container {
+.inner {
+  width: 1080px;
+  margin: 0 auto;
+}
+@media (max-width: 1080px) {
+  .inner {
+    width: 680px;
+  }
+}
 
+.container {
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 50px;
 }
 
 .header {
 
+}
+
+.nameTab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
 }
 
 .logo {
@@ -11,14 +30,29 @@
   font-family: 'Gugi', cursive;
 }
 
-.nav-tab {
-
+// 네비게이션 전체
+.nav {
+  width: 75%
 }
 
-.user-icon {
+// 네비게이션 ul
+.navList {
+  display: flex;
+  list-style:none;
+  padding: 0;
+}
+
+// 네비게이션 li
+.navTab {
+  width: 10vw;
+}
+
+.userIcon {
 
 }
 
 .footer {
-
+  //position: absolute;
+  //bottom: 0;
+  //transform: translateY(-100%);
 }
