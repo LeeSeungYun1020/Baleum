@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/layout.module.scss'
 import Link from 'next/link'
+import classNames from 'classnames/bind';
 import Image from "next/image";
 
 export const siteTitle = "바름"
@@ -21,27 +22,27 @@ export default function Layout({ children }) {
                       rel="stylesheet" />
                 <meta name="og:title" content={siteTitle} />
             </Head>
-            <header className={styles.header}>
-                <div>
+            <header className={classNames({[styles.header]: true, [styles.inner]: true})}>
+                <div className={styles.nameTab}>
                     <Link href="/">
                         <a className={styles.logo}>
                             바름
                         </a>
                     </Link>
-                    <nav>
-                        <ul>
-                            <li><Link href="/"><a className={styles.navTab}>과정</a></Link></li>
-                            <li><Link href="/"><a className={styles.navTab}>강의</a></Link></li>
-                        </ul>
-                    </nav>
+                    <div>
+                        <Link href="/"><a>내 강의</a></Link>
+                        <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
+                    </div>
                 </div>
-                <div>
-                    <Link href="/"><a>내 강의</a></Link>
-                    <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
-                </div>
+                <nav className={styles.nav}>
+                    <ul className={styles.navList}>
+                        <li className={styles.navTab}><Link href="/"><a>과정</a></Link></li>
+                        <li className={styles.navTab}><Link href="/"><a>강의</a></Link></li>
+                    </ul>
+                </nav>
             </header>
-            <main>{children}</main>
-            <footer className={styles.footer}>
+            <main className={styles.inner}>{children}</main>
+            <footer className={classNames({[styles.footer]: true, [styles.inner]: true})}>
                 바름: 블록체인 기반 인증 학습 경험 사용자 지원 플랫폼
             </footer>
         </div>
