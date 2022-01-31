@@ -4,11 +4,19 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const db = require('./lib/mysql');
+const session = require('express-session');
 
 const app = express();
+app.use(session({
+  secret: "PLMS?Baleum!",
+  resave: true,
+  saveUninitialized: true,
+}))
+const passport = require('./lib/passport')(app, db)
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users')(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
