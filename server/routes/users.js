@@ -5,10 +5,7 @@ const connection = require('../lib/mysql')
 module.exports = function (passport) {
     // user 로그인 테스트 페이지
     router.get('/', function (req, res, next) {
-        if (req.user)
-            res.send(req.user)
-        else
-            res.render("users", {message: "로그인하세요"})
+        res.render("users", {user: req.user, message: req.body.message})
     })
 
     router.post('/signin',
@@ -23,7 +20,7 @@ module.exports = function (passport) {
     router.get('/signout', (req, res) => {
         req.logout()
         req.session.save(() => {
-            res.redirect('/');
+            res.redirect('/users');
         });
     })
 
