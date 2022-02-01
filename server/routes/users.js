@@ -21,7 +21,14 @@ module.exports = function (passport) {
         req.logout()
         req.session.save(() => {
             res.redirect('/users');
-        });
+        })
+    })
+
+    router.post('signout', (req, res) => {
+        req.logout()
+        req.session.save(() => {
+            res.send({result: true})
+        })
     })
 
     router.post("/signup", (req, res) => {
