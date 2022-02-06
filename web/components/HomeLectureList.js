@@ -4,62 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import {dummyLecture} from "../data/dummyLecture";
 
-const dummyDatas = [
-        {
-            "title": "컴맹을 위한 강의다!!",
-            "teacher": "김유미",
-            "description": "도비는 자유에요 집에가고싶어요~~ 쫌 이따 튀어야지 왜냐면 도비는 자유니까",
-            "src": "/img/sample-banner.jpg"
-        },
-        {
-            "title": "컴맹을 위한 강의다!!",
-            "teacher": "김유미",
-            "description": "도비는 자유에요 집에가고싶어요~~ 쫌 이따 튀어야지 왜냐면 도비는 자유니까",
-            "src": "/img/sample-banner.jpg"
-        },
-        {
-            "title": "컴맹을 위한 강의다!!",
-            "teacher": "김유미",
-            "description": "도비는 자유에요 집에가고싶어요~~ 쫌 이따 튀어야지 왜냐면 도비는 자유니까",
-            "src": "/img/sample-banner.jpg"
-        },
-        {
-            "title": "컴맹을 위한 강의다!!",
-            "teacher": "김유미",
-            "description": "도비는 자유에요 집에가고싶어요~~ 쫌 이따 튀어야지 왜냐면 도비는 자유니까",
-            "src": "/img/sample-banner.jpg"
-        },
-        {
-            "title": "컴맹을 위한 강의다!!",
-            "teacher": "김유미",
-            "description": "도비는 자유에요 집에가고싶어요~~ 쫌 이따 튀어야지 왜냐면 도비는 자유니까",
-            "src": "/img/sample-banner.jpg"
-        },
-        {
-            "title": "컴맹을 위한 강의다!!",
-            "teacher": "김유미",
-            "description": "도비는 자유에요 집에가고싶어요~~ 쫌 이따 튀어야지 왜냐면 도비는 자유니까",
-            "src": "/img/sample-banner.jpg"
-        },
-        {
-            "title": "컴맹을 위한 강의다!!",
-            "teacher": "김유미",
-            "description": "도비는 자유에요 집에가고싶어요~~ 쫌 이따 튀어야지 왜냐면 도비는 자유니까",
-            "src": "/img/sample-banner.jpg"
-        },
-        {
-            "title": "컴맹을 위한 강의다!!",
-            "teacher": "김유미",
-            "description": "도비는 자유에요 집에가고싶어요~~ 쫌 이따 튀어야지 왜냐면 도비는 자유니까",
-            "src": "/img/sample-banner.jpg"
-        },
-    ]
 const HomeLectureList = () => {
     return (
         <div className={styles.lectureList}>
             {
-                dummyDatas.map((dummy, index)=> <Card key = {index} sx={{ maxWidth: 252 }}>
+                dummyLecture.map((dummy, index)=> <Card key = {index} sx={{ maxWidth: 252 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
