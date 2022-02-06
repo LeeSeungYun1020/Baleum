@@ -1,4 +1,4 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -59,7 +59,7 @@ const HomeLectureList = () => {
     return (
         <div className={styles.lectureList}>
             {
-                dummyDatas.map((dummy, index)=> <Card sx={{ maxWidth: 252 }}>
+                dummyDatas.map((dummy, index)=> <Card key = {index} sx={{ maxWidth: 252 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout, { siteTitle } from "../components/layout";
 // import sampleImage from '../public/img/sample-banner.jpg';
 import Image from 'next/image'
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 import HomeLectureList from "../components/HomeLectureList";
 
 export default function Home() {
