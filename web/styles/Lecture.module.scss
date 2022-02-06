@@ -1,0 +1,81 @@
+$main-color: #00AB50; // 일단 에드위드 색깔로 ㄱㄱ....
+$sub-color: #f1f1f1; // 선 색상, 테두리 색상
+.lectureNav { // 강의 네비게이션
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 320px;
+  min-width: 320px;
+  border: 1px solid $sub-color;
+  ul {
+    list-style:none; // 점 없애기
+  }
+}
+
+.lectureNavTitle { // 강의명, 강사
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $main-color;
+  padding: 1em;
+  h2, h3 {
+    color: white;
+  }
+}
+
+.lectureNavContent { // 강의 목록
+  padding: 1em;
+  h3 {
+    border: 1px solid $main-color;
+    border-radius: 4px;
+    padding: 1em;
+    color: $main-color;
+  }
+  li {
+    padding: 1em;
+  }
+}
+
+.lecturePage {
+  display: flex;
+  ul {
+    list-style:none; // 점 없애기
+  }
+}
+
+.lectureVideo, .lectureInfo {
+  margin: 0 auto;
+  padding: 74px 40px 120px;
+  width: 840px;
+}
+
+.lectureVideoTitle, .lectureTitle {
+  border-bottom: 1px solid $sub-color;
+  margin-bottom: 40px;
+  padding-bottom: 35px
+}
+
+.lectureBlock { // 일단 임시로 공간 만듦
+  width: 100%;
+  height: 200px;
+  background-color: $main-color;
+}
+
+.lectureInfo li {
+  border: 1px solid $sub-color;
+  padding: 24px 168px 24px 87px;
+  margin-bottom: 8px;
+}
+
+.lectureAutor, .lectureDescribe, .lectureBlock {
+  margin-bottom: 20px;
+}
+
+.lectureInfoList {  // 강의 정보 페이지에 있는 강의 목록
+    h2 {
+      border-bottom: 1px solid $sub-color;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+}
