@@ -15,7 +15,7 @@ const LectureInfo = ({lecture, id}) => {
             <ul className={styles.lectureInfoList}>
                 <h2>강의 목록</h2>
                 {lecture.list.map(list =>
-                    <Link href={{
+                    <Link key={id} href={{
                         pathname: ROUTE_LECTURE_ID,
                         query: { id : id, videoId: list.id}
                     }}>

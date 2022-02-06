@@ -20,7 +20,7 @@ const LectureNav = ({lecture, id}) => {
                 <h3>강의 목록</h3>
                 <ul>
                     {lecture.list.map(list =>
-                            <Link href={{
+                            <Link key={id} href={{
                                 pathname: ROUTE_LECTURE_LIST_ID,
                                 query: { id : id, videoId: list.id}
                             }}>
