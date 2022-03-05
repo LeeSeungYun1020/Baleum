@@ -1,0 +1,9 @@
+POST http://localhost:3000/users/signin
+Content-Type: application/json
+
+{
+  "id": "qwerty",
+  "pw": "qwertyisgood"
+}
+
+###
