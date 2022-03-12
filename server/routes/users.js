@@ -24,7 +24,7 @@ module.exports = function (passport) {
         })
     })
 
-    router.post('signout', (req, res) => {
+    router.post('/signout', (req, res) => {
         req.logout()
         req.session.save(() => {
             res.send({result: true})
