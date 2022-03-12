@@ -1,0 +1,4 @@
+name,description,method,address,parameter,return
+Sign in,로그인,POST,users/signin,,"{user: User, result: Boolean}"
+Sign out,로그아웃,POST,users/signout,,{result: Boolean}
+Sign up,회원가입,POST,users/signup,"id, pw",{result: Boolean}
