@@ -5,8 +5,12 @@ const SignInBox = () => {
     return (
         <div className={styles.mainSignInBox}>
             <h2>안녕하세요?</h2>
-            <Link href="/"><a>로그인</a></Link>
-            <Link href="/"><a>회원가입</a></Link>
+            <div>
+                <Link href="/"><a>로그인</a></Link>
+            </div>
+            <div>
+                <Link href="/"><a>회원가입</a></Link>
+            </div>
         </div>
     )
 }
