@@ -3,7 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: 'Express'});
+    if (req.session.apiDesc)
+        res.render('index', {title: '바름 API 서버 - BALEUM API Server', apiDesc: req.session.apiDesc});
+    else
+        res.redirect('/api')
 });
 
 module.exports = router;

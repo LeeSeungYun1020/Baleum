@@ -15,8 +15,10 @@ app.use(session({
 }))
 const passport = require('./lib/passport')(app, db)
 
+const apiRouter = require('./routes/api');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users')(passport);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,12 +31,13 @@ app.use(cookieParser());
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
+  indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
