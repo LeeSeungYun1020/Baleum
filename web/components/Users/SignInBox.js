@@ -6,10 +6,10 @@ const SignInBox = () => {
         <div className={styles.mainSignInBox}>
             <h2>안녕하세요?</h2>
             <div>
-                <Link href="/"><a>로그인</a></Link>
+                <Link href="/users/signin"><a>로그인</a></Link>
             </div>
             <div>
-                <Link href="/"><a>회원가입</a></Link>
+                <Link href="/users/signup"><a>회원가입</a></Link>
             </div>
         </div>
     )

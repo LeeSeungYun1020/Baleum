@@ -16,3 +16,22 @@
     border: solid 1px black;
   }
 }
+
+.signIn {
+  box-sizing: border-box;
+  text-align: center;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  position: absolute;
+  top: 50%;
+  height: 250px;
+  margin-top: -100px;
+}
+
+.textBox {
+  width: 320px;
+  height: 48px;
+  padding: 8px;
+  margin-top: 8px;
+}
