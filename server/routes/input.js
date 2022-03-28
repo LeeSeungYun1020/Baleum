@@ -89,6 +89,8 @@ router.get('/table', (req, res) => {
             FOREIGN KEY (userId) REFERENCES user (id)
         );
     `, (err, result) => {
+        if (req.session.command == null)
+            req.session.command = "Table"
         res.redirect('/')
     })
 });
@@ -105,6 +107,7 @@ router.get('/table/force', (req, res) => {
         DROP TABLE class;
         DROP TABLE user;
     `, (err, result) => {
+        req.session.command = "Table-Force"
         res.redirect('/input')
     })
 })
