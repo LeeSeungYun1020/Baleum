@@ -17,6 +17,7 @@ const passport = require('./lib/passport')(app, db)
 
 const apiRouter = require('./routes/api');
 const indexRouter = require('./routes/index');
+const inputRouter = require('./routes/input');
 const usersRouter = require('./routes/users')(passport);
 
 
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
+app.use('/input', inputRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

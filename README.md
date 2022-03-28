@@ -138,5 +138,5 @@ CREATE TABLE notice
     modificationDate DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (classId) REFERENCES class (id),
     FOREIGN KEY (userId) REFERENCES user (id)
-)
+);
 ```
