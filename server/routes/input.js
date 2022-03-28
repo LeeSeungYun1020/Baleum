@@ -89,7 +89,7 @@ router.get('/table', (req, res) => {
             FOREIGN KEY (userId) REFERENCES user (id)
         );
     `, (err, result) => {
-        if (req.session.command == null)
+        if (req.session.command == undefined)
             req.session.command = "Table"
         res.redirect('/')
     })
