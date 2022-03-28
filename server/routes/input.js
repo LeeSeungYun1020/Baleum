@@ -109,14 +109,4 @@ router.get('/table/force', (req, res) => {
     })
 })
 
-router.get('/table/init', (req, res) => {
-    connection.query(`
-        CREATE DATABASE baleum;
-        CREATE DATABASE session;
-        USE baluem;
-        `, (err, result) => {
-        res.redirect('/input')
-    })
-})
-
 module.exports = router;
