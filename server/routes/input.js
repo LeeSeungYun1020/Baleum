@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../lib/mysql')
 
-router.get('/', (req, res) => {
+router.get('/table', (req, res) => {
     connection.query(`
         CREATE TABLE user
         (
@@ -93,7 +93,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/force', (req, res) => {
+router.get('/table/force', (req, res) => {
     connection.query(`
         DROP TABLE notice;
         DROP TABLE process;
@@ -109,7 +109,7 @@ router.get('/force', (req, res) => {
     })
 })
 
-router.get('/init', (req, res) => {
+router.get('/table/init', (req, res) => {
     connection.query(`
         CREATE DATABASE baleum;
         CREATE DATABASE session;
