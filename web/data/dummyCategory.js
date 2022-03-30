@@ -2,30 +2,30 @@ export const dummyCategory = {
     "list": [
         {
             "id": "0",
-            "title": "IT"
+            "title": "소프트웨어"
         },
         {
             "id": "1",
-            "title": "노래"
+            "title": "공과수학"
         },
         {
             "id": "2",
-            "title": "춤..?"
+            "title": "재테크/금융"
         },
         {
             "id": "3",
-            "title": "또 무슨 킹테고리가 있을까?!?"
+            "title": "전자/전기"
         },
         {
             "id": "4",
-            "title": "이 정도면 될 까!?!?"
+            "title": "역학"
         },
         {
             "id": "5",
-            "title": "이정도?!?!?!?"
+            "title": "생명/화학"
         },
         {
             "id": "6",
-            "title": "이정도면 됬게찌!!"
+            "title": "졸업과제"
         }]
 }

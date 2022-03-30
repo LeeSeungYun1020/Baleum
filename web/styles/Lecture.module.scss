@@ -90,3 +90,68 @@ $sub-color: #f1f1f1; // 선 색상, 테두리 색상
 .lectureCard:nth-child(4n) {
   margin-right: 0px !important;
 }
+
+.myLectureComponent {
+  display: flex;
+  justify-content: space-between;
+  background-color: $main-color;
+  width: 800px;
+  color: white;
+  height: 240px;
+  padding: 40px;
+  h1 {
+    font-size: 21px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  & + & {
+    margin: 30px auto 0px auto;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+  }
+  button {
+    width: 80px;
+    color: $main-color;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+}
+
+.myLecturePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.myLectureNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 800px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 30px;
+  .myLectureNavP {
+    width: 33vw;
+    text-align: center;
+    cursor: pointer;
+  }
+  .myLectureNavP + .myLectureNavP {
+    border-left: 1px solid #c4c4c3;
+  }
+}
+
+.myLectureInfoText > div {
+  display: flex;
+}
+
+.myLectureText {
+  width: 120px;
+}

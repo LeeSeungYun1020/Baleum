@@ -14,11 +14,11 @@ const HomeLectureCard = ({dummy}) => {
                     image={dummy.src}
                     alt="강의 사진"
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                <CardContent >
+                    <Typography gutterBottom variant="h5" component="div" height="32px" style={{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>
                         {dummy.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" height="60px" style={{overflow: "hidden"}}>
                         {dummy.description}
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
