@@ -3,9 +3,8 @@ import Layout, { siteTitle } from "../components/layout";
 // import sampleImage from '../public/img/sample-banner.jpg';
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss';
-import HomeLectureList from "../components/HomeLectureList";
-import SignInBox from "../components/Users/SignInBox"
 import HomeLectureList from "../components/Home/HomeLectureList";
+import SignInBox from "../components/Users/SignInBox"
 
 export default function Home() {
     return (

@@ -1,12 +1,11 @@
 import styles from "../../styles/Home.module.scss";
-
 import {dummyLecture} from "../../data/dummyLecture";
-import LectureCard from "../LectureCard";
+import HomeLectureCard from "./HomeLectureCard";
 
 const HomeLectureList = () => {
     return (
         <div className={styles.lectureList}>
-            {dummyLecture.map((dummy, index) => <LectureCard dummy = {dummy} index = {index}/>)}
+            {dummyLecture.map((dummy, index) => <HomeLectureCard dummy = {dummy} key = {index}/>)}
         </div>)
 }
 

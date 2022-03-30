@@ -3,9 +3,10 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
-const LectureCard = (dummy) => {
+import styles from "../../styles/Lecture.module.scss"
+const HomeLectureCard = ({dummy}) => {
     return (
-        <Card sx={{maxWidth: 252}}>
+        <Card sx={{maxWidth: 252}} className={styles.lectureCard}>
             <CardActionArea>
                 <CardMedia
                     component="img"
@@ -29,4 +30,4 @@ const LectureCard = (dummy) => {
     )
 }
 
-export default LectureCard
+export default HomeLectureCard
