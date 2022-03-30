@@ -8,10 +8,23 @@ module.exports = function (passport) {
         res.render("users", {user: req.user, message: req.body.message})
     })
 
-    router.post('/signin',
+    router.post('/signin/internal',
         passport.authenticate('local', {
             session: true,
             failureRedirect: '/users'
+        }),
+        (req, res) => {
+            res.send({user: req.user, result: true})
+        })
+
+    router.get('/signin/fail', (req, res) => {
+        res.send({user: null, result: false})
+    })
+
+    router.post('/signin',
+        passport.authenticate('local', {
+            session: true,
+            failureRedirect: '/users/signin/fail'
         }),
         (req, res) => {
             res.send({user: req.user, result: true})
@@ -24,7 +37,7 @@ module.exports = function (passport) {
         })
     })
 
-    router.post('signout', (req, res) => {
+    router.post('/signout', (req, res) => {
         req.logout()
         req.session.save(() => {
             res.send({result: true})

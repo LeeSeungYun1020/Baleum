@@ -1,0 +1,5 @@
+Name,Type,Description,Method,Address,Parameter,Return
+API List,api,API 목록,GET,api,,
+Sign in,user,로그인,POST,users/signin,"id, pw","{user: User, result: Boolean}"
+Sign out,user,로그아웃,POST,users/signout,,{result: Boolean}
+Sign up,user,회원가입,POST,users/signup,"id, pw",{result: Boolean}
