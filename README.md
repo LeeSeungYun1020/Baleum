@@ -26,12 +26,14 @@ Blockchain Authentication Learning Experience User Management platform
 
 #### API 서버
 
-- Node.js >= 14
-- MySQL >= 8.0
+- Node.js 14
+- MySQL 8
 
 #### Web 서버
 
-- Node.js >= 14
+- Node.js 14
+- React.js 17
+- Next.js 12
 
 ### 2. 설치
 
