@@ -1,10 +1,14 @@
-import Layout from "/components/layout";
+import Layout, {siteTitle} from "/components/layout";
 import styles from "/styles/Users.module.scss"
 import {url} from "/data/api"
+import Head from "next/head";
 
 const signin = () => {
     return (
         <Layout signin>
+            <Head>
+                <title>{siteTitle}</title>
+            </Head>
             <section className={styles.signIn}>
                 <h1>로그인</h1>
                 <form action={url.signin} method="post">
