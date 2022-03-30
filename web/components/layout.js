@@ -30,7 +30,7 @@ export default function Layout({ children }) {
                         </a>
                     </Link>
                     <div>
-                        <Link href="/"><a>내 강의</a></Link>
+                        <Link href="/search"><a>내 강의</a></Link>
                         <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
                     </div>
                 </div>
