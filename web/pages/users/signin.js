@@ -17,7 +17,8 @@ const signin = () => {
                                autoComplete={"email"} placeholder={"ID"}/>
                     </div>
                     <div>
-                        <input className={styles.textBox} type={"password"} id={"pw"} name={"pw"} required minLength={"4"}
+                        <input className={styles.textBox} type={"password"} id={"pw"} name={"pw"} required
+                               minLength={"4"}
                                autoComplete={"password"} placeholder={"Password"}/>
                     </div>
                     <input type={"hidden"} name={"failureUrl"} value={"/users/signin"}/>

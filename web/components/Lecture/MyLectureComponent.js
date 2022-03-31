@@ -1,4 +1,5 @@
 import styles from "../../styles/Lecture.module.scss"
+
 const MyLectureComponent = (lecture) => {
     return (
         <div className={styles.myLectureComponent}>
@@ -9,7 +10,7 @@ const MyLectureComponent = (lecture) => {
                 <div><h2 className={styles.myLectureText}>진도율 </h2><h2>{lecture.lecture.percent}</h2></div>
                 <div>{lecture.lecture.complete && <button>수료증</button>}</div>
             </div>
-            <div><img src = {lecture.lecture.src} /></div>
+            <div><img src={lecture.lecture.src}/></div>
 
         </div>
     )

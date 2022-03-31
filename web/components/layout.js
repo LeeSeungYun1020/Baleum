@@ -2,11 +2,10 @@ import Head from 'next/head'
 import styles from '../styles/layout.module.scss'
 import Link from 'next/link'
 import classNames from 'classnames/bind';
-import Image from "next/image";
 
 export const siteTitle = "바름"
 
-export default function Layout({ children }) {
+export default function Layout({children}) {
     return (
         <div className={styles.container}>
             <Head>
@@ -19,8 +18,8 @@ export default function Layout({ children }) {
                 <link rel="manifest" href="/icon/site.webmanifest"/>
                 <link rel="icon" href="/icon/favicon.ico"/>
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                      rel="stylesheet" />
-                <meta name="og:title" content={siteTitle} />
+                      rel="stylesheet"/>
+                <meta name="og:title" content={siteTitle}/>
             </Head>
             <header className={classNames({[styles.header]: true, [styles.inner]: true})}>
                 <div className={styles.nameTab}>
@@ -48,11 +47,11 @@ export default function Layout({ children }) {
                 </div>
                 <div>
                     Made. 201645825 이 승 윤 & 201645819 심 재 영 & 201824444 김 유 미
-                    <br />
+                    <br/>
                     Addr. 부산대학교 전기컴퓨터공학부 정보컴퓨터공학전공
-                    <br />
+                    <br/>
                     Fax/Tel. 00 - 000 - 0000
-                    <br />
+                    <br/>
                     COPYRIGHT 2022. Baleum. ALL RIGHT RESERVED.
                 </div>
             </footer>

@@ -2,6 +2,7 @@
   width: 1080px;
   margin: 0 auto;
 }
+
 @media (max-width: 1080px) {
   .inner {
     width: 680px;
@@ -38,7 +39,7 @@
 // 네비게이션 ul
 .navList {
   display: flex;
-  list-style:none;
+  list-style: none;
   padding: 0;
 }
 
@@ -51,24 +52,24 @@
 
 }
 
-.footer{
+.footer {
   display: flex;
   background: #1F1F1F;
   padding: 30px;
   width: 100%;
-  margin-top:80px;
+  margin-top: 80px;
 }
 
-.footer > div:first-child{
-  flex:3;
+.footer > div:first-child {
+  flex: 3;
   text-align: center;
   color: #fff;
   font-size: 48px;
   margin: auto;
 }
 
-.footer > div:last-child{
-  flex:9;
+.footer > div:last-child {
+  flex: 9;
   color: #fff;
 }
 

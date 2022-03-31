@@ -7,6 +7,7 @@ import {useRouter} from "next/router";
 import Layout, {siteTitle} from "../../components/layout";
 import Head from "next/head";
 import SearchComponent from "../../components/Search/SearchComponent";
+
 const Search = () => {
     const router = useRouter()
     const {id} = router.query;
@@ -16,10 +17,10 @@ const Search = () => {
                 <title>{siteTitle}</title>
             </Head>
             <section>
-                <SearchComponent />
+                <SearchComponent/>
                 <div className={styles.searchPage}>
-                    <SearchNav categories = {dummyCategory} />
-                    <SearchList id = {id} />
+                    <SearchNav categories={dummyCategory}/>
+                    <SearchList id={id}/>
                 </div>
             </section>
         </Layout>

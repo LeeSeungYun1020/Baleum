@@ -5,7 +5,7 @@ import HomeLectureCard from "./HomeLectureCard";
 const HomeLectureList = () => {
     return (
         <div className={styles.lectureList}>
-            {dummyLecture.map((dummy, index) => <HomeLectureCard dummy = {dummy} key = {index}/>)}
+            {dummyLecture.map((dummy, index) => <HomeLectureCard dummy={dummy} key={index}/>)}
         </div>)
 }
 
