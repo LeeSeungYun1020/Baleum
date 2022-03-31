@@ -1,6 +1,8 @@
 .banner {
   display: flex;
   justify-content: space-between;
+  padding: 30px 0;
+  background-color: #d8d8d8;
 }
 
 .subNav {
@@ -9,9 +11,10 @@
 
 .subNav ul {
   display: flex;
-  list-style:none;
+  list-style: none;
   padding: 0;
 }
+
 .subNav ul li {
   width: 33vw;
   text-align: center;

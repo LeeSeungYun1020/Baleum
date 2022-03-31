@@ -2,6 +2,7 @@
   width: 1080px;
   margin: 0 auto;
 }
+
 @media (max-width: 1080px) {
   .inner {
     width: 680px;
@@ -11,7 +12,6 @@
 .container {
   height: auto;
   min-height: 100%;
-  padding-bottom: 50px;
 }
 
 .header {
@@ -26,8 +26,9 @@
 }
 
 .logo {
-  font-size: 24px;
-  font-family: 'Gugi', cursive;
+  font-size: 30px;
+  font-family: 'Noto Sans KR', cursive;
+  font-weight: bold;
 }
 
 // 네비게이션 전체
@@ -38,7 +39,7 @@
 // 네비게이션 ul
 .navList {
   display: flex;
-  list-style:none;
+  list-style: none;
   padding: 0;
 }
 
@@ -52,7 +53,31 @@
 }
 
 .footer {
-  //position: absolute;
-  //bottom: 0;
-  //transform: translateY(-100%);
+  display: flex;
+  background: #1F1F1F;
+  padding: 30px;
+  width: 100%;
+  margin-top: 80px;
+}
+
+.footer > div:first-child {
+  flex: 3;
+  text-align: center;
+  color: #fff;
+  font-size: 48px;
+  margin: auto;
+}
+
+.footer > div:last-child {
+  flex: 9;
+  color: #fff;
+}
+
+.searchNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchPage {
+
 }

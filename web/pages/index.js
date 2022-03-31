@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from "../components/layout";
-// import sampleImage from '../public/img/sample-banner.jpg';
+import Layout, {siteTitle} from "../components/layout"
 import Image from 'next/image'
-import styles from '../styles/Home.module.scss';
-import HomeLectureList from "../components/HomeLectureList";
+import styles from '../styles/Home.module.scss'
+import HomeLectureList from "../components/Home/HomeLectureList"
 import SignInBox from "../components/Users/SignInBox"
+// import sampleImage from '../public/img/sample-banner.jpg'
 
 export default function Home() {
     return (
@@ -14,7 +14,7 @@ export default function Home() {
             </Head>
             <section>
                 <div className={styles.banner}>
-                   <Image src="/img/sample-banner.jpg" alt="배너" width={804} height={240} />
+                    <Image src="/img/sample-banner.jpg" alt="배너" width={804} height={240}/>
                     <SignInBox/>
                 </div>
                 {/*여기는 공지사항, ... 네비게이션 영역*/}

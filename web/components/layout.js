@@ -2,11 +2,10 @@ import Head from 'next/head'
 import styles from '../styles/layout.module.scss'
 import Link from 'next/link'
 import classNames from 'classnames/bind';
-import Image from "next/image";
 
 export const siteTitle = "바름"
 
-export default function Layout({ children }) {
+export default function Layout({children}) {
     return (
         <div className={styles.container}>
             <Head>
@@ -19,8 +18,8 @@ export default function Layout({ children }) {
                 <link rel="manifest" href="/icon/site.webmanifest"/>
                 <link rel="icon" href="/icon/favicon.ico"/>
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                      rel="stylesheet" />
-                <meta name="og:title" content={siteTitle} />
+                      rel="stylesheet"/>
+                <meta name="og:title" content={siteTitle}/>
             </Head>
             <header className={classNames({[styles.header]: true, [styles.inner]: true})}>
                 <div className={styles.nameTab}>
@@ -30,20 +29,31 @@ export default function Layout({ children }) {
                         </a>
                     </Link>
                     <div>
-                        <Link href="/"><a>내 강의</a></Link>
+                        <Link href="/lecture"><a>내 강의</a></Link>
                         <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
                     </div>
                 </div>
                 <nav className={styles.nav}>
                     <ul className={styles.navList}>
                         <li className={styles.navTab}><Link href="/"><a>과정</a></Link></li>
-                        <li className={styles.navTab}><Link href="/"><a>강의</a></Link></li>
+                        <li className={styles.navTab}><Link href="/search"><a>강의</a></Link></li>
                     </ul>
                 </nav>
             </header>
             <main className={styles.inner}>{children}</main>
             <footer className={classNames({[styles.footer]: true, [styles.inner]: true})}>
-                바름: 블록체인 기반 인증 학습 경험 사용자 지원 플랫폼
+                <div>
+                    LOGO
+                </div>
+                <div>
+                    Made. 201645825 이 승 윤 & 201645819 심 재 영 & 201824444 김 유 미
+                    <br/>
+                    Addr. 부산대학교 전기컴퓨터공학부 정보컴퓨터공학전공
+                    <br/>
+                    Fax/Tel. 00 - 000 - 0000
+                    <br/>
+                    COPYRIGHT 2022. Baleum. ALL RIGHT RESERVED.
+                </div>
             </footer>
         </div>
     )

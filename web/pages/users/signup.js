@@ -3,15 +3,19 @@ import styles from "/styles/Users.module.scss"
 import {url} from "/data/api"
 import Head from "next/head";
 
-const signin = () => {
+const signup = () => {
     return (
         <Layout signin>
             <Head>
                 <title>{siteTitle}</title>
             </Head>
             <section className={styles.signIn}>
-                <h1>로그인</h1>
-                <form action={url.signin} method="post">
+                <h1>회원가입</h1>
+                <form action={url.signup} method="post">
+                    <div>
+                        <input className={styles.textBox} type={"email"} id={"id"} name={"id"} required minLength={"4"}
+                               autoComplete={"name"} placeholder={"성함"}/>
+                    </div>
                     <div>
                         <input className={styles.textBox} type={"email"} id={"id"} name={"id"} required minLength={"4"}
                                autoComplete={"email"} placeholder={"ID"}/>
@@ -22,11 +26,11 @@ const signin = () => {
                                autoComplete={"password"} placeholder={"Password"}/>
                     </div>
                     <input type={"hidden"} name={"failureUrl"} value={"/users/signin"}/>
-                    <input className={styles.textBox} type={"submit"} value={"로그인"}/>
+                    <input className={styles.textBox} type={"submit"} value={"회원가입"}/>
                 </form>
             </section>
         </Layout>
     )
 }
 
-export default signin
+export default signup
