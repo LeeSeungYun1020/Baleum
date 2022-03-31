@@ -6,11 +6,12 @@ const ROUTE_LECTURE_ID = "/search/[id]"; // url
 const SearchNav = ({categories}) => {
     return (
         <div className={styles.searchNav}>
-            {categories.list.map(list => <ul>
+            {categories.list.map(list => <ul key={list.id}>
                 <Link href={{
                     pathname: ROUTE_LECTURE_ID,
                     query: {id: list.id}
-                }}>
+                }}
+                 passHref={false}>
                     <li><a>{list.title}</a></li>
                 </Link>
             </ul>)}
