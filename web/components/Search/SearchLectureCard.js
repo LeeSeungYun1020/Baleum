@@ -3,7 +3,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
-// import styles from "../../styles/Search.module.scss"
+import styles from "../../styles/Search.module.scss"
 
 const HomeLectureCard = ({dummy}) => {
     return (
