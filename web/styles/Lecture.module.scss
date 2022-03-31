@@ -118,9 +118,10 @@ $sub-color: #f1f1f1; // 선 색상, 테두리 색상
     margin: 30px auto 0 auto;
   }
 
-  img {
-    width: 100px;
-    height: 100px;
+  .myLectureImageBox {
+    width: 100%;
+    max-width: 100px;
+    position: relative;
   }
 
   button {
