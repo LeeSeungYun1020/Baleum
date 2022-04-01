@@ -1,4 +1,4 @@
-### Class list (all/32)
+### Class list (all/16)
 GET http://localhost:3000/class/all
 Content-Type: application/json
 
@@ -6,3 +6,8 @@ Content-Type: application/json
 ### Class list (main/8)
 GET http://localhost:3000/class/main
 Content-Type: application/json
+
+### Search - 프로그래밍
+GET http://localhost:3000/class/search/프로그래밍
+Content-Type: application/json
+

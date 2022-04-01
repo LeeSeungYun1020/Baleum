@@ -3,9 +3,17 @@ const router = express.Router();
 const connection = require('../lib/mysql')
 
 router.get('/list/:num', (req, res) => {
+    let num = req.params.num ?? 8
+    for (const n of num) {
+        if ('0' <= n && n <= '9')
+            continue
+        num = 8
+        break
+    }
     connection.query(`SELECT *
                       FROM class
-                      LIMIT ?`, [req.params.num], (err, result) => {
+                      LIMIT ${num}`, (err, result) => {
+        console.log(err)
         if (err || result.length === 0)
             res.send([{result: false}])
         else {
@@ -16,11 +24,12 @@ router.get('/list/:num', (req, res) => {
 })
 
 router.get('/all', (req, res) => {
-    res.redirect("/class/list/32")
+    res.redirect("/class/list/16")
 })
 
 router.get('/main', (req, res) => {
     res.redirect("/class/list/8")
 })
+
 
 module.exports = router;
