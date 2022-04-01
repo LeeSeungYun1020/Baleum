@@ -32,4 +32,21 @@ router.get('/main', (req, res) => {
 })
 
 
+router.get('/search/:query', (req, res) => {
+    const query = "%" + req.params.query + "%"
+    connection.query(`SELECT *
+                      FROM class
+                      WHERE name LIKE ?
+                         OR detail LIKE ?
+                         OR category LIKE ?`, [query, query, query], (err, result) => {
+        console.log(err)
+        if (err || result.length === 0)
+            res.send([{result: false}])
+        else {
+            result[0]["result"] = true
+            res.send(result)
+        }
+    })
+})
+
 module.exports = router;

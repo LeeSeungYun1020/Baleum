@@ -7,7 +7,7 @@ Content-Type: application/json
 GET http://localhost:3000/class/main
 Content-Type: application/json
 
+
 ### Search - 프로그래밍
 GET http://localhost:3000/class/search/프로그래밍
 Content-Type: application/json
-
