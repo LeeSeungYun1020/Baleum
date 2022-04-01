@@ -23,3 +23,12 @@ p {
     margin: 4px;
   }
 }
+
+#command-msg {
+  background: lightgray;
+  padding: 8px;
+
+  #command-error {
+    color: darkred;
+  }
+}

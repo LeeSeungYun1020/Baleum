@@ -13,8 +13,14 @@
         <a href="/input/table/init">초기 설정</a>
         <a href="/input/table">데이터베이스 테이블 생성</a>
         <a href="/input/table/force">데이터베이스 테이블 강제 생성</a>
+        <a href="/input/data">데이터 입력</a>
         <% if (command) { %>
-            <div>"<%= command %>" 명령 실행이 완료되었습니다.</div>
+            <div id="command-msg">
+                <div>"<%= command %>" 명령 실행 완료</div>
+                <% if (commandError) { %>
+                    <div id="command-error">오류 발생: <%= commandError %></div>
+                <% } %>
+            </div>
         <% } %>
     </div>
 

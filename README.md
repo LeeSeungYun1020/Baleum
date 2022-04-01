@@ -61,6 +61,7 @@ CREATE TABLE user
 (
     id     VARCHAR(64) PRIMARY KEY,
     pw     VARCHAR(32)  NOT NULL,
+    name   VARCHAR(32)  NOT NULL,
     detail VARCHAR(256) NOT NULL,
     phone  VARCHAR(16)  NOT NULL
 );

@@ -8,6 +8,7 @@ router.get('/table', (req, res) => {
         (
             id     VARCHAR(64) PRIMARY KEY,
             pw     VARCHAR(32)  NOT NULL,
+            name   VARCHAR(32)  NOT NULL,
             detail VARCHAR(256) NOT NULL,
             phone  VARCHAR(16)  NOT NULL
         );
@@ -89,6 +90,9 @@ router.get('/table', (req, res) => {
             FOREIGN KEY (userId) REFERENCES user (id)
         );
     `, (err, result) => {
+        if (err) {
+            req.session.dbError = err
+        }
         if (req.session.command == undefined)
             req.session.command = "Table"
         res.redirect('/')
@@ -108,8 +112,14 @@ router.get('/table/force', (req, res) => {
         DROP TABLE user;
     `, (err, result) => {
         req.session.command = "Table-Force"
-        res.redirect('/input')
+        if (err) {
+            req.session.dbError = err
+            res.redirect('/')
+        } else {
+            res.redirect('/input/table')
+        }
     })
 })
+
 
 module.exports = router;
