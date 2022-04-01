@@ -1,0 +1,8 @@
+### Class list (all/32)
+GET http://localhost:3000/class/all
+Content-Type: application/json
+
+
+### Class list (main/8)
+GET http://localhost:3000/class/main
+Content-Type: application/json
