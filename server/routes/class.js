@@ -125,6 +125,19 @@ router.get('/process/:userId', (req, res) => {
     })
 })
 
-// 남은 구현 순서: 강의 수강
+router.get('/contents/:classId/:contentId', (req, res) => {
+    connection.query(`SELECT *
+                      FROM content
+                      WHERE classId = ?
+                        AND contentId = ?`, [req.params.classId, req.params.contentId], (err, result) => {
+        console.log(err)
+        if (err || result.length === 0)
+            res.send([{result: false}])
+        else {
+            result[0]["result"] = true
+            res.send(result)
+        }
+    })
+})
 
 module.exports = router;
