@@ -49,4 +49,21 @@ router.get('/search/:query', (req, res) => {
     })
 })
 
+router.get('/my/:userId', (req, res) => {
+    connection.query(`SELECT c.*
+                      FROM class c
+                               JOIN takingclass t on c.id = t.classId
+                      WHERE t.userId = ?`, [req.params.userId], (err, result) => {
+        console.log(err)
+        if (err || result.length === 0)
+            res.send([{result: false}])
+        else {
+            result[0]["result"] = true
+            res.send(result)
+        }
+    })
+})
+
+// 남은 구현 순서: 강의 정보 / 강의 진도 / 강의 공지 / 강의 수강
+
 module.exports = router;

@@ -253,6 +253,15 @@ router.get('/data', (req, res) => {
                 '알고리즘 테스트 열풍에 이어 알고리즘 인터뷰 열풍? 라이브 코딩은 어떻게 준비해야할까? 실제 작동되는 코드보다 개념 설명이 더 중요하다? 강의를 통해 함께 알아나갑시다.',
                 'kjn0099@naver.com', '컴퓨터 과학',
                 '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+
+        INSERT INTO takingclass (userId, classId)
+        VALUES ('ileilliat@gmail.com', '1');
+        INSERT INTO takingclass (userId, classId)
+        VALUES ('ileilliat@gmail.com', '2');
+        INSERT INTO takingclass (userId, classId)
+        VALUES ('ileilliat@gmail.com', '4');
+        INSERT INTO takingclass (userId, classId)
+        VALUES ('ileilliat@gmail.com', '7');
     `, (err, result) => {
         if (err) {
             req.session.dbError = err.sqlMessage

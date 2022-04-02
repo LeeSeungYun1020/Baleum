@@ -11,3 +11,8 @@ Content-Type: application/json
 ### Search - 프로그래밍
 GET http://localhost:3000/class/search/프로그래밍
 Content-Type: application/json
+
+
+### Taking class (my)
+GET http://localhost:3000/class/my/ileilliat@gmail.com
+Content-Type: application/json
