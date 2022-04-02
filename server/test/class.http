@@ -26,3 +26,13 @@ Content-Type: application/json
 ### Class notice
 GET http://localhost:3000/class/notice/1
 Content-Type: application/json
+
+
+### Class process
+GET http://localhost:3000/class/process/ileilliat@gmail.com/1
+Content-Type: application/json
+
+
+### Class process (completed)
+GET http://localhost:3000/class/process/ileilliat@gmail.com
+Content-Type: application/json

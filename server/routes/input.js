@@ -78,12 +78,13 @@ router.get('/table', (req, res) => {
         (
             classId   INT,
             contentId INT,
+            userId    VARCHAR(64),
             date      DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             state     VARCHAR(32) NOT NULL,
             score     INT         NOT NULL,
             feedback  VARCHAR(1024),
             isSaved   BOOLEAN     NOT NULL DEFAULT FALSE,
-            PRIMARY KEY (classId, contentId),
+            PRIMARY KEY (classId, contentId, userId),
             FOREIGN KEY (state) REFERENCES processState (name)
         );
 
@@ -112,13 +113,13 @@ router.get('/table/force', (req, res) => {
     connection.query(`
         DROP TABLE notice;
         DROP TABLE process;
-        DROP TABLE processstate;
+        DROP TABLE processState;
         DROP TABLE question;
         DROP TABLE content;
-        DROP TABLE contenttype;
-        DROP TABLE takingclass;
+        DROP TABLE contentType;
+        DROP TABLE takingClass;
         DROP TABLE class;
-        DROP TABLE classcategory;
+        DROP TABLE classCategory;
         DROP TABLE user;
     `, (err, result) => {
         req.session.command = "Table-Force"
@@ -139,19 +140,19 @@ router.get('/data', (req, res) => {
         DELETE
         FROM process;
         DELETE
-        FROM processstate;
+        FROM processState;
         DELETE
         FROM question;
         DELETE
         FROM content;
         DELETE
-        FROM contenttype;
+        FROM contentType;
         DELETE
-        FROM takingclass;
+        FROM takingClass;
         DELETE
         FROM class;
         DELETE
-        FROM classcategory;
+        FROM classCategory;
         DELETE
         FROM user;
 
@@ -196,15 +197,15 @@ router.get('/data', (req, res) => {
         INSERT INTO user (id, pw, name, detail, phone)
         VALUES ('strongkh@gmail.com', 'lsy1020', '김강한', '진짜 이야기를 전합니다.', '010-0050-0000');
 
-        INSERT INTO classcategory (name)
+        INSERT INTO classCategory (name)
         VALUES ('컴퓨터 과학');
-        INSERT INTO classcategory (name)
+        INSERT INTO classCategory (name)
         VALUES ('프로그래밍');
-        INSERT INTO classcategory (name)
+        INSERT INTO classCategory (name)
         VALUES ('글쓰기');
-        INSERT INTO classcategory (name)
+        INSERT INTO classCategory (name)
         VALUES ('디자인');
-        INSERT INTO classcategory (name)
+        INSERT INTO classCategory (name)
         VALUES ('투자');
 
         INSERT INTO class (name, detail, userId, category, image)
@@ -254,19 +255,46 @@ router.get('/data', (req, res) => {
                 'kjn0099@naver.com', '컴퓨터 과학',
                 '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
 
-        INSERT INTO takingclass (userId, classId)
+        INSERT INTO takingClass (userId, classId)
         VALUES ('ileilliat@gmail.com', '1');
-        INSERT INTO takingclass (userId, classId)
+        INSERT INTO takingClass (userId, classId)
         VALUES ('ileilliat@gmail.com', '2');
-        INSERT INTO takingclass (userId, classId)
+        INSERT INTO takingClass (userId, classId)
         VALUES ('ileilliat@gmail.com', '4');
-        INSERT INTO takingclass (userId, classId)
+        INSERT INTO takingClass (userId, classId)
         VALUES ('ileilliat@gmail.com', '7');
 
         INSERT INTO notice (classId, title, contents, userId)
         VALUES (1, '운영체제 강의 안내', '운영체제 강의에 오신 것을 환영합니다.
 우리 강의는 운영체제 기본 개념을 알고 있다고 가정하고 중요 개념에 대해 짚고 넘어가는 강의입니다.
 이 점 유의하시고 강의 수강하시길 바랍니다.', 'fabi88@naver.com');
+
+        INSERT INTO contentType (name)
+        VALUES ('영상');
+        INSERT INTO contentType (name)
+        VALUES ('과제');
+        INSERT INTO contentType (name)
+        VALUES ('시험');
+
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 1, '영상', '운영체제 강의 소개', '');
+
+        INSERT INTO processState (name)
+        VALUES ('수강 필요');
+        INSERT INTO processState (name)
+        VALUES ('수강 완료');
+        INSERT INTO processState (name)
+        VALUES ('제출 필요');
+        INSERT INTO processState (name)
+        VALUES ('제출 완료');
+        INSERT INTO processState (name)
+        VALUES ('채점 완료');
+
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 1, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 1));
     `, (err, result) => {
         if (err) {
             req.session.dbError = err.sqlMessage
