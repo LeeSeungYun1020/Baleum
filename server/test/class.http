@@ -23,6 +23,6 @@ GET http://localhost:3000/class/info/1
 Content-Type: application/json
 
 
-### Class info - fail
-GET http://localhost:3000/class/info/50
+### Class notice
+GET http://localhost:3000/class/notice/1
 Content-Type: application/json

@@ -262,6 +262,11 @@ router.get('/data', (req, res) => {
         VALUES ('ileilliat@gmail.com', '4');
         INSERT INTO takingclass (userId, classId)
         VALUES ('ileilliat@gmail.com', '7');
+
+        INSERT INTO notice (classId, title, contents, userId)
+        VALUES (1, '운영체제 강의 안내', '운영체제 강의에 오신 것을 환영합니다.
+우리 강의는 운영체제 기본 개념을 알고 있다고 가정하고 중요 개념에 대해 짚고 넘어가는 강의입니다.
+이 점 유의하시고 강의 수강하시길 바랍니다.', 'fabi88@naver.com');
     `, (err, result) => {
         if (err) {
             req.session.dbError = err.sqlMessage
