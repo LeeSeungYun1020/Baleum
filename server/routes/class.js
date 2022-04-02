@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../lib/mysql')
+const {sendJSONArrayResult} = require('../lib/send')
 
 router.get('/list/:num', (req, res) => {
     let num = req.params.num ?? 8
@@ -13,13 +14,7 @@ router.get('/list/:num', (req, res) => {
     connection.query(`SELECT *
                       FROM class
                       LIMIT ${num}`, (err, result) => {
-        console.log(err)
-        if (err || result.length === 0)
-            res.send([{result: false}])
-        else {
-            result[0]["result"] = true
-            res.send(result)
-        }
+        sendJSONArrayResult(res, err, result)
     })
 })
 
@@ -39,13 +34,7 @@ router.get('/search/:query', (req, res) => {
                       WHERE name LIKE ?
                          OR detail LIKE ?
                          OR category LIKE ?`, [query, query, query], (err, result) => {
-        console.log(err)
-        if (err || result.length === 0)
-            res.send([{result: false}])
-        else {
-            result[0]["result"] = true
-            res.send(result)
-        }
+        sendJSONArrayResult(res, err, result)
     })
 })
 
@@ -54,13 +43,7 @@ router.get('/my/:userId', (req, res) => {
                       FROM class c
                                JOIN takingClass t on c.id = t.classId
                       WHERE t.userId = ?`, [req.params.userId], (err, result) => {
-        console.log(err)
-        if (err || result.length === 0)
-            res.send([{result: false}])
-        else {
-            result[0]["result"] = true
-            res.send(result)
-        }
+        sendJSONArrayResult(res, err, result)
     })
 })
 
@@ -68,13 +51,7 @@ router.get('/info/:classId', (req, res) => {
     connection.query(`SELECT *
                       FROM class
                       WHERE id = ?`, [req.params.classId], (err, result) => {
-        console.log(err)
-        if (err || result.length === 0)
-            res.send([{result: false}])
-        else {
-            result[0]["result"] = true
-            res.send(result)
-        }
+        sendJSONArrayResult(res, err, result)
     })
 })
 
@@ -82,13 +59,7 @@ router.get('/notice/:classId', (req, res) => {
     connection.query(`SELECT *
                       FROM notice
                       WHERE classId = ?`, [req.params.classId], (err, result) => {
-        console.log(err)
-        if (err || result.length === 0)
-            res.send([{result: false}])
-        else {
-            result[0]["result"] = true
-            res.send(result)
-        }
+        sendJSONArrayResult(res, err, result)
     })
 })
 
@@ -99,13 +70,7 @@ router.get('/process/:userId/:classId', (req, res) => {
                                JOIN takingClass t ON p.classId = t.classId AND p.userId = t.userId
                       WHERE p.userId = ?
                         AND p.classId = ?`, [req.params.userId, req.params.classId], (err, result) => {
-        console.log(err)
-        if (err || result.length === 0)
-            res.send([{result: false}])
-        else {
-            result[0]["result"] = true
-            res.send(result)
-        }
+        sendJSONArrayResult(res, err, result)
     })
 })
 
@@ -115,13 +80,7 @@ router.get('/process/:userId', (req, res) => {
                       FROM process
                       WHERE userId = ?
                         AND (state = '수강 완료' OR state = '채점 완료')`, [req.params.userId], (err, result) => {
-        console.log(err)
-        if (err || result.length === 0)
-            res.send([{result: false}])
-        else {
-            result[0]["result"] = true
-            res.send(result)
-        }
+        sendJSONArrayResult(res, err, result)
     })
 })
 
@@ -130,13 +89,7 @@ router.get('/contents/:classId/:contentId', (req, res) => {
                       FROM content
                       WHERE classId = ?
                         AND contentId = ?`, [req.params.classId, req.params.contentId], (err, result) => {
-        console.log(err)
-        if (err || result.length === 0)
-            res.send([{result: false}])
-        else {
-            result[0]["result"] = true
-            res.send(result)
-        }
+        sendJSONArrayResult(res, err, result)
     })
 })
 
