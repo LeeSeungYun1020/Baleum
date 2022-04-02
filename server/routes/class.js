@@ -64,6 +64,20 @@ router.get('/my/:userId', (req, res) => {
     })
 })
 
-// 남은 구현 순서: 강의 정보 / 강의 진도 / 강의 공지 / 강의 수강
+router.get('/info/:classId', (req, res) => {
+    connection.query(`SELECT *
+                      FROM class
+                      WHERE id = ?`, [req.params.classId], (err, result) => {
+        console.log(err)
+        if (err || result.length === 0)
+            res.send([{result: false}])
+        else {
+            result[0]["result"] = true
+            res.send(result)
+        }
+    })
+})
+
+// 남은 구현 순서: 강의 진도 / 강의 공지 / 강의 수강
 
 module.exports = router;

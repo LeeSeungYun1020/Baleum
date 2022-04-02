@@ -16,3 +16,13 @@ Content-Type: application/json
 ### Taking class (my)
 GET http://localhost:3000/class/my/ileilliat@gmail.com
 Content-Type: application/json
+
+
+### Class info
+GET http://localhost:3000/class/info/1
+Content-Type: application/json
+
+
+### Class info - fail
+GET http://localhost:3000/class/info/50
+Content-Type: application/json
