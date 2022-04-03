@@ -19,5 +19,7 @@ Class notice read,class,강의 공지 열람,GET,class/notice/read/:id,,{notice}
 Class notice delete,class,강의 공지 삭제,DELETE,class/notice/delete/:id,/login required/,{result: Boolean}
 Class contents,class,강의 수강,GET,class/contents/:classId/:contentId,,{content}
 Class video done,class,강의 영상 수강 완료,POST,class/done/video,"classId, contentId, /login required/",{result: Boolean}
-class test done,class,강의 시험 제출,POST,class/done/test,"classId, contentId, answer[], /login required/",{result: Boolean}
-class test score done,class,강의 시험 채점,POST,class/done/test/score,"classId, contentId, score, feedback, /login required/",{result: Boolean}
+Class test done,class,강의 시험 제출,POST,class/done/test,"classId, contentId, answer[], /login required/",{result: Boolean}
+Class test score done,class,강의 시험 채점,POST,class/done/test/score,"classId, contentId, score, feedback, /login required/",{result: Boolean}
+Completed classes list,class,완료된 강의 리스트 조회,GET,class/complete/list/:userId,,"[{class, result: Boolean}, ...]"
+IsCompleted class,class,완료된 강의인지 확인,GET,class/complete/:userId/:classId,,"{isCompleted: Boolean, result: Boolean}"

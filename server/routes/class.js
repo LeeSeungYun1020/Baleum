@@ -65,7 +65,8 @@ router.get('/my', (req, res) => {
         connection.query(`SELECT c.*
                           FROM class c
                                    JOIN takingClass t on c.id = t.classId
-                          WHERE t.userId = ?`, [req.user.id], (err, result) => {
+                          WHERE t.userId = ?
+                            AND t.isCompleted = FALSE`, [req.user.id], (err, result) => {
             sendJSONArrayResult(res, err, result)
         })
     } else {
@@ -221,6 +222,32 @@ router.post('/done/test/score', (req, res) => {
     } else {
         res.send({"result": false, "reason": "user login required"})
     }
+})
+
+router.get('/complete/list/:userId', (req, res) => {
+    connection.query(`SELECT c.*
+                      FROM class c
+                               JOIN takingClass t on c.id = t.classId
+                      WHERE t.userId = ?
+                        AND t.isCompleted = TRUE`, [req.params.userId], (err, result) => {
+        sendJSONArrayResult(res, err, result)
+    })
+})
+
+router.get('/complete/:userId/:classId', (req, res) => {
+    connection.query(`SELECT t.isCompleted
+                      FROM class c
+                               JOIN takingClass t on c.id = t.classId
+                      WHERE t.userId = ?
+                        AND t.classId = ?
+                        AND t.isCompleted = TRUE`, [req.params.userId, req.params.classId], (err, result) => {
+        if (err || result.length === 0)
+            res.send([{result: false, isCompleted: false}])
+        else {
+            result[0]["result"] = true
+            res.send(result)
+        }
+    })
 })
 
 module.exports = router;

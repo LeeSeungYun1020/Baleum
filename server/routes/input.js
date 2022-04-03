@@ -34,8 +34,11 @@ router.get('/table', (req, res) => {
 
         CREATE TABLE takingClass
         (
-            userId  VARCHAR(64),
-            classId INT,
+            userId        VARCHAR(64),
+            classId       INT,
+            completedDate DATETIME,
+            isCompleted   BOOLEAN DEFAULT FALSE,
+            isSaved       BOOLEAN DEFAULT FALSE,
             PRIMARY KEY (userId, classId),
             FOREIGN KEY (userId) REFERENCES user (id),
             FOREIGN KEY (classId) REFERENCES class (id)

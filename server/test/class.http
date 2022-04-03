@@ -107,3 +107,8 @@ Content-Type: application/json
   "score": 100,
   "feedback": "정말 잘 풀었습니다."
 }
+
+
+### IsCompleted class
+GET http://localhost:3000/class/complete/ileilliat@gmail.com/1
+Content-Type: application/json
