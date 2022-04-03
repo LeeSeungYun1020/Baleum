@@ -2,10 +2,13 @@ import Head from 'next/head'
 import styles from '../styles/layout.module.scss'
 import Link from 'next/link'
 import classNames from 'classnames/bind';
+import {useContext} from "react";
+import {LoginContext} from "../pages/_app";
 
 export const siteTitle = "바름"
 
 export default function Layout({children}) {
+    const {isLogin} = useContext(LoginContext)
     return (
         <div className={styles.container}>
             <Head>
@@ -28,10 +31,12 @@ export default function Layout({children}) {
                             바름
                         </a>
                     </Link>
+                    {isLogin &&
                     <div>
-                        <Link href="/lecture"><a>내 강의</a></Link>
-                        <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
+                        <Link href="/lecture/my"><a>내 강의</a></Link>
+                            <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
                     </div>
+                    }
                 </div>
                 <nav className={styles.nav}>
                     <ul className={styles.navList}>
