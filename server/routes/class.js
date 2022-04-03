@@ -158,6 +158,28 @@ router.get('/contents/:classId/:contentId', (req, res) => {
     })
 })
 
+function setIfCompleted(userId, classId) {
+    connection.query(`
+        UPDATE takingClass
+        SET isCompleted= TRUE,
+            completedDate=CURRENT_TIMESTAMP
+        WHERE (
+                          userId = ? AND classID = ? AND
+                          (SELECT COUNT(contentId) as nContents FROM content WHERE classId = ?) =
+                          (SELECT COUNT(contentId) as nCompleted
+                           FROM process
+                           WHERE classId = ?
+                             AND userId = ?
+                             AND (state = '수강 완료' OR state = '채점 완료'))
+                  )`, [userId, classId, classId, classId, userId], (err, result) => {
+        if (result) {
+            if (result.affectedRows > 0) {
+                // TODO: 블록체인에 학습 수료 여부 저장 isSaved 변경
+            }
+        }
+    })
+}
+
 router.post('/done/video', (req, res) => {
     if (req.user) {
         connection.query(`
@@ -168,6 +190,8 @@ router.post('/done/video', (req, res) => {
                 WHERE content.classId = ?
                   AND content.contentId = ?))`, [req.body.classId, req.body.contentId, req.user.id, req.body.classId, req.body.contentId], (err, result) => {
             sendJSONObjectResult(res, err, result, true)
+            setIfCompleted(req.user.id, req.body.classId)
+            // TODO: 블록체인에 학습 과정 저장 isSaved 변경
         })
     } else {
         res.send({"result": false, "reason": "user login required"})
@@ -194,6 +218,8 @@ router.post('/done/test', (req, res) => {
                   AND content.contentId = ?));
         ` + ansSQL, [req.body.classId, req.body.contentId, req.user.id, req.body.classId, req.body.contentId].concat(ansValues), (err, result) => {
             sendJSONObjectResult(res, err, result, true)
+            setIfCompleted(req.user.id, req.body.classId)
+            // TODO: 블록체인에 학습 과정 저장 isSaved 변경
         })
     } else {
         res.send({"result": false, "reason": "user login required"})
@@ -218,6 +244,8 @@ router.post('/done/test/score', (req, res) => {
               AND contentId = ?
         `, [req.body.score, req.body.classId, req.body.contentId, req.user.id, req.body.classId, req.body.contentId], (err, result) => {
             sendJSONObjectResult(res, err, result, true)
+            setIfCompleted(req.user.id, req.body.classId)
+            // TODO: 블록체인에 학습 과정 저장 isSaved 변경
         })
     } else {
         res.send({"result": false, "reason": "user login required"})
@@ -245,6 +273,10 @@ router.get('/complete/:userId/:classId', (req, res) => {
             res.send([{result: false, isCompleted: false}])
         else {
             result[0]["result"] = true
+            if (result[0]["isCompleted"] === 1)
+                result[0]["isCompleted"] = true
+            else
+                result[0]["isCompleted"] = false
             res.send(result)
         }
     })
