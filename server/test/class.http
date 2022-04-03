@@ -13,6 +13,11 @@ GET http://localhost:3000/class/search/프로그래밍
 Content-Type: application/json
 
 
+### Class enrol
+POST http://localhost:3000/class/enrol/11
+Content-Type: application/json
+
+
 ### Taking class (my)
 GET http://localhost:3000/class/my
 Content-Type: application/json
