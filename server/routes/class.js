@@ -38,13 +38,18 @@ router.get('/search/:query', (req, res) => {
     })
 })
 
-router.get('/my/:userId', (req, res) => {
-    connection.query(`SELECT c.*
-                      FROM class c
-                               JOIN takingClass t on c.id = t.classId
-                      WHERE t.userId = ?`, [req.params.userId], (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
+router.get('/my', (req, res) => {
+    if (req.user) {
+        connection.query(`SELECT c.*
+                          FROM class c
+                                   JOIN takingClass t on c.id = t.classId
+                          WHERE t.userId = ?`, [req.user.id], (err, result) => {
+            sendJSONArrayResult(res, err, result)
+        })
+    } else {
+        res.send([{"result": false, "reason": "user login required"}])
+    }
+
 })
 
 router.get('/info/:classId', (req, res) => {
@@ -100,7 +105,7 @@ router.delete('/notice/delete/:id', (req, res) => {
     if (req.user) {
         connection.query(`DELETE
                           FROM notice
-                          WHERE id = ?`, [req.params.id], (err, result) => {
+                          WHERE id = ?`, [req.user.id], (err, result) => {
             sendJSONObjectResult(res, err, result, true)
         })
     } else {
@@ -139,56 +144,70 @@ router.get('/contents/:classId/:contentId', (req, res) => {
 })
 
 router.post('/done/video', (req, res) => {
-    connection.query(`
-        INSERT IGNORE INTO process (classId, contentId, userId, state, score, feedback)
-        VALUES (?, ?, ?, '수강 완료', 100, (
-            SELECT title
-            FROM content
-            WHERE content.classId = ?
-              AND content.contentId = ?))`, [req.body.classId, req.body.contentId, req.body.userId, req.body.classId, req.body.contentId], (err, result) => {
-        sendJSONObjectResult(res, err, result, true)
-    })
+    if (req.user) {
+        connection.query(`
+            INSERT IGNORE INTO process (classId, contentId, userId, state, score, feedback)
+            VALUES (?, ?, ?, '수강 완료', 100, (
+                SELECT title
+                FROM content
+                WHERE content.classId = ?
+                  AND content.contentId = ?))`, [req.body.classId, req.body.contentId, req.user.id, req.body.classId, req.body.contentId], (err, result) => {
+            sendJSONObjectResult(res, err, result, true)
+        })
+    } else {
+        res.send({"result": false, "reason": "user login required"})
+    }
 })
 
 router.post('/done/test', (req, res) => {
-    const answers = req.body.answer ?? []
-    let ansSQL = ""
-    let ansValues = []
-    answers.forEach((ans, idx) => {
-        ansSQL += `REPLACE INTO test (classId, contentId, questionId, userId, answer)
-                   VALUES (?, ?, ?, ?, ?);`
-        ansValues.push(req.body.classId, req.body.contentId, idx + 1, req.body.userId, ans)
-    })
+    if (req.user) {
+        const answers = req.body.answer ?? []
+        let ansSQL = ""
+        let ansValues = []
+        answers.forEach((ans, idx) => {
+            ansSQL += `REPLACE INTO test (classId, contentId, questionId, userId, answer)
+                       VALUES (?, ?, ?, ?, ?);`
+            ansValues.push(req.body.classId, req.body.contentId, idx + 1, req.user.id, ans)
+        })
 
-    connection.query(`
-        REPLACE INTO process (classId, contentId, userId, state, score, feedback)
-        VALUES (?, ?, ?, '제출 완료', 0, (
-            SELECT title
-            FROM content
-            WHERE content.classId = ?
-              AND content.contentId = ?));
-    ` + ansSQL, [req.body.classId, req.body.contentId, req.body.userId, req.body.classId, req.body.contentId].concat(ansValues), (err, result) => {
-        sendJSONObjectResult(res, err, result, true)
-    })
+        connection.query(`
+            REPLACE INTO process (classId, contentId, userId, state, score, feedback)
+            VALUES (?, ?, ?, '제출 완료', 0, (
+                SELECT title
+                FROM content
+                WHERE content.classId = ?
+                  AND content.contentId = ?));
+        ` + ansSQL, [req.body.classId, req.body.contentId, req.user.id, req.body.classId, req.body.contentId].concat(ansValues), (err, result) => {
+            sendJSONObjectResult(res, err, result, true)
+        })
+    } else {
+        res.send({"result": false, "reason": "user login required"})
+    }
+
 })
 
 router.post('/done/test/score', (req, res) => {
-    const feedback = req.body.feedback ?? ''
-    connection.query(`
-        UPDATE process
-        SET state    = '채점 완료',
-            score    = ?,
-            feedback = CONCAT((
-                                  SELECT title
-                                  FROM content
-                                  WHERE content.classId = ?
-                                    AND content.contentId = ?), '\n${feedback}')
-        WHERE userId = ?
-          AND classId = ?
-          AND contentId = ?
-    `, [req.body.score, req.body.classId, req.body.contentId, req.body.userId, req.body.classId, req.body.contentId], (err, result) => {
-        sendJSONObjectResult(res, err, result, true)
-    })
+    if (req.user) {
+        const feedback = req.body.feedback ?? ''
+        connection.query(`
+            UPDATE process
+            SET state    = '채점 완료',
+                score    = ?,
+                feedback = CONCAT((
+                                      SELECT title
+                                      FROM content
+                                      WHERE content.classId = ?
+                                        AND content.contentId = ?), '\n${feedback}')
+            WHERE userId = ?
+              AND classId = ?
+              AND contentId = ?
+        `, [req.body.score, req.body.classId, req.body.contentId, req.user.id, req.body.classId, req.body.contentId], (err, result) => {
+            sendJSONObjectResult(res, err, result, true)
+        })
+    } else {
+        res.send({"result": false, "reason": "user login required"})
+    }
+
 })
 
 module.exports = router;

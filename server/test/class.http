@@ -14,7 +14,7 @@ Content-Type: application/json
 
 
 ### Taking class (my)
-GET http://localhost:3000/class/my/ileilliat@gmail.com
+GET http://localhost:3000/class/my
 Content-Type: application/json
 
 
@@ -81,8 +81,7 @@ Content-Type: application/json
 
 {
   "classId": "1",
-  "contentId": "1",
-  "userId": "ileilliat@gmail.com"
+  "contentId": "1"
 }
 
 ### Class done - test
@@ -92,7 +91,6 @@ Content-Type: application/json
 {
   "classId": "1",
   "contentId": "2",
-  "userId": "ileilliat@gmail.com",
   "answer": [
     "1번 답",
     "2번 답"
@@ -106,7 +104,6 @@ Content-Type: application/json
 {
   "classId": "1",
   "contentId": "2",
-  "userId": "ileilliat@gmail.com",
   "score": 100,
   "feedback": "정말 잘 풀었습니다."
 }
