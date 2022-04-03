@@ -28,6 +28,38 @@ GET http://localhost:3000/class/notice/1
 Content-Type: application/json
 
 
+### Class notice create
+POST http://localhost:3000/class/notice/create
+Content-Type: application/json
+
+{
+  "classId": "1",
+  "title": "테스트 공지입니다.",
+  "contents": "테스트 공지가 잘 작성되는지 확인합니다."
+}
+
+
+### Class notice update
+POST http://localhost:3000/class/notice/update/2
+Content-Type: application/json
+
+{
+  "title": "테스트 공지 수정",
+  "contents": "수정된 내용인지 확인합니다."
+}
+
+
+### Class notice read
+GET http://localhost:3000/class/notice/read/2
+Content-Type: application/json
+
+
+### Class notice delete
+DELETE http://localhost:3000/class/notice/delete/2
+Content-Type: application/json
+
+
+
 ### Class process
 GET http://localhost:3000/class/process/ileilliat@gmail.com/1
 Content-Type: application/json

@@ -1,6 +1,6 @@
 Name,Type,Description,Method,Address,Parameter,Return
 API List,api,API 목록,GET,api,,
-Sign in,user,로그인,POST,users/signin,"id, pw","{user: User, result: Boolean}"
+Sign in,user,로그인,POST,users/signin,"id, pw","{user, result: Boolean}"
 Sign out,user,로그아웃,POST,users/signout,,{result: Boolean}
 Sign up,user,회원가입,POST,users/signup,"id, pw, name, detail, phone",{result: Boolean}
 Main class,class,"강의 목록 (메인 페이지, 8)",GET,class/main,,"[{class, result: Boolean}, ...]"
@@ -10,7 +10,11 @@ Taking class,class,학습 목록(내 강의),GET,class/my/:userId,,"[{class, res
 Class Info,class,강의 정보,GET,class/info/:classId,,"[{class, result: Boolean}, ...]"
 Class process,class,학습 과정(강의 진도),GET,class/process/:userId/:classId ,,"[{process, result: Boolean}, ...]"
 Class completed process,class,완료한 학습 과정,GET,class/process/:userId,,"[{process, result: Boolean}, ...]"
-Class notice,class,강의 공지,GET,class/notice/:classId,,"[{notice, result: Boolean}, ...]"
+Class notice,class,강의별 공지,GET,class/notice/class/:classId,,"[{notice, result: Boolean}, ...]"
+Class notice create,class,강의 공지 작성,POST,class/notice/create,"classId, title, contents",{result: Boolean}
+Class notice update,class,강의 공지 수정,GET,class/notice/update/:id,"title, contents",{result: Boolean}
+Class notice read,class,강의 공지 열람,GET,class/notice/read/:id,,{notice}
+Class notice delete,class,강의 공지 삭제,POST,class/notice/delete/:id,,{result: Boolean}
 Class contents,class,강의 수강,GET,class/contents/:classId/:contentId,,{content}
 Class video done,class,강의 영상 수강 완료,POST,class/done/video,"classId, contentId, userId",{result: Boolean}
 class test done,class,강의 시험 제출,POST,class/done/test,"classId, contentId, userId, answer[]",{result: Boolean}

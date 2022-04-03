@@ -55,12 +55,57 @@ router.get('/info/:classId', (req, res) => {
     })
 })
 
-router.get('/notice/:classId', (req, res) => {
+router.get('/notice/class/:classId', (req, res) => {
     connection.query(`SELECT *
                       FROM notice
                       WHERE classId = ?`, [req.params.classId], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
+})
+
+router.post('/notice/create', (req, res) => {
+    if (req.user) {
+        connection.query(`INSERT INTO notice (classId, title, contents, userId)
+                          VALUES (?, ?, ?,
+                                  ?)`, [req.body.classId, req.body.title, req.body.contents, req.user.id], (err, result) => {
+            sendJSONObjectResult(res, err, result, true)
+        })
+    } else {
+        res.send({"result": false, "reason": "user login required"})
+    }
+})
+
+router.post('/notice/update/:id', (req, res) => {
+    if (req.user) {
+        connection.query(`UPDATE notice
+                          SET title    = ?,
+                              contents = ?
+                          WHERE id = ?`, [req.body.title, req.body.contents, req.params.id], (err, result) => {
+            sendJSONObjectResult(res, err, result, true)
+        })
+    } else {
+        res.send({"result": false, "reason": "user login required"})
+    }
+})
+
+router.get('/notice/read/:id', (req, res) => {
+    connection.query(`SELECT *
+                      FROM notice
+                      WHERE id = ?`, [req.params.id], (err, result) => {
+        sendJSONObjectResult(res, err, result)
+    })
+})
+
+router.delete('/notice/delete/:id', (req, res) => {
+    if (req.user) {
+        connection.query(`DELETE
+                          FROM notice
+                          WHERE id = ?`, [req.params.id], (err, result) => {
+            sendJSONObjectResult(res, err, result, true)
+        })
+    } else {
+        res.send({"result": false, "reason": "user login required"})
+    }
 })
 
 router.get('/process/:userId/:classId', (req, res) => {
@@ -109,7 +154,7 @@ router.post('/done/test', (req, res) => {
     const answers = req.body.answer ?? []
     let ansSQL = ""
     let ansValues = []
-    answers.forEach((ans, idx, arr) => {
+    answers.forEach((ans, idx) => {
         ansSQL += `REPLACE INTO test (classId, contentId, questionId, userId, answer)
                    VALUES (?, ?, ?, ?, ?);`
         ansValues.push(req.body.classId, req.body.contentId, idx + 1, req.body.userId, ans)
