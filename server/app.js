@@ -6,6 +6,7 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const db = require('./lib/mysql');
 const session = require('express-session');
+const cors = require("cors")
 
 const app = express();
 app.use(session({
@@ -22,10 +23,12 @@ const inputRouter = require('./routes/input');
 const usersRouter = require('./routes/users')(passport);
 
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(cors({
+  credentials: true,
+  origin: true
+}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
