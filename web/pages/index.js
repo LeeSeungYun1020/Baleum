@@ -5,7 +5,6 @@ import styles from '../styles/Home.module.scss'
 import HomeLectureList from "../components/Home/HomeLectureList"
 import SignInBox from "../components/Users/SignInBox"
 // import sampleImage from '../public/img/sample-banner.jpg'
-
 export default function Home() {
     return (
         <Layout home>

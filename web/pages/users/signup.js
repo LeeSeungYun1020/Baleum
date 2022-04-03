@@ -13,7 +13,7 @@ const signup = () => {
                 <h1>회원가입</h1>
                 <form action={url.signup} method="post">
                     <div>
-                        <input className={styles.textBox} type={"email"} id={"id"} name={"id"} required minLength={"4"}
+                        <input className={styles.textBox} type={"text"} id={"name"} name={"name"} required minLength={"4"}
                                autoComplete={"name"} placeholder={"성함"}/>
                     </div>
                     <div>
@@ -24,6 +24,10 @@ const signup = () => {
                         <input className={styles.textBox} type={"password"} id={"pw"} name={"pw"} required
                                minLength={"4"}
                                autoComplete={"password"} placeholder={"Password"}/>
+                    </div>
+                    <div>
+                        <input className={styles.textBox} type={"text"} id={"intro"} name={"intro"} required minLength={"4"}
+                               placeholder={"한 줄 소개"}/>
                     </div>
                     <input type={"hidden"} name={"failureUrl"} value={"/users/signin"}/>
                     <input className={styles.textBox} type={"submit"} value={"회원가입"}/>

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "../../styles/Lecture.module.scss"
-const ROUTE_LECTURE_ID = "/lecture/[id]/[videoId]"; // url
-
+import {ROUTE_LECTURE_LIST_ID} from "../../data/global";
 const LectureInfo = ({lecture, id}) => {
     return (
         <div className={styles.lectureInfo}>
@@ -16,7 +15,7 @@ const LectureInfo = ({lecture, id}) => {
                 <h2>강의 목록</h2>
                 {lecture.list.map(list =>
                     <Link key={id} href={{
-                        pathname: ROUTE_LECTURE_ID,
+                        pathname: ROUTE_LECTURE_LIST_ID,
                         query: { id : id, videoId: list.id}
                     }}>
                         <a><li key = {list.id}>{list.content}</li></a>

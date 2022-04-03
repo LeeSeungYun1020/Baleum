@@ -1,7 +1,7 @@
-import styles from "../../styles/Lecture.module.scss";
-import {dummyLecture} from "../../data/dummyLecture";
-import MyLectureComponent from "../../components/Lecture/MyLectureComponent";
-import Layout, {siteTitle} from "../../components/layout";
+import styles from "../../../styles/Lecture.module.scss";
+import {dummyLecture} from "../../../data/dummyLecture";
+import MyLectureComponent from "../../../components/Lecture/MyLectureComponent";
+import Layout, {siteTitle} from "../../../components/layout";
 import Head from "next/head";
 import React from "react";
 

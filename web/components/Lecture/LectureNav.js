@@ -1,8 +1,7 @@
 import styles from "../../styles/Lecture.module.scss";
 import Link from "next/link";
-
-const ROUTE_LECTURE_ID = "/lecture/[id]"; // url
-const ROUTE_LECTURE_LIST_ID = "/lecture/[id]/[videoId]"; // url
+import {ROUTE_LECTURE_ID} from "../../data/global";
+import {ROUTE_LECTURE_LIST_ID} from "../../data/global";
 
 const LectureNav = ({lecture, id}) => {
     return (
