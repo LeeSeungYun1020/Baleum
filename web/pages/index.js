@@ -9,18 +9,18 @@ import {useContext, useEffect, useState} from "react";
 import {LoginContext} from "./_app";
 import {SERVER_URL} from "../data/global";
 import axios from "axios";
+import Loading from "../components/Loading";
+
 
 export default function Home() {
     const {isLogin} = useContext(LoginContext)
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(false);
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`${SERVER_URL}/class/main`,{ withCredentials: true })
-                ;
+                const response = await axios.get(`${SERVER_URL}/class/main`,{ withCredentials: true });
                 console.log(response)
                 setItem(response.data);
             } catch(e) {
@@ -33,7 +33,7 @@ export default function Home() {
 
     // 대기 중일 때
     if(loading) {
-        return <div><h3>로딩 중 ...</h3></div>
+        return <Loading/>
     }
     // 아직 item이 설정되지 않았을 때
     if (!item) {

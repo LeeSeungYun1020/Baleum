@@ -14,7 +14,7 @@ const MyLectureComponent = (lecture) => {
         {/*    카테고리 */}
         </div>
         <div className={styles.myLectureImageBox}>
-            <Image src={lecture.lecture.src} width={100} height={100} alt={"lecture image"} objectFit={"cover"}/>
+            {/*<Image src={lecture.lecture.src} width={100} height={100} alt={"lecture image"} objectFit={"cover"}/>*/}
         {/*    사진 대신 큐알 코드*/}
 
         </div>

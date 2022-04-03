@@ -169,3 +169,11 @@ $sub-color: #f1f1f1; // 선 색상, 테두리 색상
 .myLectureText {
   width: 120px;
 }
+
+.noLectureComponent {
+  width: 100em;
+  height: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
