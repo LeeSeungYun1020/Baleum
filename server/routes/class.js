@@ -18,6 +18,14 @@ router.get('/list/:num', (req, res) => {
     })
 })
 
+router.get('/info/:classId', (req, res) => {
+    connection.query(`SELECT *
+                      FROM class
+                      WHERE id = ?`, [req.params.classId], (err, result) => {
+        sendJSONArrayResult(res, err, result)
+    })
+})
+
 router.get('/all', (req, res) => {
     res.redirect("/class/list/16")
 })
@@ -26,6 +34,20 @@ router.get('/main', (req, res) => {
     res.redirect("/class/list/8")
 })
 
+router.get('/category/list', (req, res) => {
+    connection.query(`SELECT name
+                      FROM classCategory`, (err, result) => {
+        sendJSONArrayResult(res, err, result)
+    })
+})
+
+router.get('/category/:classCategory', (req, res) => {
+    connection.query(`SELECT *
+                      FROM class
+                      WHERE category = ?`, [req.params.classCategory], (err, result) => {
+        sendJSONArrayResult(res, err, result)
+    })
+})
 
 router.get('/search/:query', (req, res) => {
     const query = "%" + req.params.query + "%"
@@ -50,14 +72,6 @@ router.get('/my', (req, res) => {
         res.send([{"result": false, "reason": "user login required"}])
     }
 
-})
-
-router.get('/info/:classId', (req, res) => {
-    connection.query(`SELECT *
-                      FROM class
-                      WHERE id = ?`, [req.params.classId], (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
 })
 
 router.get('/notice/class/:classId', (req, res) => {
@@ -207,7 +221,6 @@ router.post('/done/test/score', (req, res) => {
     } else {
         res.send({"result": false, "reason": "user login required"})
     }
-
 })
 
 module.exports = router;
