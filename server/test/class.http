@@ -75,8 +75,13 @@ GET http://localhost:3000/class/process/ileilliat@gmail.com
 Content-Type: application/json
 
 
-### Class contents
+### Class content
 GET http://localhost:3000/class/contents/1/1
+Content-Type: application/json
+
+
+### Class contents list
+GET http://localhost:3000/class/contents/1
 Content-Type: application/json
 
 

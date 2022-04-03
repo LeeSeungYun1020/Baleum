@@ -170,6 +170,14 @@ router.get('/contents/:classId/:contentId', (req, res) => {
     })
 })
 
+router.get('/contents/:classId', (req, res) => {
+    connection.query(`SELECT *
+                      FROM content
+                      WHERE classId = ?`, [req.params.classId], (err, result) => {
+        sendJSONArrayResult(res, err, result)
+    })
+})
+
 function setIfCompleted(userId, classId) {
     connection.query(`
         UPDATE takingClass
