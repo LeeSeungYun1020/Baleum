@@ -3,12 +3,13 @@ import styles from "/styles/Users.module.scss"
 import Head from "next/head";
 import {SERVER_URL} from "../../data/global";
 import axios from "axios";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {LoginContext} from "../_app";
+import {useRouter} from 'next/router'
 
 const signin = () => {
-    const [id, setId] = useState("");
-    const [pw, setPw] = useState("");
-
+    const router = useRouter()
+    const {isLogin, id, pw, setIsLogin, setId, setPw} = useContext(LoginContext)
     const submit = e => {
         e.preventDefault();
         axios.post(`${SERVER_URL}/users/signin`, {
@@ -16,7 +17,19 @@ const signin = () => {
             pw: pw
         }, {withCredentials: true})
             .then (response => {
-                console.log(response)
+                // console.log(response)
+                if(response.data.result) {
+                    setId(id);
+                    setPw(pw);
+                    setIsLogin(true);
+                    localStorage.setItem("isLogin", true);
+                    localStorage.setItem("id", id);
+                    localStorage.setItem("pw", pw);
+                    router.push('/'); // 홈으로 이동
+                }
+                else {
+                    alert("이메일과 비밀번호를 다시 확인해주세요.")
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -41,7 +54,7 @@ const signin = () => {
                 <form onSubmit={submit}>
                     <div>
                         <input className={styles.textBox} type={"email"} id={"id"} name={"id"} required minLength={"4"}
-                               autoComplete={"email"} placeholder={"ID"} onChange={onIdChange}/>
+                               autoComplete={"email"} placeholder={"EMAIL"} onChange={onIdChange}/>
                     </div>
                     <div>
                         <input className={styles.textBox} type={"password"} id={"pw"} name={"pw"} required

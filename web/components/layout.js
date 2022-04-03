@@ -43,7 +43,7 @@ export default function Layout({children}) {
             <main className={styles.inner}>{children}</main>
             <footer className={classNames({[styles.footer]: true, [styles.inner]: true})}>
                 <div>
-                    LOGO
+                    바름
                 </div>
                 <div>
                     Made. 201645825 이 승 윤 & 201645819 심 재 영 & 201824444 김 유 미
