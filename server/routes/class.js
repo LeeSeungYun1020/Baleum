@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../lib/mysql')
-const {sendJSONArrayResult} = require('../lib/send')
+const {sendJSONArrayResult, sendJSONObjectResult} = require('../lib/send')
 
 router.get('/list/:num', (req, res) => {
     let num = req.params.num ?? 8
@@ -90,6 +90,59 @@ router.get('/contents/:classId/:contentId', (req, res) => {
                       WHERE classId = ?
                         AND contentId = ?`, [req.params.classId, req.params.contentId], (err, result) => {
         sendJSONArrayResult(res, err, result)
+    })
+})
+
+router.post('/done/video', (req, res) => {
+    connection.query(`
+        INSERT IGNORE INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (?, ?, ?, '수강 완료', 100, (
+            SELECT title
+            FROM content
+            WHERE content.classId = ?
+              AND content.contentId = ?))`, [req.body.classId, req.body.contentId, req.body.userId, req.body.classId, req.body.contentId], (err, result) => {
+        sendJSONObjectResult(res, err, result, true)
+    })
+})
+
+router.post('/done/test', (req, res) => {
+    const answers = req.body.answer ?? []
+    let ansSQL = ""
+    let ansValues = []
+    answers.forEach((ans, idx, arr) => {
+        ansSQL += `REPLACE INTO test (classId, contentId, questionId, userId, answer)
+                   VALUES (?, ?, ?, ?, ?);`
+        ansValues.push(req.body.classId, req.body.contentId, idx + 1, req.body.userId, ans)
+    })
+
+    connection.query(`
+        REPLACE INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (?, ?, ?, '제출 완료', 0, (
+            SELECT title
+            FROM content
+            WHERE content.classId = ?
+              AND content.contentId = ?));
+    ` + ansSQL, [req.body.classId, req.body.contentId, req.body.userId, req.body.classId, req.body.contentId].concat(ansValues), (err, result) => {
+        sendJSONObjectResult(res, err, result, true)
+    })
+})
+
+router.post('/done/test/score', (req, res) => {
+    const feedback = req.body.feedback ?? ''
+    connection.query(`
+        UPDATE process
+        SET state    = '채점 완료',
+            score    = ?,
+            feedback = CONCAT((
+                                  SELECT title
+                                  FROM content
+                                  WHERE content.classId = ?
+                                    AND content.contentId = ?), '\n${feedback}')
+        WHERE userId = ?
+          AND classId = ?
+          AND contentId = ?
+    `, [req.body.score, req.body.classId, req.body.contentId, req.body.userId, req.body.classId, req.body.contentId], (err, result) => {
+        sendJSONObjectResult(res, err, result, true)
     })
 })
 
