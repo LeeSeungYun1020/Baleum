@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
@@ -7,8 +7,20 @@
 <body>
 <h1><%= title %></h1>
 <section id="api-desc">
-    <div>
+    <div id="main-tools">
+        <div>도구 모음</div>
         <a href="/api">새로고침</a>
+        <a href="/input/table">테이블 생성</a>
+        <a href="/input/table/force">테이블 강제 생성</a>
+        <a href="/input/data">데이터 입력</a>
+        <% if (command) { %>
+            <div id="command-msg">
+                <div>"<%= command %>" 명령 실행 완료</div>
+                <% if (commandError) { %>
+                    <div id="command-error">오류 발생: <%= commandError %></div>
+                <% } %>
+            </div>
+        <% } %>
     </div>
 
     <%- apiDesc %>

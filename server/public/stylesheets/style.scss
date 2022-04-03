@@ -13,3 +13,22 @@ a {
 p {
   font-family: 'JetBrains Mono', 'Noto Sans KR', monospace;
 }
+
+#main-tools {
+  a {
+    display: inline-flex;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 8px;
+    margin: 4px;
+  }
+}
+
+#command-msg {
+  background: lightgray;
+  padding: 8px;
+
+  #command-error {
+    color: darkred;
+  }
+}

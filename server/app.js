@@ -6,6 +6,7 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const db = require('./lib/mysql');
 const session = require('express-session');
+const cors = require("cors")
 
 const app = express();
 app.use(session({
@@ -16,14 +17,18 @@ app.use(session({
 const passport = require('./lib/passport')(app, db)
 
 const apiRouter = require('./routes/api');
+const classRouter = require('./routes/class');
 const indexRouter = require('./routes/index');
+const inputRouter = require('./routes/input');
 const usersRouter = require('./routes/users')(passport);
 
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(cors({
+  credentials: true,
+  origin: true
+}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -38,6 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
+app.use('/class', classRouter);
+app.use('/input', inputRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
