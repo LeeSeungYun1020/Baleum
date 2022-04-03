@@ -47,9 +47,12 @@ module.exports = function (passport) {
     router.post("/signup", (req, res) => {
         const id = req.body.id
         const pw = req.body.pw
+        const name = req.body.name
+        const detail = req.body.detail ?? ''
+        const phone = req.body.phone ?? ''
 
-        connection.query("INSERT INTO `user` (id, pw) VALUES (?, ?)",
-            [id, pw],
+        connection.query("INSERT INTO `user` (id, pw, name, detail, phone) VALUES (?, ?, ?, ?, ?)",
+            [id, pw, name, detail, phone],
             (err, result) => {
                 if (err)
                     res.send({result: false, isDuplicate: err.errno === 1062})
