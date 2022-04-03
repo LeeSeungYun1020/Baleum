@@ -1,14 +1,43 @@
-import {dummyLecture} from "../../data/dummyLecture";
 import styles from "../../styles/Search.module.scss"
 import SearchLectureCard from "./SearchLectureCard";
+import React, {useEffect, useState} from "react";
+import {SERVER_URL} from "../../data/global";
+import axios from "axios";
+import Loading from "../Loading";
 
 const SearchList = ({id}) => {
+    const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(false); // 데이터 로딩
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                if(id) {
+                    const response = await axios.get(`${SERVER_URL}/class/search/${id}`, {withCredentials: true});
+                    setItem(response.data);
+                }
+                else {
+                    const response = await axios.get(`${SERVER_URL}/class/all`, {withCredentials: true});
+                    setItem(response.data);
+                }
+            } catch (e) {
+                console.log(e)
+            }
+            setLoading(false);
+        }
+        fetchData();
+    },[id]);
+
+    if(loading) {
+        return <Loading/>
+    }
+    // 아직 item이 설정되지 않았을 때
+    if (!item) {
+        return null;
+    }
     return (
         <div className={styles.searchList}>
-            {(id === undefined) ?
-                dummyLecture.map((dummy, index) => <SearchLectureCard dummy={dummy} key={index}/>) // 이 경우에 모든 강의 다 뜨도록 할 예정
-                : dummyLecture.map((dummy, index) => <SearchLectureCard dummy={dummy} key={index}/>)
-            }
+            {item[0].result ? item.map((item, index) => <SearchLectureCard lecture={item} key={index}/>) : <h3>검색 결과가 존재하지 않습니다.</h3>}
         </div>
     )
 }
