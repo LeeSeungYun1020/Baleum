@@ -3,8 +3,8 @@ POST http://localhost:3000/users/signin
 Content-Type: application/json
 
 {
-  "id": "qwerty",
-  "pw": "qwertyisgood"
+  "id": "ileilliat@gmail.com",
+  "pw": "lsy1020"
 }
 
 ### Sign out
@@ -19,6 +19,9 @@ POST http://localhost:3000/users/signup
 Content-Type: application/json
 
 {
-  "id": "qwerty",
-  "pw": "qwertyisgood"
+  "id": "qwerty@example.com",
+  "pw": "qwertyisgood",
+  "name": "한영",
+  "detail": "안녕하세요 예제 이름입니다. :)",
+  "phone": "010-0000-0000"
 }
