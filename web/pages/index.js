@@ -21,7 +21,7 @@ export default function Home() {
             setLoading(true);
             try {
                 const response = await axios.get(`${SERVER_URL}/class/main`,{ withCredentials: true });
-                console.log(response)
+                // console.log(response)
                 setItem(response.data);
             } catch(e) {
                 console.log(e)
@@ -46,7 +46,7 @@ export default function Home() {
             </Head>
             <section>
                 <div className={styles.banner}>
-                    <Image src="/img/sample-banner.jpg" alt="배너" width={804} height={240}/>
+                    <Image src="/img/banner.png" alt="배너" width={804} height={240}/>
                     {isLogin ? <SignOutBox/> : <SignInBox/>}
                 </div>
                 {/*여기는 공지사항, ... 네비게이션 영역*/}

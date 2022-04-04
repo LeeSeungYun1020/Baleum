@@ -3,7 +3,6 @@ import LectureNav from "../../../components/Lecture/LectureNav";
 import LectureVideo from "../../../components/Lecture/LectureVideo.js";
 import styles from "../../../styles/Lecture.module.scss";
 import {useEffect, useState} from "react";
-import {dummyVideo} from "../../../data/dummyVideo";
 import axios from "axios";
 import {SERVER_URL} from "../../../data/global";
  // 더미데이터
@@ -21,7 +20,7 @@ const videoPage = () => {
         axios.get(`${SERVER_URL}/class/info/${id}`,{withCredentials: true})
             .then (response => {
                 if(response.data[0].result) {
-                    setLecture(lecture => response.data[0])
+                    setLecture(response.data[0])
                 }
                 else {
                     router.push("/")
@@ -30,23 +29,20 @@ const videoPage = () => {
 
     },[id])
     useEffect(() => {
-        console.log(videoId)
         axios.get(`${SERVER_URL}/class/contents/${id}/${videoId}`,{withCredentials: true})
             .then (response => {
-                console.log(response.data.result)
-                if(response.data.result) {
-                    setContent(response.data)
+                    if (response.data[0].result) {
+                        setContent(response.data[0])
+                    } else if (response.data[0].result === false) {
+                        router.push("/")
+                    }
                 }
-                else {
-                    // router.push("/")
-                }
-            })
-
-    },[])
+            )
+    },[videoId])
     return (<div className={styles.lecturePage}>
         <LectureNav lecture = {lecture} id={id} />
-        {console.log(content)}
-        {/*<LectureVideo title={lecture.list[videoId-1].content} />*/}
+        {/*{content && console.log(content.url)}*/}
+        {content && <LectureVideo title={content.title} url={content.url} id={id} videoId={videoId} />}
     </div>)
 }
 

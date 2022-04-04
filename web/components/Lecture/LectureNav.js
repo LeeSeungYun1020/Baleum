@@ -1,7 +1,6 @@
 import styles from "../../styles/Lecture.module.scss";
 import Link from "next/link";
 import {ROUTE_LECTURE_ID} from "../../data/global";
-import {ROUTE_LECTURE_LIST_ID} from "../../data/global";
 import Loading from "../Loading";
 import LectureNavListComponent from "./LectureNavListComponent";
 
@@ -20,7 +19,7 @@ const LectureNav = ({lecture, id}) => {
                 }}>
                     <a><h2>{lecture.name}</h2></a>
                 </Link>
-                <h3>{lecture.userId}</h3>
+                <h3>{lecture.teacher}</h3>
             </div>
             <div className={styles.lectureNavContent}>
                 <h3>강의 목록</h3>

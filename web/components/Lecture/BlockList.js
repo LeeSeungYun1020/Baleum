@@ -13,8 +13,8 @@ const BlockList = (classId) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                // console.log(classId)
-                const response = await axios.get(`${SERVER_URL}/class/process/${id}/${classId.classId}`, {withCredentials: true});
+                const response = await axios.get(`${SERVER_URL}/class/process/${classId.userId||id}/${classId.classId}`, {withCredentials: true});
+                // userId가 있으면 그거, 없으면 사용자 id로
                 // console.log(response.data)
                 setBlock(response.data);
             } catch (e) {
@@ -34,7 +34,7 @@ const BlockList = (classId) => {
     }
     return (
         <>
-            {block.map(contents => <BlockComponent content={contents} />)}
+            {block[0].result ? block.map(contents => <BlockComponent content={contents}/>) : <p>강의를 수강하여 블록을 완성해보세요!</p>}
         </>
     )
 }

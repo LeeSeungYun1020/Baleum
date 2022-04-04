@@ -3,10 +3,11 @@ import MyLectureComponent from "../../../components/Lecture/MyLectureComponent";
 import Layout, {siteTitle} from "../../../components/layout";
 import Head from "next/head";
 import React, {useContext, useEffect, useState} from "react";
-import {SERVER_URL} from "../../../data/global";
+import {CLIENT_URL, SERVER_URL} from "../../../data/global";
 import axios from "axios";
 import {LoginContext} from "../../_app";
 import Loading from "../../../components/Loading";
+import QRCode from "react-qr-code";
 
 const Lecture = () => {
     const {id} = useContext(LoginContext)
@@ -28,7 +29,7 @@ const Lecture = () => {
             try {
                 if(num === 0) {
                     const response = await axios.get(`${SERVER_URL}/class/my`, {withCredentials: true});
-                    console.log(response.data)
+                    // console.log(response.data)
                     setItem(response.data);
                 }
                 else if(num === 1) {
@@ -38,7 +39,7 @@ const Lecture = () => {
                 }
                 else {
                     const response = await axios.get(`${SERVER_URL}/class/my/${id}`, {withCredentials: true});
-                    console.log(response)
+                    // console.log(response)
                     setItem(response.data);
                 }
             } catch (e) {
@@ -68,9 +69,9 @@ const Lecture = () => {
                     <div className={styles.myLectureNavP} onClick={clickComplete}><p>수강 완료</p></div>
                     <div className={styles.myLectureNavP} onClick={clickMake}><p>생성 강의</p></div>
                 </div>
-                    {(num !== 2 && item[0].result) ? item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />) :
+                    {(num !== 2 && item[0].result) ? (num === 0 ? item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />) : <><QRCode value={`${CLIENT_URL}/certification/${id}`} size={64}/>{item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />)}</>) :
                         <div className={styles.noLectureComponent}>
-                            {(num===0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : (num === 1 ? <h3>수강 완료한 강의가 존재하지 않습니다.</h3> : <h3>생성한 강의가 존재하지 않습니다.</h3>))}
+                            {(num===0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : (num === 1 ? <><QRCode value={`${CLIENT_URL}/certification/${id}`} size={64}/><h3>수강 완료한 강의가 존재하지 않습니다.</h3></> : <h3>생성한 강의가 존재하지 않습니다.</h3>))}
                         </div>}
             </div>
             </section>

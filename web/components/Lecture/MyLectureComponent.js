@@ -1,8 +1,23 @@
 import styles from "../../styles/Lecture.module.scss"
+import {useRouter} from "next/router";
+import {CLIENT_URL, ROUTE_LECTURE_ID} from "../../data/global";
+import QRCode from "react-qr-code";
+import {useContext} from "react";
+import {LoginContext} from "../../pages/_app";
 
 const MyLectureComponent = (lecture) => {
-    return (<div className={styles.myLectureComponent}>
+    const {id} = useContext(LoginContext)
+    const router = useRouter()
+    const onClick = () => {
+        router.push({
+            pathname: ROUTE_LECTURE_ID,
+            query: {id: lecture.lecture.id}
+        })
+    }
+    return (<div className={styles.myLectureComponent} onClick={onClick}>
         <div className={styles.myLectureInfoText}>
+            <QRCode value={`${CLIENT_URL}/certification/lecture/${lecture.lecture.id}/${id}`} size={50} style={{float: "right"}}/>
+            {/*모두가 볼 수 있는 사용자의 이 과목 학습 인증서로 넘어감*/}
             <div><h1 className={styles.myLectureText}>강의명 </h1><h1>{lecture.lecture.name}</h1></div>
             <div><h2 className={styles.myLectureText}>강의자 </h2><h2>{lecture.lecture.teacher}</h2></div>
             {/*<div><h2 className={styles.myLectureText}>강의기간 </h2><h2>{lecture.lecture.time}</h2></div>*/}
