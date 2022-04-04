@@ -11,16 +11,18 @@ router.get('/list/:num', (req, res) => {
         num = 8
         break
     }
-    connection.query(`SELECT *
-                      FROM class
+    connection.query(`SELECT c.*, u.name
+                      FROM class c
+                               JOIN user u on c.userId = u.id
                       LIMIT ${num}`, (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
 })
 
 router.get('/info/:classId', (req, res) => {
-    connection.query(`SELECT *
-                      FROM class
+    connection.query(`SELECT c.*, u.name
+                      FROM class c
+                               JOIN user u on c.userId = u.id
                       WHERE id = ?`, [req.params.classId], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
@@ -42,8 +44,9 @@ router.get('/category/list', (req, res) => {
 })
 
 router.get('/category/:classCategory', (req, res) => {
-    connection.query(`SELECT *
-                      FROM class
+    connection.query(`SELECT c.*, u.name
+                      FROM class c
+                               JOIN user u on c.userId = u.id
                       WHERE category = ?`, [req.params.classCategory], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
@@ -51,11 +54,13 @@ router.get('/category/:classCategory', (req, res) => {
 
 router.get('/search/:query', (req, res) => {
     const query = "%" + req.params.query + "%"
-    connection.query(`SELECT *
-                      FROM class
-                      WHERE name LIKE ?
-                         OR detail LIKE ?
-                         OR category LIKE ?`, [query, query, query], (err, result) => {
+    connection.query(`SELECT c.*, u.name
+                      FROM class c
+                               JOIN user u on c.userId = u.id
+                      WHERE c.name LIKE ?
+                         OR c.detail LIKE ?
+                         OR c.category LIKE ?
+                         OR u.name LIKE ?`, [query, query, query, query], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
 })
@@ -74,9 +79,10 @@ router.post('/enrol/:classId', (req, res) => {
 
 router.get('/my', (req, res) => {
     if (req.user) {
-        connection.query(`SELECT c.*
+        connection.query(`SELECT c.*, u.name
                           FROM class c
                                    JOIN takingClass t on c.id = t.classId
+                                   JOIN user u on c.userId = u.id
                           WHERE t.userId = ?
                             AND t.isCompleted = FALSE`, [req.user.id], (err, result) => {
             sendJSONArrayResult(res, err, result)
@@ -121,9 +127,10 @@ router.post('/notice/update/:id', (req, res) => {
 })
 
 router.get('/notice/read/:id', (req, res) => {
-    connection.query(`SELECT *
-                      FROM notice
-                      WHERE id = ?`, [req.params.id], (err, result) => {
+    connection.query(`SELECT n.*, u.name
+                      FROM notice n
+                               JOIN user u on n.userId = u.id
+                      WHERE n.id = ?`, [req.params.id], (err, result) => {
         sendJSONObjectResult(res, err, result)
     })
 })
@@ -273,9 +280,10 @@ router.post('/done/test/score', (req, res) => {
 })
 
 router.get('/complete/list/:userId', (req, res) => {
-    connection.query(`SELECT c.*
+    connection.query(`SELECT c.*, u.name
                       FROM class c
                                JOIN takingClass t on c.id = t.classId
+                               JOIN user u on c.userId = u.id
                       WHERE t.userId = ?
                         AND t.isCompleted = TRUE`, [req.params.userId], (err, result) => {
         sendJSONArrayResult(res, err, result)
