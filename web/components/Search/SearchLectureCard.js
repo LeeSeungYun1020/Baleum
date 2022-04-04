@@ -4,10 +4,15 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import styles from "../../styles/Search.module.scss"
+import {useRouter} from "next/router";
 
 const HomeLectureCard = ({lecture}) => {
+    const router = useRouter();
+    const onClick = () => {
+        router.push(`/lecture/${lecture.id}`)
+    }
     return (
-        <Card sx={{maxWidth: 252}} className={styles.lectureCard}>
+        <Card sx={{maxWidth: 252}} className={styles.lectureCard} onClick={onClick}>
             <CardActionArea>
                 <CardMedia
                     component="img"

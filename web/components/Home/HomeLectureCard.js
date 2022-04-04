@@ -7,7 +7,7 @@ import styles from "../../styles/Lecture.module.scss"
 import {useRouter} from "next/router";
 const HomeLectureCard = ({lecture}) => {
     const router = useRouter();
-    const onClick = (e) => {
+    const onClick = () => {
         router.push(`/lecture/${lecture.id}`)
     }
     return (

@@ -15,8 +15,6 @@ const SearchNav = (categories) => {
                     <li><a>{list.name}</a></li>
                 </Link>
             </ul>)}
-            {/*{console.log(categories)}*/}
-            {/*categories.categories.list로 해야함*/}
         </div>
     )
 }
