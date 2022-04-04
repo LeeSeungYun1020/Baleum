@@ -13,25 +13,25 @@ const Lecture = () => {
     const [num, setNum] = useState(0); // default 0: 수강 중
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(false); // 데이터 로딩
-    const clickCurrent = (e) => {
+    const clickCurrent = () => {
         setNum(0);
     } // 수강 중 강의
-    const clickComplete = (e) => {
+    const clickComplete = () => {
         setNum(1);
     } // 수강 완료 강의
-    const clickMake = (e) => {
+    const clickMake = () => {
         setNum(2);
     }// 강의 생성
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                if(num == 0) {
-                    const response = await axios.get(`${SERVER_URL}/class/my/${id}`, {withCredentials: true});
+                if(num === 0) {
+                    const response = await axios.get(`${SERVER_URL}/class/my`, {withCredentials: true});
                     console.log(response)
                     setItem(response.data);
                 }
-                else if(num == 1) {
+                else if(num === 1) {
                     const response = await axios.get(`${SERVER_URL}/class/process/${id}`, {withCredentials: true});
                     console.log(response)
                     setItem(response.data);
@@ -67,11 +67,11 @@ const Lecture = () => {
                 <div className={styles.myLectureNav}>
                     <div className={styles.myLectureNavP} onClick={clickCurrent}><p>수강 중</p></div>
                     <div className={styles.myLectureNavP} onClick={clickComplete}><p>수강 완료</p></div>
-                    <div className={styles.myLectureNavP}><p>생성 강의</p></div>
+                    <div className={styles.myLectureNavP} onClick={clickMake}><p>생성 강의</p></div>
                 </div>
                     {(item.result) ? item.map((item, index) => <MyLectureComponent key={index} lecture = {item}/>) :
                         <div className={styles.noLectureComponent}>
-                            {(num==0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : <h3>수강 완료한 강의가 존재하지 않습니다.</h3>)}
+                            {(num===0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : <h3>수강 완료한 강의가 존재하지 않습니다.</h3>)}
                         </div>}
             </div>
             </section>
