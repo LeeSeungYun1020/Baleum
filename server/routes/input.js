@@ -314,9 +314,25 @@ router.get('/data', (req, res) => {
         VALUES ('시험');
 
         INSERT INTO content (classId, contentId, type, title, url)
-        VALUES (1, 1, '영상', '운영체제 강의 소개', '');
+        VALUES (1, 1, '영상', '운영체제 강의 소개', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
         INSERT INTO content (classId, contentId, type, title, url)
-        VALUES (1, 2, '시험', '첫번째 퀴즈', '');
+        VALUES (1, 2, '시험', '첫번째 퀴즈', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 3, '영상', '가상화', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 4, '영상', '클라우드 컴퓨팅', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 5, '영상', '운영체제 서비스', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 6, '영상', 'CLI', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 7, '영상', '마이크로커널 시스템', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 8, '영상', '프로세스와 스레드', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 9, '영상', '프로세스 상태', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 10, '영상', '스케줄러', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
 
         INSERT INTO question (classId, contentId, questionId, title, answer)
         VALUES (1, 2, 1, '1번 답을 입력하십시오.', '1번 답');

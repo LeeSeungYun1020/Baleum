@@ -12,7 +12,8 @@ router.get('/', function (req, res, next) {
             title: '바름 API 서버 - BALEUM API Server',
             command: cmd,
             commandError: dbError,
-            apiDesc: req.session.apiDesc
+            apiDesc: req.session.apiDesc,
+            apiTable: req.session.apiTable
         });
     else
         res.redirect('/api')

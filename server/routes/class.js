@@ -148,10 +148,9 @@ router.delete('/notice/delete/:id', (req, res) => {
 })
 
 router.get('/process/:userId/:classId', (req, res) => {
-    // 수강 취소한 강의는 표시하지 않기 위해 join 실행
-    connection.query(`SELECT p.*
+    connection.query(`SELECT p.*, c.type, c.title
                       FROM process p
-                               JOIN takingClass t ON p.classId = t.classId AND p.userId = t.userId
+                               JOIN content c ON p.classId = c.classId AND p.contentId = c.contentId
                       WHERE p.userId = ?
                         AND p.classId = ?`, [req.params.userId, req.params.classId], (err, result) => {
         sendJSONArrayResult(res, err, result)
@@ -160,10 +159,11 @@ router.get('/process/:userId/:classId', (req, res) => {
 
 router.get('/process/:userId', (req, res) => {
     // 사용자별 완료된 강의만 표시
-    connection.query(`SELECT *
-                      FROM process
-                      WHERE userId = ?
-                        AND (state = '수강 완료' OR state = '채점 완료')`, [req.params.userId], (err, result) => {
+    connection.query(`SELECT *, c.type, c.title
+                      FROM process p
+                               JOIN content c ON p.classId = c.classId AND p.contentId = c.contentId
+                      WHERE p.userId = ?
+                        AND (p.state = '수강 완료' OR p.state = '채점 완료')`, [req.params.userId], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
 })
