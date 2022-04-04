@@ -16,19 +16,19 @@ const HomeLectureCard = ({lecture}) => {
                 <CardMedia
                     component="img"
                     height="200"
-                    image={URL.createObjectURL(new Blob(new Uint8Array(lecture.image.data)), {type: "image/png"})}
+                    image={"data:image/png;base64,"+ lecture.image}
                     alt="강의 사진"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" height="32px"
-                                style={{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>
+                                style={{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontWeight: "600", fontSize: "1.2rem"}}>
                         {lecture.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" height="60px" style={{overflow: "hidden"}}>
                         {lecture.detail}
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                        {lecture.userId}
+                        {lecture.teacher}
                     </Typography>
                 </CardContent>
             </CardActionArea>
