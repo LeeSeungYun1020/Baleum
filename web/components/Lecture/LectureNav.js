@@ -3,6 +3,7 @@ import Link from "next/link";
 import {ROUTE_LECTURE_ID} from "../../data/global";
 import {ROUTE_LECTURE_LIST_ID} from "../../data/global";
 import Loading from "../Loading";
+import LectureNavListComponent from "./LectureNavListComponent";
 
 const LectureNav = ({lecture, id}) => {
     if(!lecture) {
@@ -23,16 +24,7 @@ const LectureNav = ({lecture, id}) => {
             </div>
             <div className={styles.lectureNavContent}>
                 <h3>강의 목록</h3>
-                {/*<ul>*/}
-                {/*    {lecture.list.map(list =>*/}
-                {/*            <Link key={id} href={{*/}
-                {/*                pathname: ROUTE_LECTURE_LIST_ID,*/}
-                {/*                query: { id : id, videoId: list.id}*/}
-                {/*            }}>*/}
-                {/*        <a><li key = {list.id}>{list.content}</li></a>*/}
-                {/*     </Link>*/}
-                {/*    )}*/}
-                {/*</ul>*/}
+                <LectureNavListComponent lecture={lecture} />
             </div>
         </div>
     )

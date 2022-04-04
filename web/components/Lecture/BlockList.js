@@ -13,9 +13,9 @@ const BlockList = (classId) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                console.log(classId)
+                // console.log(classId)
                 const response = await axios.get(`${SERVER_URL}/class/process/${id}/${classId.classId}`, {withCredentials: true});
-                console.log(response.data)
+                // console.log(response.data)
                 setBlock(response.data);
             } catch (e) {
                 console.log(e)

@@ -20,7 +20,7 @@ const HomeLectureCard = ({lecture}) => {
                     image={"data:image/png;base64,"+ lecture.image}
                     alt="강의 사진"
                 />
-                {console.log(lecture)}
+                {/*{console.log(lecture)}*/}
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div" height="32px"
                                 style={{overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontWeight: "600", fontSize: "1.2rem"}}>
