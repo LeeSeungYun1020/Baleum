@@ -34,7 +34,7 @@ export default function Layout({children}) {
                     {isLogin &&
                     <div>
                         <Link href="/lecture/my"><a>내 강의</a></Link>
-                            <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
+                        <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
                     </div>
                     }
                 </div>
