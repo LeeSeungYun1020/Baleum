@@ -23,7 +23,7 @@ router.get('/info/:classId', (req, res) => {
     connection.query(`SELECT c.*, u.name as teacher
                       FROM class c
                                JOIN user u on c.userId = u.id
-                      WHERE id = ?`, [req.params.classId], (err, result) => {
+                      WHERE c.id = ?`, [req.params.classId], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
 })
@@ -60,7 +60,7 @@ router.get('/search/:query', (req, res) => {
                       WHERE c.name LIKE ?
                          OR c.detail LIKE ?
                          OR c.category LIKE ?
-                         OR u.name as teacher LIKE ?`, [query, query, query, query], (err, result) => {
+                         OR u.name LIKE ?`, [query, query, query, query], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
 })
