@@ -339,6 +339,9 @@ router.get('/data', (req, res) => {
         INSERT INTO question (classId, contentId, questionId, title, answer)
         VALUES (1, 2, 2, '2번 답을 입력하십시오.', '2번 답');
 
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (2, 1, '영상', '웹은 무엇인가요?', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+
         INSERT INTO processState (name)
         VALUES ('수강 필요');
         INSERT INTO processState (name)
@@ -355,6 +358,66 @@ router.get('/data', (req, res) => {
                                                             FROM content
                                                             WHERE content.classId = 1
                                                               AND content.contentId = 1));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 2, 'ileilliat@gmail.com', '채점 완료', 100, '운영체제 기본 개념 테스트를 정말 잘 풀었습니다.');
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 3, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 3));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 4, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 4));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 5, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 5));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 6, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 6));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 7, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 7));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 8, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 8));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 9, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 9));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 10, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                             FROM content
+                                                             WHERE content.classId = 1
+                                                               AND content.contentId = 10));
+
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (2, 1, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 2
+                                                              AND content.contentId = 1));
+
+        UPDATE takingClass
+        SET isCompleted  = TRUE,
+            completedDate=CURRENT_TIMESTAMP
+        WHERE userId = 'ileilliat@gmail.com'
+          AND classId = '1';
+
+        UPDATE takingClass
+        SET isCompleted  = TRUE,
+            completedDate=CURRENT_TIMESTAMP
+        WHERE userId = 'ileilliat@gmail.com'
+          AND classId = '2';
 
     `, (err, result) => {
         if (err) {
