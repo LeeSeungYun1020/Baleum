@@ -272,6 +272,25 @@ router.get('/data', (req, res) => {
                 '알고리즘 테스트 열풍에 이어 알고리즘 인터뷰 열풍? 라이브 코딩은 어떻게 준비해야할까? 실제 작동되는 코드보다 개념 설명이 더 중요하다? 강의를 통해 함께 알아나갑시다.',
                 'kjn0099@naver.com', '컴퓨터 과학',
                 '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
+        INSERT INTO class (id, name, detail, userId, category, image)
+        VALUES (13, '개발자 언어를 사용자 표현으로 번역하다.', '기술 문서가 어려운 프로그래머, 엔지니어를 위한 메뉴얼, 테크니컬 WRITING',
+                'jihoooo@naver.com', '글쓰기',
+                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
+        INSERT INTO class (id, name, detail, userId, category, image)
+        VALUES (14, '도대체 인공지능이 뭔데?',
+                '제4차 산업 혁명 시대의 주요기술, 인공지능 이해하기',
+                'yejin0233@gmail.com', '컴퓨터 과학',
+                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
+        INSERT INTO class (id, name, detail, userId, category, image)
+        VALUES (15, 'iOS 개발을 위한 Swift 완벽 가이드',
+                '프로젝트 실습을 통해 Swift 코딩 배워보기',
+                'lsw4122@naver.com', '프로그래밍',
+                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
+        INSERT INTO class (id, name, detail, userId, category, image)
+        VALUES (16, '당신이 잠든 사이, 알아서 축적되는 부',
+                '파이썬을 활용한 비트코인 자동매매 프로그램 만들기',
+                'yejin0233@gmail.com', '프로그래밍',
+                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
 
         INSERT INTO takingClass (userId, classId)
         VALUES ('ileilliat@gmail.com', '1');
