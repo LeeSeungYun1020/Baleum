@@ -27,7 +27,7 @@ router.get('/table', (req, res) => {
             detail   VARCHAR(1024),
             userId   VARCHAR(64)  NOT NULL,
             category VARCHAR(32)  NOT NULL,
-            image    MEDIUMBLOB,
+            image    MEDIUMTEXT,
             FOREIGN KEY (userId) REFERENCES user (id),
             FOREIGN KEY (category) REFERENCES classCategory (name)
         );
@@ -227,51 +227,51 @@ router.get('/data', (req, res) => {
 
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (1, '개념어로 배우는 운영체제', '운영체제의 기본적인 내용을 이해하고 있다고 가정하고 주요 용어에 대해 자세히 설명합니다.', 'fabi88@naver.com', '컴퓨터 과학',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/01.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (2, 'Front A to Z', 'React 전문가인 김유미가 기초부터 심화까지 하나하나 짚어주는 명품 프론트 강의', 'kym5957@naver.com', '컴퓨터 과학',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/02.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (3, '나도 작가다', '인생을 뒤바꾼 나만의 이야기 적는 법, 살을 파고드는 아픔을 노래하고 입이 귀에 걸리는 기쁨을 읊조리는 법을 배울 수 있다.',
                 'jysim0129@naver.com', '글쓰기',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/03.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (4, '프로젝트로 배우는 안드로이드 앱 제작',
                 '직접 만들면서 배우는 것만큼 쉽게 배울 수 있는 방법은 없습니다. 할 일 목록을 작성할 수 있는 CRUD가 가능한 간단하 어플리케이션을 함께 만들어 봅니다.',
                 'fabi88@naver.com', '프로그래밍',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/04.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (5, '삐릿삐릿 네트워크', '네트워크 관련 개념을 삐릿빠릿하게 파악할 수 있는 강의입니다.', 'leeseungyun1020@gmail.com', '컴퓨터 과학',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/05.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (6, '무조건 오르는 부동산', '1억으로 시작하는 서울 시내 꼬마 빌딩 투자, 결국 집 값은 우상향, 살 수 있을 때 사야', 'mathloverhs@kakao.com', '투자',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/06.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (7, 'UI 디자인의 정석', '디자이너가 아니어도 쉽고 재미있게 유명 SNS 기업 리드 디자이너가 정석을 알려드립니다.', 'plantviver@gmail.com', '디자인',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/07.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (8, '두 번으로 끝내는 UI/UX 디자인',
                 '이론과 실무 프로세스를 통한 UX 디자인, 스케치, 어도비 등 클론디자인 학습을 진행합니다. 죽은 포트폴리오도 살려낼 수 있는 두 번으로 끝내는 UI, UX 많은 수강 바랍니다.',
                 'shchoi@gmail.com', '디자인',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/08.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (9, '쉽게 즐기는 JAVA 프로그래밍', '프로그래밍 언어가 낯설게만 느껴졌다고요? 자바로 프로그래밍을 시작하려는 당신을 위한 자바 기초 강의. 지금 시작합니다.',
                 'kym5957@naver.com', '프로그래밍',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/09.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (10, '논리적인 UX 디자인',
                 '데이터가 낯선 디자이너를 위한 유일한 데이터 기반 UX 디자인 강의. 왜 특정 제품을 선호하는지 이해하고 어떻게 하면 그들이 좋아하는 성공적인 제품을 디자인할 수 있을지에 대한 해답을 찾습니다.',
                 'yoonbasic@naver.com', '디자인',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/10.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (11, '생각을 전하는 진실된 손', '설득의 무기는 손이다? 합리적이고 성공 가능성이 높은 의사결정을 위한 빠른 글쓰기, 설득의 힘을 믿습니다.',
                 'strongkh@gmail.com',
-                '글쓰기', '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '글쓰기', '${fs.readFileSync(path.join(__dirname, '../public/images/11.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (12, '알고리즘 인터뷰 부수기',
                 '알고리즘 테스트 열풍에 이어 알고리즘 인터뷰 열풍? 라이브 코딩은 어떻게 준비해야할까? 실제 작동되는 코드보다 개념 설명이 더 중요하다? 강의를 통해 함께 알아나갑시다.',
                 'kjn0099@naver.com', '컴퓨터 과학',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/os.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
 
         INSERT INTO takingClass (userId, classId)
         VALUES ('ileilliat@gmail.com', '1');
