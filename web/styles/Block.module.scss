@@ -22,3 +22,29 @@
   background-color: white;
   //display: none;
 }
+
+.toolTip {
+  position: relative;
+  display: inline-block;
+}
+
+.toolTip .toolTipText {
+  visibility: hidden;
+  // 조절할 경우 가운데 정렬 위해서 하단의 마진도 함께 조절 필수
+  width: 100%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -50%;
+}
+
+.toolTip:hover .toolTipText {
+  visibility: visible;
+}
