@@ -2,10 +2,11 @@ import styles from "../../styles/Home.module.scss";
 import {dummyLecture} from "../../data/dummyLecture";
 import HomeLectureCard from "./HomeLectureCard";
 
-const HomeLectureList = () => {
+const HomeLectureList = ({lectureList}) => {
+
     return (
         <div className={styles.lectureList}>
-            {dummyLecture.map((dummy, index) => <HomeLectureCard dummy={dummy} key={index}/>)}
+            {lectureList.map((lecture, index) => <HomeLectureCard lecture={lecture} key={index}/>)}
         </div>)
 }
 

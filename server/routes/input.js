@@ -275,22 +275,22 @@ router.get('/data', (req, res) => {
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (13, '개발자 언어를 사용자 표현으로 번역하다.', '기술 문서가 어려운 프로그래머, 엔지니어를 위한 메뉴얼, 테크니컬 WRITING',
                 'jihoooo@naver.com', '글쓰기',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/13.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (14, '도대체 인공지능이 뭔데?',
                 '제4차 산업 혁명 시대의 주요기술, 인공지능 이해하기',
                 'yejin0233@gmail.com', '컴퓨터 과학',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/14.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (15, 'iOS 개발을 위한 Swift 완벽 가이드',
                 '프로젝트 실습을 통해 Swift 코딩 배워보기',
                 'lsw4122@naver.com', '프로그래밍',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/15.jpg'), 'base64')}');
         INSERT INTO class (id, name, detail, userId, category, image)
         VALUES (16, '당신이 잠든 사이, 알아서 축적되는 부',
                 '파이썬을 활용한 비트코인 자동매매 프로그램 만들기',
                 'yejin0233@gmail.com', '프로그래밍',
-                '${fs.readFileSync(path.join(__dirname, '../public/images/12.jpg'), 'base64')}');
+                '${fs.readFileSync(path.join(__dirname, '../public/images/16.jpg'), 'base64')}');
 
         INSERT INTO takingClass (userId, classId)
         VALUES ('ileilliat@gmail.com', '1');
@@ -314,14 +314,33 @@ router.get('/data', (req, res) => {
         VALUES ('시험');
 
         INSERT INTO content (classId, contentId, type, title, url)
-        VALUES (1, 1, '영상', '운영체제 강의 소개', '');
+        VALUES (1, 1, '영상', '운영체제 강의 소개', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
         INSERT INTO content (classId, contentId, type, title, url)
-        VALUES (1, 2, '시험', '첫번째 퀴즈', '');
+        VALUES (1, 2, '시험', '첫번째 퀴즈', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 3, '영상', '가상화', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 4, '영상', '클라우드 컴퓨팅', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 5, '영상', '운영체제 서비스', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 6, '영상', 'CLI', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 7, '영상', '마이크로커널 시스템', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 8, '영상', '프로세스와 스레드', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 9, '영상', '프로세스 상태', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (1, 10, '영상', '스케줄러', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
 
         INSERT INTO question (classId, contentId, questionId, title, answer)
         VALUES (1, 2, 1, '1번 답을 입력하십시오.', '1번 답');
         INSERT INTO question (classId, contentId, questionId, title, answer)
         VALUES (1, 2, 2, '2번 답을 입력하십시오.', '2번 답');
+
+        INSERT INTO content (classId, contentId, type, title, url)
+        VALUES (2, 1, '영상', '웹은 무엇인가요?', 'https://www.youtube.com/watch?v=wvQm3qf3CEo');
 
         INSERT INTO processState (name)
         VALUES ('수강 필요');
@@ -339,6 +358,66 @@ router.get('/data', (req, res) => {
                                                             FROM content
                                                             WHERE content.classId = 1
                                                               AND content.contentId = 1));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 2, 'ileilliat@gmail.com', '채점 완료', 100, '운영체제 기본 개념 테스트를 정말 잘 풀었습니다.');
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 3, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 3));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 4, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 4));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 5, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 5));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 6, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 6));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 7, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 7));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 8, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 8));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 9, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 1
+                                                              AND content.contentId = 9));
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (1, 10, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                             FROM content
+                                                             WHERE content.classId = 1
+                                                               AND content.contentId = 10));
+
+        INSERT INTO process (classId, contentId, userId, state, score, feedback)
+        VALUES (2, 1, 'ileilliat@gmail.com', '수강 완료', 100, (SELECT title
+                                                            FROM content
+                                                            WHERE content.classId = 2
+                                                              AND content.contentId = 1));
+
+        UPDATE takingClass
+        SET isCompleted  = TRUE,
+            completedDate=CURRENT_TIMESTAMP
+        WHERE userId = 'ileilliat@gmail.com'
+          AND classId = '1';
+
+        UPDATE takingClass
+        SET isCompleted  = TRUE,
+            completedDate=CURRENT_TIMESTAMP
+        WHERE userId = 'ileilliat@gmail.com'
+          AND classId = '2';
 
     `, (err, result) => {
         if (err) {

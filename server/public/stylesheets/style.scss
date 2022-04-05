@@ -32,3 +32,21 @@ p {
     color: darkred;
   }
 }
+
+#main-table {
+  margin-top: 128px;
+  font-family: 'JetBrains Mono', 'Noto Sans KR', monospace;
+
+  table {
+    border-collapse: collapse;
+  }
+
+  .first {
+    border-bottom: 1px solid grey;
+    text-align: center;
+  }
+
+  .else {
+    border-bottom: 1px solid lightgrey;
+  }
+}

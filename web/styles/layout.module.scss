@@ -1,3 +1,7 @@
+$header-height: 104px;
+$footer-height: 140px;
+$footer-margin-top: 80px;
+
 .inner {
   width: 1080px;
   margin: 0 auto;
@@ -9,13 +13,19 @@
   }
 }
 
+.main {
+  min-height: calc(100vh - $header-height - $footer-height - $footer-margin-top - 32px);
+  margin-top: 32px;
+  block-size: border-box;
+}
+
 .container {
   height: auto;
   min-height: 100%;
 }
 
 .header {
-
+  height: $header-height;
 }
 
 .nameTab {
@@ -57,7 +67,8 @@
   background: #1F1F1F;
   padding: 30px;
   width: 100%;
-  margin-top: 80px;
+  height: $footer-height;
+  margin-top: $footer-margin-top;
 }
 
 .footer > div:first-child {
@@ -80,4 +91,13 @@
 
 .searchPage {
 
+}
+
+.loadingPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
