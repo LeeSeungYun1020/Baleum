@@ -45,7 +45,7 @@ export default function Layout({children}) {
                     </ul>
                 </nav>
             </header>
-            <main className={styles.inner}>{children}</main>
+            <main className={`${styles.inner} ${styles.main}`}>{children}</main>
             <footer className={classNames({[styles.footer]: true, [styles.inner]: true})}>
                 <div>
                     바름
@@ -53,11 +53,9 @@ export default function Layout({children}) {
                 <div>
                     Made. 201645825 이 승 윤 & 201645819 심 재 영 & 201824444 김 유 미
                     <br/>
-                    Addr. 부산대학교 전기컴퓨터공학부 정보컴퓨터공학전공
+                    부산대학교 전기컴퓨터공학부 정보컴퓨터공학전공
                     <br/>
-                    Fax/Tel. 00 - 000 - 0000
-                    <br/>
-                    COPYRIGHT 2022. Baleum. ALL RIGHT RESERVED.
+                    2021 후기 졸업과제 PLMS팀 08번 D분과
                 </div>
             </footer>
         </div>
