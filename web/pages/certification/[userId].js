@@ -9,6 +9,9 @@ import styles from "../../styles/Lecture.module.scss";
 const certification = () => {
     const router = useRouter()
     const {userId} = router.query;
+    if(!userId) {
+        return (<></>)
+    }
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(false); // 데이터 로딩
     useEffect(() => {
@@ -17,7 +20,7 @@ const certification = () => {
             try {
                 const response = await axios.get(`${SERVER_URL}/class/complete/list/${userId}`, {withCredentials: true});
                 setItem(response.data)
-                console.log(response)
+                // console.log(response)
             } catch (e) {
                 console.log(e)
             }
@@ -41,4 +44,4 @@ const certification = () => {
     )
 }
 
-export default certification
+export default certification;

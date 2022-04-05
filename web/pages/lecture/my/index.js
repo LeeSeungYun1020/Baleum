@@ -69,7 +69,7 @@ const Lecture = () => {
                     <div className={styles.myLectureNavP} onClick={clickComplete}><p>수강 완료</p></div>
                     <div className={styles.myLectureNavP} onClick={clickMake}><p>생성 강의</p></div>
                 </div>
-                    {(num !== 2 && item[0].result) ? (num === 0 ? item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />) : <><QRCode value={`${CLIENT_URL}/certification/${id}`} size={64}/>{item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />)}</>) :
+                    {(num !== 2 && item[0].result) ? (num === 0 ? item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />) : <><QRCode value={`${CLIENT_URL}/certification/${id}`} style ={{marginBottom: 30}} size={64}/>{item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />)}</>) :
                         <div className={styles.noLectureComponent}>
                             {(num===0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : (num === 1 ? <><QRCode value={`${CLIENT_URL}/certification/${id}`} size={64}/><h3>수강 완료한 강의가 존재하지 않습니다.</h3></> : <h3>생성한 강의가 존재하지 않습니다.</h3>))}
                         </div>}
