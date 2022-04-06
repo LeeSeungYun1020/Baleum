@@ -152,18 +152,20 @@ router.get('/process/:userId/:classId', (req, res) => {
                       FROM process p
                                JOIN content c ON p.classId = c.classId AND p.contentId = c.contentId
                       WHERE p.userId = ?
-                        AND p.classId = ?`, [req.params.userId, req.params.classId], (err, result) => {
+                        AND p.classId = ?
+                      ORDER BY p.date`, [req.params.userId, req.params.classId], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
 })
 
 router.get('/process/:userId', (req, res) => {
     // 사용자별 완료된 강의만 표시
-    connection.query(`SELECT *, c.type, c.title
+    connection.query(`SELECT p.*, c.type, c.title
                       FROM process p
                                JOIN content c ON p.classId = c.classId AND p.contentId = c.contentId
                       WHERE p.userId = ?
-                        AND (p.state = '수강 완료' OR p.state = '채점 완료')`, [req.params.userId], (err, result) => {
+                        AND (p.state = '수강 완료' OR p.state = '채점 완료')
+                      ORDER BY p.date`, [req.params.userId], (err, result) => {
         sendJSONArrayResult(res, err, result)
     })
 })
