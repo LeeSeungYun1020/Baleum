@@ -6,7 +6,7 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const db = require('./lib/mysql');
 const session = require('express-session');
-const cors = require("cors")
+const cors = require("cors");
 
 const app = express();
 app.use(session({
