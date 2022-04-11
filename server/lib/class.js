@@ -46,7 +46,7 @@ function saveProcess(classId, contentId, userId) {
 // 프로세스 확인하여 저장 여부 업데이트
 function checkProcessSaveThenUpdate(classId, contentId, userId) {
     learn.getProcess(classId, contentId, userId).then(process => {
-            if (process.date === '' || process.state === '') {
+            if (process.date !== '' || process.state !== '') {
                 connection.query(`UPDATE process
                                   SET isSaved = true
                                   WHERE classId = ?
