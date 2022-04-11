@@ -42,6 +42,7 @@ class Learn {
                     continue
                 process[key] = value[key]
             }
+            array["date"] += ".000Z"
             array.push(process)
         }
 
@@ -49,13 +50,14 @@ class Learn {
     }
 
     async setProcess(classId, contentId, userId, date, state, score, feedback) {
+        const stringDate = date.toString()
         let result
         try {
             const instance = await this.Learn.deployed()
             const accounts = await this.getAccounts()
-            result = await instance.save(classId, contentId, userId, date, state, score, feedback, {from: accounts[0]})
-            console.log(result)
-            console.log("Fin trans")
+            result = await instance.save(classId, contentId, userId, stringDate, state, score, feedback, {from: accounts[0]})
+            console.log(result.receipt.transactionHash)
+            console.log(result.receipt.blockHash)
         } catch (err) {
             console.log(err)
         }
