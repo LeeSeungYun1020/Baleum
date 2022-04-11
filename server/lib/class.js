@@ -37,26 +37,6 @@ function saveProcess(classId, contentId, userId) {
         if (!err && result.length === 1) {
             const process = result[0]
             await learn.setProcess(process.classId, process.contentId, process.userId, process.date, process.state, process.score, process.feedback)
-            checkProcessSaveThenUpdate(classId, contentId, userId)
         }
-        // TODO: 블록체인 연동 테스트 필요
     })
-}
-
-// 프로세스 확인하여 저장 여부 업데이트
-function checkProcessSaveThenUpdate(classId, contentId, userId) {
-    learn.getProcess(classId, contentId, userId).then(process => {
-            if (process.date !== '' || process.state !== '') {
-                connection.query(`UPDATE process
-                                  SET isSaved = true
-                                  WHERE classId = ?
-                                    AND contentId = ?
-                                    AND userId = ?`, [classId, contentId, userId], async (err, result) => {
-                    if (err)
-                        console.error(err.message)
-                })
-            }
-        }
-    )
-
 }

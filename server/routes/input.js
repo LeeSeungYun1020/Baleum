@@ -34,11 +34,13 @@ router.get('/table', (req, res) => {
 
         CREATE TABLE takingClass
         (
-            userId        VARCHAR(64),
-            classId       INT,
-            completedDate DATETIME,
-            isCompleted   BOOLEAN DEFAULT FALSE,
-            isSaved       BOOLEAN DEFAULT FALSE,
+            userId          VARCHAR(64),
+            classId         INT,
+            completedDate   DATETIME,
+            isCompleted     BOOLEAN DEFAULT FALSE,
+            isSaved         BOOLEAN DEFAULT FALSE,
+            blockHash       VARCHAR(66),
+            transactionHash VARCHAR(66),
             PRIMARY KEY (userId, classId),
             FOREIGN KEY (userId) REFERENCES user (id),
             FOREIGN KEY (classId) REFERENCES class (id)
@@ -90,14 +92,16 @@ router.get('/table', (req, res) => {
 
         CREATE TABLE process
         (
-            classId   INT,
-            contentId INT,
-            userId    VARCHAR(64),
-            date      DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            state     VARCHAR(32) NOT NULL,
-            score     INT         NOT NULL,
-            feedback  VARCHAR(1024),
-            isSaved   BOOLEAN     NOT NULL DEFAULT FALSE,
+            classId         INT,
+            contentId       INT,
+            userId          VARCHAR(64),
+            date            DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            state           VARCHAR(32) NOT NULL,
+            score           INT         NOT NULL,
+            feedback        VARCHAR(1024),
+            isSaved         BOOLEAN     NOT NULL DEFAULT FALSE,
+            blockHash       VARCHAR(66),
+            transactionHash VARCHAR(66),
             PRIMARY KEY (classId, contentId, userId),
             FOREIGN KEY (state) REFERENCES processState (name)
         );

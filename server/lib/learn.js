@@ -1,6 +1,7 @@
 const truffleContract = require('truffle-contract')
 const learnJson = require('../build/contracts/Learn.json')
 const web3Lib = require('./web3')
+const connection = require("./mysql")
 
 class Learn {
     constructor() {
@@ -56,8 +57,16 @@ class Learn {
             const instance = await this.Learn.deployed()
             const accounts = await this.getAccounts()
             result = await instance.save(classId, contentId, userId, stringDate, state, score, feedback, {from: accounts[0]})
-            console.log(result.receipt.transactionHash)
-            console.log(result.receipt.blockHash)
+            connection.query(`UPDATE process
+                              SET isSaved         = true,
+                                  blockHash       = ?,
+                                  transactionHash = ?
+                              WHERE classId = ?
+                                AND contentId = ?
+                                AND userId = ?`, [result.receipt.blockHash, result.receipt.transactionHash, classId, contentId, userId], async (err, result) => {
+                if (err)
+                    console.error(err.message)
+            })
         } catch (err) {
             console.log(err)
         }
