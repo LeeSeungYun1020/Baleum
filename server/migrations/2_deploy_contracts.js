@@ -1,7 +1,7 @@
-const Adoption = artifacts.require("Adoption");
 const Learn = artifacts.require("Learn");
+const Course = artifacts.require("Course");
 
 module.exports = (deployer) => {
     deployer.deploy(Learn);
-    deployer.deploy(Adoption);
+    deployer.deploy(Course);
 };

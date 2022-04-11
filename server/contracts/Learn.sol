@@ -1,5 +1,4 @@
-pragma solidity ^0.5.0;
-pragma experimental ABIEncoderV2;
+pragma solidity >=0.4.22 <0.9.0;
 
 contract Learn {
 
@@ -46,10 +45,6 @@ contract Learn {
         uint contentId,
         string memory userId) public view returns (processData memory) {
         bytes32 key = keccak256(abi.encode(classId, contentId, userId));
-        return processes[key];
-    }
-
-    function readByKey(bytes32 key) public view returns (processData memory) {
         return processes[key];
     }
 }

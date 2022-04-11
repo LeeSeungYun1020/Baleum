@@ -1,14 +1,14 @@
 const truffleContract = require('truffle-contract')
-const learnJson = require('../build/contracts/Learn.json')
+const courseJson = require('../build/contracts/Course.json')
 const web3Lib = require('./web3')
 const connection = require("./mysql")
 
-class Learn {
+class Course {
     constructor() {
         this.web3 = web3Lib.getWeb3()
         this.GAS_LIMIT = 1000000
-        this.Learn = truffleContract(learnJson)
-        this.Learn.setProvider(this.web3.currentProvider)
+        this.Course = truffleContract(courseJson)
+        this.Course.setProvider(this.web3.currentProvider)
     }
 
     async getAccounts() {
@@ -26,43 +26,43 @@ class Learn {
         return accounts
     }
 
-    async getAllProcess() {
-        let pcs = []
+    async getAllClass() {
+        let cls = []
         try {
-            const instance = await this.Learn.deployed()
-            pcs = await instance.readAll.call()
+            const instance = await this.Course.deployed()
+            cls = await instance.readAll.call()
         } catch (err) {
             console.error(err)
         }
 
         const array = []
-        for (const value of pcs) {
-            const process = {}
+        for (const value of cls) {
+            const class1 = {}
             for (const key in value) {
                 if ("0" <= key && key <= "9")
                     continue
-                process[key] = value[key]
+                class1[key] = value[key]
             }
-            array.push(process)
+            array.push(class1)
         }
 
         return array
     }
 
-    async setProcess(classId, contentId, userId, date, state, score, feedback) {
-        const stringDate = date.toString()
+    async setClass(userId, classId, completedDate, name, detail, teacher, category) {
+        const stringDate = completedDate.toString()
         let result
         try {
-            const instance = await this.Learn.deployed()
+            const instance = await this.Course.deployed()
             const accounts = await this.getAccounts()
-            result = await instance.save(classId, contentId, userId, stringDate, state, score, feedback, {from: accounts[0]})
-            connection.query(`UPDATE process
+            result = await instance.save(userId, classId, completedDate, name, detail, teacher, category, {from: accounts[0]})
+            connection.query(`UPDATE takingClass
                               SET isSaved         = true,
                                   blockHash       = ?,
                                   transactionHash = ?
                               WHERE classId = ?
-                                AND contentId = ?
-                                AND userId = ?`, [result.receipt.blockHash, result.receipt.transactionHash, classId, contentId, userId], async (err, result) => {
+                                AND userId = ?
+                                AND isCompleted = true`, [result.receipt.blockHash, result.receipt.transactionHash, classId, userId], async (err, result) => {
                 if (err)
                     console.error(err.message)
             })
@@ -72,26 +72,25 @@ class Learn {
         return result
     }
 
-    async getProcess(classId, contentId, userId) {
-        let process
+    async getClass(userId, classId) {
+        let class1
         try {
-            const instance = await this.Learn.deployed()
-            process = await instance.read.call(classId, contentId, userId)
+            const instance = await this.Course.deployed()
+            class1 = await instance.read.call(userId, classId)
         } catch (err) {
             console.error(err)
         }
 
         const result = {}
-        result["classId"] = classId
-        result["contentId"] = contentId
         result["userId"] = userId
-        for (const key in process) {
+        result["classId"] = classId
+        for (const key in class1) {
             if ("0" <= key && key <= "9")
                 continue
-            result[key] = process[key]
+            result[key] = class1[key]
         }
         return result
     }
 }
 
-module.exports = Learn
+module.exports = Course
