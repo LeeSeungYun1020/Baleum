@@ -91,7 +91,7 @@ Content-Type: application/json
 
 {
   "classId": "1",
-  "contentId": "1"
+  "contentId": "10"
 }
 
 ### Class done - test
