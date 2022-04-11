@@ -22,7 +22,6 @@ const contractRouter = require('./routes/contract');
 const indexRouter = require('./routes/index');
 const inputRouter = require('./routes/input');
 const usersRouter = require('./routes/users')(passport);
-const testRouter = require('./routes/test');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -48,7 +47,6 @@ app.use('/class', classRouter);
 app.use('/contract', contractRouter);
 app.use('/input', inputRouter);
 app.use('/users', usersRouter);
-app.use('/test', testRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
