@@ -55,7 +55,7 @@ class Course {
         try {
             const instance = await this.Course.deployed()
             const accounts = await this.getAccounts()
-            result = await instance.save(userId, classId, completedDate, name, detail, teacher, category, {from: accounts[0]})
+            result = await instance.save(userId, classId, stringDate, name, detail, teacher, category, {from: accounts[0]})
             connection.query(`UPDATE takingClass
                               SET isSaved         = true,
                                   blockHash       = ?,

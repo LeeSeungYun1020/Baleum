@@ -2,6 +2,8 @@ const connection = require("./mysql")
 module.exports = {takeIfClassCompleted, saveProcess}
 const Learn = require('../lib/learn')
 const learn = new Learn()
+const Course = require('../lib/course')
+const course = new Course()
 
 // 학습 과정 확인하여 만족하는 경우 강의 수료 처리
 function takeIfClassCompleted(userId, classId) {
@@ -19,8 +21,21 @@ function takeIfClassCompleted(userId, classId) {
                              AND (state = '수강 완료' OR state = '채점 완료'))
                   )`, [userId, classId, classId, classId, userId], async (err, result) => {
         if (result) {
+            //setClass(userId, classId, completedDate, name, detail, teacher, category)
             if (result.affectedRows > 0) {
-                // TODO: 블록체인에 학습 수료 여부 저장 isSaved 변경
+                connection.query(`
+                    SELECT t.userId, classId, completedDate, c.userId as teacher, c.name, c.detail, c.category
+                    FROM takingClass t
+                             JOIN class c on c.id = t.classId
+                    WHERE t.userId = ?
+                      AND t.classId = ?
+                      AND t.isCompleted = true
+                `, [userId, classId], async (selectErr, selectResult) => {
+                    if (!selectErr && selectResult.length === 1) {
+                        const class1 = selectResult[0]
+                        await course.setClass(userId, classId, class1.completedDate, class1.name, class1.detail, class1.teacher, class1.category)
+                    }
+                })
             }
         }
     })
