@@ -19,6 +19,7 @@ const LectureInfo = ({lecture}) => {
                 else {
                     alert("수강신청이 실패하였습니다. 다시 시도해주세요.")
                 }
+                console.log(response)
             })
     }
     return (

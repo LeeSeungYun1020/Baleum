@@ -206,3 +206,22 @@ $sub-color: #f1f1f1; // 선 색상, 테두리 색상
   justify-content: center;
   align-items: center;
 }
+
+.LectureTopNav {
+  height: 75px;
+  font-size: xx-large;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    list-style: none;
+  }
+  .myLectureLink {
+    font-size: 18px;
+    margin: auto 0;
+  }
+}
