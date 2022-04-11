@@ -1,32 +1,9 @@
-pragma solidity 0.8.13;
-
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/Learn.sol";
 
 contract TestLearn {
-
-    struct process {
-        uint classId;
-        uint contentId;
-        string userId;
-        string date;
-        string state;
-        uint score;
-        string feedback;
-    }
-
-    struct processData {
-        string date;
-        string state;
-        uint score;
-        string feedback;
-    }
-
     Learn learn = Learn(DeployedAddresses.Learn());
-
-    process testProcess = process(1, 1, "ileilliat@gmail.com", "2022-04-05 08:17:49", "complete", 100, "intro");
-    processData testProcessData = processData("2022-04-05 08:17:49", "complete", 100, "intro");
     bytes32 testKey = keccak256(abi.encode(1, 1, "ileilliat@gmail.com"));
 
     function testSave() public {
@@ -35,7 +12,7 @@ contract TestLearn {
     }
 
     function testReadAll() public {
-        process[] memory pcs;
+        Learn.process[] memory pcs;
         pcs = learn.readAll();
         Assert.equal(pcs, testProcess, "Test readAll");
     }
