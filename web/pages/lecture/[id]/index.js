@@ -2,10 +2,10 @@ import {useRouter} from "next/router";
 import LectureNav from "../../../components/Lecture/LectureNav";
 import LectureInfo from "../../../components/Lecture/LectureInfo";
 import styles from "../../../styles/Lecture.module.scss";
-import {dummyVideo} from "../../../data/dummyVideo";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {SERVER_URL} from "../../../data/global";
+import LectureTopNav from "../../../components/Lecture/LectureTopNav";
 
 const Lecture = () => {
     const router = useRouter()
@@ -17,7 +17,7 @@ const Lecture = () => {
             .then (response => {
                 if(response.data[0].result) {
                     // console.log(response.data[0])
-                    setLecture(lecture => response.data[0])
+                    setLecture(response.data[0])
                 }
                 else {
 
@@ -25,10 +25,14 @@ const Lecture = () => {
             })
 
     },[id])
-    return (<div className={styles.lecturePage}>
+    return (
+        <>
+            <LectureTopNav />
+            <div className={styles.lecturePage}>
         <LectureNav lecture = {lecture} id={id} />
         <LectureInfo lecture = {lecture} id={id}/>
-    </div>)
+    </div>
+            </>)
 }
 
 export default Lecture

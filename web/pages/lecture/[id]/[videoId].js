@@ -5,6 +5,7 @@ import styles from "../../../styles/Lecture.module.scss";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {SERVER_URL} from "../../../data/global";
+import LectureTopNav from "../../../components/Lecture/LectureTopNav";
  // 더미데이터
 
 const videoPage = () => {
@@ -39,11 +40,15 @@ const videoPage = () => {
                 }
             )
     },[videoId])
-    return (<div className={styles.lecturePage}>
+    return (
+        <>
+            <LectureTopNav />
+        <div className={styles.lecturePage}>
         <LectureNav lecture = {lecture} id={id} />
         {/*{content && console.log(content.url)}*/}
         {content && <LectureVideo title={content.title} url={content.url} id={id} videoId={videoId} />}
-    </div>)
+    </div>
+            </>)
 }
 
 export default videoPage
