@@ -68,7 +68,7 @@ router.get('/search/:query', (req, res) => {
 
 router.post('/enrol/:classId', (req, res) => {
     if (req.user) {
-        connection.query(`INSERT IGNORE INTO takingclass (userId, classId)
+        connection.query(`INSERT IGNORE INTO takingClass (userId, classId)
                           VALUES (?, ?)`, [req.user.id, req.params.classId], (err, result) => {
             sendJSONObjectResult(res, err, result, true)
         })
@@ -91,7 +91,19 @@ router.get('/my', (req, res) => {
     } else {
         res.send([{"result": false, "reason": "user login required"}])
     }
+})
 
+router.get('/isBefore/:classId', (req, res) => {
+    if (req.user) {
+        connection.query(`SELECT *
+                          FROM takingclass
+                          WHERE userId = ?
+                            AND classId = ?`, [req.user.id, req.params.classId], (err, result) => {
+            res.send({result: result.length < 1})
+        })
+    } else {
+        res.send({"result": false, "reason": "user login required"})
+    }
 })
 
 router.get('/notice/class/:classId', (req, res) => {
