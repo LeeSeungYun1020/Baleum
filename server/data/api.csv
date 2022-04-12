@@ -26,3 +26,7 @@ Class test done,class,강의 시험 제출,POST,/class/done/test,"classId, conte
 Class test score done,class,강의 시험 채점,POST,/class/done/test/score,"classId, contentId, score, feedback, /login required/",{result: Boolean}
 Completed classes list,class,완료된 강의 리스트 조회,GET,/class/complete/list/:userId,,"[{class, result: Boolean}, ...]"
 IsCompleted class,class,완료된 강의인지 확인,GET,/class/complete/:userId/:classId,,"{isCompleted: Boolean, result: Boolean}"
+All processes in blockchain,contract,블록체인에 저장된 모든 학습 과정 조회,GET,/contract/process/all,,"[{classId, contentId, userId, date, state, score, feedback}, ...]"
+Process in blockchain,contract,블록체인에 저장된 학습 과정 조회,GET,/contract/process/read/:classId/:contentId/:userId,,"{classId, contentId, userId, date, state, score, feedback}"
+All classes in blockchain,contract,블록체인에 저장된 모든 수료 강의 조회,GET,/contract/class/all,,"[{userId, classId, completedDate, name, detail, teacher, category}, ...]"
+Class in blockchain,contract,블록체인에 저장된 수료 강의 조회,GET,/contract/class/read/:classId/:contentId/:userId,,"{userId, classId, completedDate, name, detail, teacher, category}"
