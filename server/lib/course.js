@@ -55,14 +55,17 @@ class Course {
         try {
             const instance = await this.Course.deployed()
             const accounts = await this.getAccounts()
-            result = await instance.save(userId, classId, stringDate, name, detail, teacher, category, {from: accounts[0]})
+            result = await instance.save(userId, classId, stringDate, name, detail, teacher, category, {
+                from: accounts[0],
+                gasLimit: this.GAS_LIMIT
+            })
             connection.query(`UPDATE takingClass
                               SET isSaved         = true,
                                   blockHash       = ?,
                                   transactionHash = ?
                               WHERE classId = ?
                                 AND userId = ?
-                                AND isCompleted = true`, [result.receipt.blockHash, result.receipt.transactionHash, classId, userId], async (err, result) => {
+                                AND isCompleted = true`, [result.receipt.blockHash, result.receipt.transactionHash, classId, userId], async (err) => {
                 if (err)
                     console.error(err.message)
             })

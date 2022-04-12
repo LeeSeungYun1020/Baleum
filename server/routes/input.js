@@ -118,11 +118,12 @@ router.get('/table', (req, res) => {
             FOREIGN KEY (classId) REFERENCES class (id),
             FOREIGN KEY (userId) REFERENCES user (id)
         );
-    `, (err, result) => {
+    `, (err) => {
         if (err) {
             req.session.dbError = err.sqlMessage
         }
-        if (req.session.command == undefined) req.session.command = "Table"
+        if (!req.session.command)
+            req.session.command = "Table"
         res.redirect('/')
     })
 });
@@ -140,7 +141,7 @@ router.get('/table/force', (req, res) => {
         DROP TABLE IF EXISTS class;
         DROP TABLE IF EXISTS classCategory;
         DROP TABLE IF EXISTS user;
-    `, (err, result) => {
+    `, (err) => {
         req.session.command = "Table-Force"
         if (err) {
             req.session.dbError = err.sqlMessage
@@ -423,7 +424,7 @@ router.get('/data', (req, res) => {
         WHERE userId = 'ileilliat@gmail.com'
           AND classId = '2';
 
-    `, (err, result) => {
+    `, (err) => {
         if (err) {
             req.session.dbError = err.sqlMessage
             console.log(err)

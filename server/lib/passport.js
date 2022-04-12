@@ -14,7 +14,7 @@ module.exports = function (app, mysql) {
         mysql.query(
             "SELECT * from user WHERE id=?",
             [id],
-            function (error, results, fields) {
+            function (error, results) {
                 done(error, results[0])
             })
 
