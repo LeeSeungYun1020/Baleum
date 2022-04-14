@@ -23,6 +23,11 @@ GET http://localhost:3000/class/my
 Content-Type: application/json
 
 
+### Is before taking class
+GET http://localhost:3000/class/isBefore/5
+Content-Type: application/json
+
+
 ### Class info
 GET http://localhost:3000/class/info/1
 Content-Type: application/json
@@ -91,7 +96,7 @@ Content-Type: application/json
 
 {
   "classId": "1",
-  "contentId": "1"
+  "contentId": "9"
 }
 
 ### Class done - test

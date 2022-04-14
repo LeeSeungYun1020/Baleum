@@ -1,11 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const connection = require('../lib/mysql')
 const fs = require('fs')
 const parse = require('csv-parse')
 
 router.route('/')
-    .get((req, res, next) => {
+    .get((req, res) => {
 
         const createApiHtml = async () => {
             let html = ""

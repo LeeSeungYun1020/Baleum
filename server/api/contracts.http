@@ -1,0 +1,18 @@
+### All process
+GET http://localhost:3000/contract/process/all
+Content-Type: application/json
+
+
+### Process
+GET http://localhost:3000/contract/process/read/1/1/ileilliat@gmail.com
+Content-Type: application/json
+
+
+### All class
+GET http://localhost:3000/contract/class/all
+Content-Type: application/json
+
+
+### Class
+GET http://localhost:3000/contract/class/read/ileilliat@gmail.com/1
+Content-Type: application/json

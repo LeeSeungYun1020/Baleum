@@ -6,7 +6,7 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const db = require('./lib/mysql');
 const session = require('express-session');
-const cors = require("cors")
+const cors = require("cors");
 
 const app = express();
 app.use(session({
@@ -18,10 +18,10 @@ const passport = require('./lib/passport')(app, db)
 
 const apiRouter = require('./routes/api');
 const classRouter = require('./routes/class');
+const contractRouter = require('./routes/contract');
 const indexRouter = require('./routes/index');
 const inputRouter = require('./routes/input');
 const usersRouter = require('./routes/users')(passport);
-
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -44,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
 app.use('/class', classRouter);
+app.use('/contract', contractRouter);
 app.use('/input', inputRouter);
 app.use('/users', usersRouter);
 
@@ -53,7 +54,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -4,7 +4,7 @@ const connection = require('../lib/mysql')
 
 module.exports = function (passport) {
     // user 로그인 테스트 페이지
-    router.get('/', function (req, res, next) {
+    router.get('/', function (req, res) {
         res.render("users", {user: req.user, message: req.body.message})
     })
 
@@ -53,7 +53,7 @@ module.exports = function (passport) {
 
         connection.query("INSERT INTO `user` (id, pw, name, detail, phone) VALUES (?, ?, ?, ?, ?)",
             [id, pw, name, detail, phone],
-            (err, result) => {
+            (err) => {
                 if (err)
                     res.send({result: false, isDuplicate: err.errno === 1062})
                 else

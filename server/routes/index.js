@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
     const cmd = req.session.command
     const dbError = req.session.dbError
     req.session.command = undefined
