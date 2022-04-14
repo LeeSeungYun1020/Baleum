@@ -29,4 +29,4 @@ IsCompleted class,class,완료된 강의인지 확인,GET,/class/complete/:userI
 All processes in blockchain,contract,블록체인에 저장된 모든 학습 과정 조회,GET,/contract/process/all,,"[{classId, contentId, userId, date, state, score, feedback}, ...]"
 Process in blockchain,contract,블록체인에 저장된 학습 과정 조회,GET,/contract/process/read/:classId/:contentId/:userId,,"{classId, contentId, userId, date, state, score, feedback}"
 All classes in blockchain,contract,블록체인에 저장된 모든 수료 강의 조회,GET,/contract/class/all,,"[{userId, classId, completedDate, name, detail, teacher, category}, ...]"
-Class in blockchain,contract,블록체인에 저장된 수료 강의 조회,GET,/contract/class/read/:classId/:contentId/:userId,,"{userId, classId, completedDate, name, detail, teacher, category}"
+Class in blockchain,contract,블록체인에 저장된 수료 강의 조회,GET,/contract/class/read/:userId/:classId,,"{userId, classId, completedDate, name, detail, teacher, category}"
