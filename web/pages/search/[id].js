@@ -20,7 +20,8 @@ const Search = () => {
             setLoading(true);
             try {
                 const response = await axios.get(`${SERVER_URL}/class/category/list`,{ withCredentials: true });
-                if(response.data[0].result) setCategories(response.data);
+                if(response.data[0].result)
+                    setCategories(response.data);
                 else {
                     setCategories();
                 }

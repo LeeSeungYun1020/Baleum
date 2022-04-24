@@ -34,7 +34,8 @@ const videoPage = () => {
             .then (response => {
                     if (response.data[0].result) {
                         setContent(response.data[0])
-                    } else if (response.data[0].result === false) {
+                    }
+                    else {
                         router.push("/")
                     }
                 }

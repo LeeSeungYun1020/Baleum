@@ -36,7 +36,7 @@ const Lecture = () => {
                 }
                 else if(num === 1) {
                     const response = await axios.get(`${SERVER_URL}/class/complete/list/${id}`, {withCredentials: true});
-                    console.log(response)
+                    // console.log(response.data)
                     setItem(response.data);
                 }
                 else {
