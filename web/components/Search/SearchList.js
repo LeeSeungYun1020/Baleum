@@ -13,14 +13,10 @@ const SearchList = ({id}) => {
             setLoading(true);
             try {
                 setTimeout(async () => {
-                    console.log(id);
+                    // console.log(id);
                     if (id) {
                         const response = await axios.get(`${SERVER_URL}/class/search/${id}`, {withCredentials: true});
-                        if (response.data[0]) {
-                            setItem(response.data);
-                        } else {
-                            setItem();
-                        }
+                        setItem(response.data);
                     } else {
                         const response = await axios.get(`${SERVER_URL}/class/all`, {withCredentials: true});
                         setItem(response.data);
@@ -28,7 +24,7 @@ const SearchList = ({id}) => {
                 }, 500
             )
             } catch (e) {
-                console.log(e)
+                router.push('/');
             }
             setLoading(false);
         }

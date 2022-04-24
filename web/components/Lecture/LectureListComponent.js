@@ -7,7 +7,7 @@ import {ROUTE_LECTURE_LIST_ID} from "../../data/global";
 const LectureListComponent = (lecture) => {
     const [contents, setContents] = useState();
     useEffect(() => {
-        // console.log(lecture)
+        console.log(lecture)
         axios.get(`${SERVER_URL}/class/contents/${lecture.lecture.id}`, {withCredentials: true})
             .then(response => {
                 // console.log(response)

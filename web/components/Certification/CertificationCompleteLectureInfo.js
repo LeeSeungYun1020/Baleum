@@ -2,7 +2,7 @@ import styles from '../../styles/Lecture.module.scss'
 import Loading from "../Loading";
 import LectureListComponent from "../Lecture/LectureListComponent";
 import BlockList from "../Lecture/BlockList";
-const CertificationLectureInfo = ({lecture, userId}) => {
+const CertificationCompleteLectureInfo = ({lecture, userId}) => {
     if(!lecture) {
         return (
             <Loading />
@@ -26,4 +26,4 @@ const CertificationLectureInfo = ({lecture, userId}) => {
     )
 }
 
-export default CertificationLectureInfo
+export default CertificationCompleteLectureInfo

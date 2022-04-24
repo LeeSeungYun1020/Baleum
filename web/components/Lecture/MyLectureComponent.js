@@ -6,6 +6,7 @@ import {useContext} from "react";
 import {LoginContext} from "../../pages/_app";
 
 const MyLectureComponent = (lecture) => {
+    // console.log(lecture);
     const {id} = useContext(LoginContext)
     const router = useRouter()
     const onClick = () => {

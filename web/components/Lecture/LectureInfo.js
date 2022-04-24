@@ -22,12 +22,13 @@ const LectureInfo = ({lecture}) => {
                 else {
                     alert("수강신청이 실패하였습니다. 다시 시도해주세요.");
                 }
-                console.log(response)
+                // console.log(response)
             })
     }
     useEffect(() => {
         axios.get(`${SERVER_URL}/class/isBefore/${lecture.id}`, {withCredentials: true})
             .then(response => {
+                // console.log(response)
                 if(response.data.result) {
                     setIsBefore(true);
                 }

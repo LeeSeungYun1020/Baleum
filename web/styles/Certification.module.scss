@@ -1,0 +1,19 @@
+.CertificationLectureComponent {
+  width: 900px;
+  margin: auto;
+  border: 1px solid #c4c4c3;
+  & + & {
+    margin-top: 30px;
+  }
+  padding: 10px;
+}
+
+.CertificationLectureList {
+  display: flex;
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+}
