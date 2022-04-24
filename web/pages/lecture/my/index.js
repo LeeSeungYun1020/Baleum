@@ -8,12 +8,14 @@ import axios from "axios";
 import {LoginContext} from "../../_app";
 import Loading from "../../../components/Loading";
 import QRCode from "react-qr-code";
+import {useRouter} from "next/router";
 
 const Lecture = () => {
     const {id} = useContext(LoginContext)
     const [num, setNum] = useState(0); // default 0: 수강 중
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(false); // 데이터 로딩
+    const router = useRouter();
     const clickCurrent = () => {
         setNum(0);
     } // 수강 중 강의
@@ -34,7 +36,7 @@ const Lecture = () => {
                 }
                 else if(num === 1) {
                     const response = await axios.get(`${SERVER_URL}/class/complete/list/${id}`, {withCredentials: true});
-                    // console.log(response)
+                    console.log(response)
                     setItem(response.data);
                 }
                 else {
@@ -43,7 +45,7 @@ const Lecture = () => {
                     setItem(response.data);
                 }
             } catch (e) {
-                console.log(e)
+                router.push('/'); // 오류 발생하면 걍 홈으로 가자~~~~
             }
             setLoading(false);
         }
@@ -57,6 +59,10 @@ const Lecture = () => {
     if (!item) {
         return null;
     }
+
+    const onQRClick = () => {
+        router.push(`${CLIENT_URL}/certification/${id}`);
+    }
     return (
         <Layout myLecture>
             <Head>
@@ -69,9 +75,9 @@ const Lecture = () => {
                     <div className={styles.myLectureNavP} onClick={clickComplete}><p>수강 완료</p></div>
                     <div className={styles.myLectureNavP} onClick={clickMake}><p>생성 강의</p></div>
                 </div>
-                    {(num !== 2 && item[0].result) ? (num === 0 ? item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />) : <><QRCode value={`${CLIENT_URL}/certification/${id}`} style ={{marginBottom: 30}} size={64}/>{item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />)}</>) :
+                    {(num !== 2 && item[0].result) ? (num === 0 ? item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />) : <><QRCode value={`${CLIENT_URL}/certification/${id}`} style ={{marginBottom: 30, cursor: "pointer"}} onClick={onQRClick} size={100}/>{item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />)}</>) :
                         <div className={styles.noLectureComponent}>
-                            {(num===0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : (num === 1 ? <><QRCode value={`${CLIENT_URL}/certification/${id}`} size={64}/><h3>수강 완료한 강의가 존재하지 않습니다.</h3></> : <h3>생성한 강의가 존재하지 않습니다.</h3>))}
+                            {(num===0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : (num === 1 ? <><QRCode value={`${CLIENT_URL}/certification/${id}`} style ={{marginBottom: 30, cursor: "pointer"}} onClick={onQRClick} size={100}/><h3>수강 완료한 강의가 존재하지 않습니다.</h3></> : <h3>생성한 강의가 존재하지 않습니다.</h3>))}
                         </div>}
             </div>
             </section>

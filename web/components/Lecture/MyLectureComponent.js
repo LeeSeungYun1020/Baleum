@@ -14,9 +14,14 @@ const MyLectureComponent = (lecture) => {
             query: {id: lecture.lecture.id}
         })
     }
+
+    const onQRClick = (e) => {
+        e.stopPropagation();
+        router.push(`${CLIENT_URL}/certification/lecture/${lecture.lecture.id}/${id}`);
+    }
     return (<div className={styles.myLectureComponent} onClick={onClick}>
         <div className={styles.myLectureInfoText}>
-            <QRCode value={`${CLIENT_URL}/certification/lecture/${lecture.lecture.id}/${id}`} size={50} style={{float: "right"}}/>
+            <QRCode value={`${CLIENT_URL}/certification/lecture/${lecture.lecture.id}/${id}`} onClick={onQRClick} size={100} style={{float: "right"}}/>
             {/*모두가 볼 수 있는 사용자의 이 과목 학습 인증서로 넘어감*/}
             <div><h1 className={styles.myLectureText}>강의명 </h1><h1>{lecture.lecture.name}</h1></div>
             <div><h2 className={styles.myLectureText}>강의자 </h2><h2>{lecture.lecture.teacher}</h2></div>
