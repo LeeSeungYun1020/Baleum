@@ -11,7 +11,7 @@ const LectureInfo = ({lecture}) => {
             <Loading />
         )
     }
-    const [isBefore, setIsBefore] = useState(false); // 수강신청 하기 전 강의인지 true이면 수강신청 안한거
+    const [isBefore, setIsBefore] = useState(true); // 수강신청 하기 전 강의인지 true이면 수강신청 안한거
     const onClick = () => {
         axios.post(`${SERVER_URL}/class/enrol/${lecture.id}`, {}, {withCredentials: true})
             .then(response => {

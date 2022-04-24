@@ -11,7 +11,7 @@ import QRCode from "react-qr-code";
 import {useRouter} from "next/router";
 
 const Lecture = () => {
-    const {id} = useContext(LoginContext)
+    const {isLogin, id} = useContext(LoginContext)
     const [num, setNum] = useState(0); // default 0: 수강 중
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(false); // 데이터 로딩
@@ -29,6 +29,9 @@ const Lecture = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
+                if(!isLogin) {
+                    router.push('/'); // 로그인 안되어있으면 홈
+                }
                 if(num === 0) {
                     const response = await axios.get(`${SERVER_URL}/class/my`, {withCredentials: true});
                     // console.log(response.data)
@@ -51,7 +54,6 @@ const Lecture = () => {
         }
         fetchData();
     },[num]);
-
     if(loading) {
         return <Loading/>
     }
