@@ -124,6 +124,11 @@ Content-Type: application/json
 }
 
 
+### Completed classes list
+GET http://localhost:3000/class/complete/list/ileilliat@gmail.com
+Content-Type: application/json
+
+
 ### IsCompleted class
 GET http://localhost:3000/class/complete/ileilliat@gmail.com/1
 Content-Type: application/json
