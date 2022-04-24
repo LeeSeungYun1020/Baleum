@@ -92,7 +92,7 @@ const signup = () => {
                         <input className={styles.textBox} type={"text"} id={"phone"} name={"phone"} required minLength={"4"}
                                placeholder={"000-0000-0000"} onChange={phoneChange}/>
                     </div>
-                    <input className={styles.textBox} type={"submit"} value={"회원가입"}/>
+                    <input className={styles.submitBox} type={"submit"} value={"회원가입"}/>
                 </form>
             </section>
         </Layout>

@@ -3,13 +3,13 @@ import styles from "/styles/Users.module.scss"
 import Head from "next/head";
 import {SERVER_URL} from "../../data/global";
 import axios from "axios";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {LoginContext} from "../_app";
 import {useRouter} from 'next/router'
 
 const signin = () => {
     const router = useRouter()
-    const {isLogin, id, pw, setIsLogin, setId, setPw} = useContext(LoginContext)
+    const {id, pw, setIsLogin, setId, setPw} = useContext(LoginContext)
     const submit = e => {
         e.preventDefault();
         axios.post(`${SERVER_URL}/users/signin`, {
@@ -22,9 +22,9 @@ const signin = () => {
                     setId(id);
                     setPw(pw);
                     setIsLogin(true);
-                    localStorage.setItem("isLogin", true);
-                    localStorage.setItem("id", id);
-                    localStorage.setItem("pw", pw);
+                    sessionStorage.setItem("isLogin", true);
+                    sessionStorage.setItem("id", id);
+                    sessionStorage.setItem("pw", pw);
                     router.push('/'); // 홈으로 이동
                 }
                 else {
@@ -61,7 +61,7 @@ const signin = () => {
                                minLength={"4"}
                                autoComplete={"password"} placeholder={"Password"} onChange={onPwChange}/>
                     </div>
-                    <input className={styles.textBox} type={"submit"} value={"로그인"}/>
+                    <input className={styles.submitBox} type={"submit"} value={"로그인"}/>
                 </form>
             </section>
         </Layout>

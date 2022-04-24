@@ -13,7 +13,7 @@ const SignOutBox = () => {
                     setIsLogin(false);
                     setId(null);
                     setPw(null);
-                    localStorage.clear()
+                    sessionStorage.clear()
                 }
             })
             .catch(err => {
@@ -22,9 +22,8 @@ const SignOutBox = () => {
     }
     return (
         <div className={styles.mainSignInBox}>
-            <div>
-                <button onClick={click}>로그아웃</button>
-            </div>
+            <p>로그아웃</p>
+            <button onClick={click}>로그아웃</button>
         </div>
     )
 }

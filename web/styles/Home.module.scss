@@ -1,8 +1,12 @@
+$main-color: #ACC7B4; // 메인 컬러
+$sub-color: #f1f1f1; // 선 색상, 테두리 색상
+$font-color: #331B3F; // 메인컬러 배경의 폰트 색상
+
 .banner {
   display: flex;
   justify-content: space-between;
   padding: 30px 0;
-  background-color: #d8d8d8;
+  background-color: $main-color;
 }
 
 .subNav {
@@ -21,6 +25,10 @@
   width: 33vw;
   text-align: center;
   cursor: pointer;
+  a {
+    font-weight: bolder;
+    font-size: 18px;
+  }
 }
 
 .lectureList {

@@ -1,6 +1,9 @@
 $header-height: 104px;
 $footer-height: 140px;
 $footer-margin-top: 80px;
+$main-color: #ACC7B4; // 메인 컬러
+$sub-color: #f1f1f1; // 선 색상, 테두리 색상
+$font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
 .inner {
   width: 1080px;
@@ -14,7 +17,7 @@ $footer-margin-top: 80px;
 }
 
 .main {
-  min-height: calc(100vh - $header-height - $footer-height - $footer-margin-top - 32px);
+  min-height: calc(100vh - #{$header-height} - #{$footer-height} - #{$footer-margin-top} - 32px);
   margin-top: 32px;
   block-size: border-box;
 }
@@ -56,6 +59,10 @@ $footer-margin-top: 80px;
 // 네비게이션 li
 .navTab {
   width: 10vw;
+  a {
+    font-weight: bolder;
+    font-size: 18px;
+  }
 }
 
 .userIcon {
@@ -64,24 +71,27 @@ $footer-margin-top: 80px;
 
 .footer {
   display: flex;
-  background: #1F1F1F;
+  background: $main-color;
   padding: 30px;
   width: 100%;
   height: $footer-height;
   margin-top: $footer-margin-top;
+  div {
+    color: $font-color;
+  }
 }
 
 .footer > div:first-child {
   flex: 3;
   text-align: center;
-  color: #fff;
   font-size: 48px;
   margin: auto;
+  font-weight: bolder;
 }
 
 .footer > div:last-child {
   flex: 9;
-  color: #fff;
+  font-weight: bolder;
 }
 
 .searchNav {

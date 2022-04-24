@@ -1,20 +1,35 @@
+$main-color: #ACC7B4; // 메인 컬러
+$sub-color: #f1f1f1; // 선 색상, 테두리 색상
+$font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 .mainSignInBox {
   box-sizing: border-box;
   width: 220px;
   height: 240px;
   box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.1);
   background-color: white;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   h2 {
     text-align: center;
     margin-top: 16px;
   }
-
-  div {
+  button {
     height: 64px;
-    margin: 16px;
-    text-align: center;
-    border: solid 1px black;
+    width: 200px;
+    margin: 0 auto 10px;
+    border: 2px solid $font-color;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: $font-color;
+    font-size: 14px;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+
+  p {
+    margin: 10px auto;
+    font-weight: bolder;
   }
 }
 
@@ -31,4 +46,21 @@
   height: 48px;
   padding: 8px;
   margin-top: 8px;
+  border: 2px solid $font-color;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: $font-color;
+}
+
+.submitBox {
+  width: 320px;
+  height: 48px;
+  padding: 8px;
+  margin-top: 8px;
+  border: 2px solid $font-color;
+  border-radius: 4px;
+  background-color: $font-color;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bolder;
 }
