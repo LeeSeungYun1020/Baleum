@@ -38,8 +38,8 @@ const certification = () => {
     }
     return (
         <div className={styles.certificationCompletePage}>
-            <p>{userId}님이 수강완료한 강의입니다.</p>
-            {item[0].result ? item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />) : <h3>수강 완료한 강의가 존재하지 않습니다.</h3>}
+            <p>{userId}님이 수강완료한 강의 목록입니다.</p>
+            {item[0].result ? item.map((item, index) => <MyLectureComponent key={index} userId={userId} lecture = {item} />) : <h3>수강 완료한 강의가 존재하지 않습니다.</h3>}
         </div>
     )
 }

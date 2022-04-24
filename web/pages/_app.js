@@ -9,9 +9,9 @@ export const LoginContext = createContext({
 
 const Store = (props) => {
   if (typeof window !== "undefined") {
-    const [isLogin, setIsLogin] = useState(localStorage.getItem("isLogin") || false);
-    const [id, setId] = useState(localStorage.getItem("id") || null);
-    const [pw, setPw] = useState(localStorage.getItem("pw") || null);
+    const [isLogin, setIsLogin] = useState(sessionStorage.getItem("isLogin") || false);
+    const [id, setId] = useState(sessionStorage.getItem("id") || null);
+    const [pw, setPw] = useState(sessionStorage.getItem("pw") || null);
 
     return (
         <LoginContext.Provider value = {{isLogin, id, pw, setIsLogin, setId, setPw}}>

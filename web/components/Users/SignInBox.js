@@ -1,15 +1,23 @@
-import Link from "next/link"
 import styles from "../../styles/Users.module.scss";
+import {useRouter} from "next/router";
 
 const SignInBox = () => {
+    const router = useRouter()
+    const onSigninClick = () => {
+        router.push('/users/signin')
+    }
+    const onSignupClick = () => {
+        router.push('/users/signup')
+    }
     return (
         <div className={styles.mainSignInBox}>
-            <div>
-                <Link href="/users/signin"><a>로그인</a></Link>
-            </div>
-            <div>
-                <Link href="/users/signup"><a>회원가입</a></Link>
-            </div>
+            <p>로그인/회원가입</p>
+            <button onClick={onSigninClick}>
+                로그인
+            </button>
+            <button onClick={onSignupClick}>
+                회원가입
+            </button>
         </div>
     )
 }

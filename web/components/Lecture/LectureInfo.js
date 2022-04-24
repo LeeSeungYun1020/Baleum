@@ -11,7 +11,7 @@ const LectureInfo = ({lecture}) => {
             <Loading />
         )
     }
-    const [isBefore, setIsBefore] = useState(false); // 수강신청 하기 전 강의인지
+    const [isBefore, setIsBefore] = useState(true); // 수강신청 하기 전 강의인지 true이면 수강신청 안한거
     const onClick = () => {
         axios.post(`${SERVER_URL}/class/enrol/${lecture.id}`, {}, {withCredentials: true})
             .then(response => {
@@ -22,12 +22,13 @@ const LectureInfo = ({lecture}) => {
                 else {
                     alert("수강신청이 실패하였습니다. 다시 시도해주세요.");
                 }
-                console.log(response)
+                // console.log(response)
             })
     }
     useEffect(() => {
         axios.get(`${SERVER_URL}/class/isBefore/${lecture.id}`, {withCredentials: true})
             .then(response => {
+                // console.log(response)
                 if(response.data.result) {
                     setIsBefore(true);
                 }
@@ -46,11 +47,10 @@ const LectureInfo = ({lecture}) => {
                 <p>{lecture.detail}</p>
             </div>
             <div className={styles.lectureBlock}><BlockList classId={lecture.id}/></div>
-            {/* 블록체인 부분 들어가는 곳!!!*/}
             <ul className={styles.lectureInfoList}>
-                {/*{console.log(lecture)}*/}
+                {/*{console.log(isBefore)}*/}
                 <h2>강의 목록</h2>
-                <LectureListComponent contents={lecture}/>
+                <LectureListComponent lecture={lecture} isBefore={isBefore}/>
             </ul>
         </div>
     )

@@ -1,8 +1,18 @@
+$main-color: #ACC7B4; // 메인 컬러
+$sub-color: #f1f1f1; // 선 색상, 테두리 색상
+$font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 .block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 30px;
+  width: 130px;
+  margin-right: 10px;
+  p {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .blockComponent {
@@ -14,10 +24,16 @@
   height: 100px;
   border-radius: 50px;
   color: white;
-  background-color: #083b1f;
-
+  background-color: $font-color;
+  p {
+    color: #ffffff;
+  }
 }
 
+.blockComponentList {
+  display: flex;
+  margin-bottom: 15px;
+}
 .blockHiddenInfo {
   background-color: white;
   //display: none;
