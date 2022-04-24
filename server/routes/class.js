@@ -273,7 +273,7 @@ router.post('/done/test/score', (req, res) => {
 })
 
 router.get('/complete/list/:userId', (req, res) => {
-    connection.query(`SELECT c.*, u.name as teacher
+    connection.query(`SELECT c.*, u.name as teacher, t.completedDate, t.blockHash, t.transactionHash
                       FROM class c
                                JOIN takingClass t on c.id = t.classId
                                JOIN user u on c.userId = u.id
