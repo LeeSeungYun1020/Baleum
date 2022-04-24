@@ -29,7 +29,8 @@ const MyLectureComponent = ({lecture, userId}) => {
             <div><h2 className={styles.myLectureText}>강의 요약 </h2><h2>{lecture.detail}</h2></div>
             {/*<div><h2 className={styles.myLectureText}>진도율 </h2>{lecture.lecture.percent}</div>*/}
             <div><h2 className={styles.myLectureText}>분류 </h2><h2>{lecture.category}</h2></div>
-            <div>{lecture.complete && <button>수료증</button>}</div>
+            {lecture.completedDate && <div><h2 className={styles.myLectureText}>수강완료일 </h2><h2>{lecture.completedDate.split('T')[0]}</h2></div>}
+            {/*<div>{lecture.completedDate && <button>수료증</button>}</div>*/}
         {/*    수강 완료에서는 [자세히] 버튼으로, 누르면 강의 별 수강 인증 화면-> 얘는 lecture/id 재활용한거*/}
         {/*    카테고리 */}
         </div>
