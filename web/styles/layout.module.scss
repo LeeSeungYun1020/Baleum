@@ -65,10 +65,6 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   }
 }
 
-.userIcon {
-
-}
-
 .footer {
   display: flex;
   background: $main-color;
@@ -110,4 +106,9 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.myLectureTab a {
+  font-weight: bolder;
+  font-size: 18px;
 }

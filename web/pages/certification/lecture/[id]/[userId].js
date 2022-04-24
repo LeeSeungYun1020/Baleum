@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {SERVER_URL} from "../../../../data/global";
 import CertificationLectureComponent from "../../../../components/Certification/CertificationLectureComponent";
+import BlockList from "../../../../components/Lecture/BlockList";
+import styles from "../../../../styles/Lecture.module.scss";
 
 const certification = () => {
     const router = useRouter();
@@ -53,10 +55,12 @@ const certification = () => {
         return (<></>)
     }
     return (
-        <>
-            {isCompleted ? <h2>{userId}님이 수강완료한 강의입니다.</h2> : <h2>{userId}님이 수강 진행중인 강의입니다.</h2>}
+        <div className={styles.CertificationDiv}>
+            <div className={styles.CertificationInfo}>{isCompleted ? <h1>{userId}님이 수강완료한 {id}번 강의입니다.</h1> : <h1>{userId}님이 수강 진행중인 {id}번 강의입니다.</h1>}</div>
+            <div className={styles.lectureBlock}><BlockList classId={id} userId={userId}/></div>
+            <div className={styles.CertificationInfo}><h1>상세 내용</h1></div>
             {lecture.map((lecture, index) => <CertificationLectureComponent lecture={lecture} key={index}/>)}
-        </>
+        </div>
     )
 
 }

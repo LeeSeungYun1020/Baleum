@@ -2,7 +2,7 @@ $main-color: #ACC7B4; // 메인 컬러
 $sub-color: #f1f1f1; // 선 색상, 테두리 색상
 $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 .CertificationLectureComponent {
-  width: 900px;
+  width: 760px;
   margin: auto;
   border: 2px solid $main-color;
   color: $font-color;
@@ -16,11 +16,11 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 .CertificationLectureList {
   display: flex;
   h1 {
-    font-size: 21px;
-    font-weight: normal;
+    font-size: 18px;
+    font-weight: bolder;
   }
   h2 {
-    font-size: 18px;
-    font-weight: normal;
+    font-size: 16px;
+    font-weight: bolder;
   }
 }

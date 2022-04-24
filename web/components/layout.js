@@ -4,6 +4,7 @@ import Link from 'next/link'
 import classNames from 'classnames/bind';
 import {useContext} from "react";
 import {LoginContext} from "../pages/_app";
+import {FaUserCircle} from "react-icons/fa";
 
 export const siteTitle = "바름"
 
@@ -32,9 +33,8 @@ export default function Layout({children}) {
                         </a>
                     </Link>
                     {isLogin &&
-                    <div>
-                        <Link href="/lecture/my"><a>내 강의</a></Link>
-                        <span className={`material-icons ${styles.userIcon}`}>account_circle</span>
+                    <div className={styles.myLectureTab}>
+                        <Link href="/lecture/my"><a>내 강의 <FaUserCircle/></a></Link>
                     </div>
                     }
                 </div>

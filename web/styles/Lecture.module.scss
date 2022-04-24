@@ -44,6 +44,9 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
   ul {
     list-style: none; // 점 없애기
+    li {
+      font-weight: bolder;
+    }
   }
 }
 
@@ -61,7 +64,7 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
 .lectureBlock { // 일단 임시로 공간 만듦
   display: flex;
-  width: 100%;
+  width: 760px;
   min-height: 200px;
   height: auto;
   flex-wrap: wrap;
@@ -72,9 +75,12 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 }
 
 .lectureInfo li {
-  border: 1px solid $sub-color;
-  padding: 24px 168px 24px 87px;
+  display: flex;
+  border: 2px solid $main-color;
+  border-radius: 4px;
+  padding: 24px 168px 24px 30px;
   margin-bottom: 8px;
+
 }
 
 .lectureAuthor, .lectureDescribe, .lectureBlock {
@@ -207,6 +213,12 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  p {
+    font-size:21px;
+    font-weight: bolder;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 .LectureTopNav {
@@ -216,6 +228,7 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   display: flex;
   align-items: center;
   padding: 20px;
+  background-color: rgba(51, 27, 63, 0.5);
   ul {
     display: flex;
     width: 100%;
@@ -225,5 +238,29 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   .myLectureLink {
     font-size: 18px;
     margin: auto 0;
+  }
+}
+
+.LectureContentType {
+  border: 2px solid $main-color;
+  background-color: $main-color;
+  border-radius: 4px;
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+.CertificationDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.CertificationInfo {
+  width: 760px;
+  h1 {
+    font-size: 21px;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 }

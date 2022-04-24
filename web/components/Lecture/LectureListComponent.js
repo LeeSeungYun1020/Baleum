@@ -1,13 +1,15 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {SERVER_URL} from "../../data/global";
 import Link from "next/link";
 import {ROUTE_LECTURE_LIST_ID} from "../../data/global";
-
+import styles from "../../styles/Lecture.module.scss";
+import {LoginContext} from "../../pages/_app";
 const LectureListComponent = (lecture) => {
+    const {isLogin} = useContext(LoginContext);
     const [contents, setContents] = useState();
     useEffect(() => {
-        console.log(lecture)
+        // console.log(lecture)
         axios.get(`${SERVER_URL}/class/contents/${lecture.lecture.id}`, {withCredentials: true})
             .then(response => {
                 // console.log(response)
@@ -21,13 +23,15 @@ const LectureListComponent = (lecture) => {
     }, [lecture])
     return (
         <ul>
-        {contents ? (lecture.isBefore ? contents.map((list, index) => <li key={index}>{list.title}</li>)
+            {/*{console.log(contents)}*/}
+            {/*{console.log(lecture)}*/}
+            {contents ? (lecture.isBefore || !isLogin ? contents.map((list, index) => <li key={index}><p className={styles.LectureContentType}>{list.type}</p><p>{list.title}</p></li>)
          : contents.map((list, index) =>
             <Link key={index} href={{
                 pathname: ROUTE_LECTURE_LIST_ID,
                 query: { id : list.classId, videoId: list.contentId}
             }}>
-            <a><li>{list.title}</li></a>
+            <a><li><p className={styles.LectureContentType}>{list.type}</p><p>{list.title}</p></li></a>
             </Link>)) : null}
         </ul>
     )
