@@ -60,7 +60,7 @@ Content-Type: application/json
 
 
 ### Class notice read
-GET http://localhost:3000/class/notice/read/2
+GET http://localhost:3000/class/notice/read/1
 Content-Type: application/json
 
 

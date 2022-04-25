@@ -15,7 +15,8 @@ function sendJSONObjectResult(res, err, result, justResult = false) {
     else if (justResult)
         res.send({result: true})
     else {
-        result["result"] = true
-        res.send(result)
+        const data = result[0]
+        data["result"] = true
+        res.send(data)
     }
 }
