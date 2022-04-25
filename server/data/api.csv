@@ -3,6 +3,7 @@ API List,api,API 목록,GET,/api,,
 Sign in,user,로그인,POST,/users/signin,"id, pw","{user, result: Boolean}"
 Sign out,user,로그아웃,POST,/users/signout,,{result: Boolean}
 Sign up,user,회원가입,POST,/users/signup,"id, pw, name, detail, phone",{result: Boolean}
+User name,user,사용자 이름,GET,/users/name/:userId,,"{result: Boolean, name: String}"
 Class Info,class,강의 정보,GET,/class/info/:classId,,"[{class, result: Boolean}, ...]"
 Main class,class,"강의 목록 (메인 페이지, 8)",GET,/class/main,,"[{class, result: Boolean}, ...]"
 All class,class,"강의 목록 (검색 페이지, 16)",GET,/class/all,,"[{class, result: Boolean}, ...]"
