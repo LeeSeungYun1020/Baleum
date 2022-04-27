@@ -35,7 +35,7 @@ const certification = () => {
                 }
                 console.log(response2)
             } catch (e) {
-                console.log(e)
+                router.push("/");
             }
             setLoading(false);
         }

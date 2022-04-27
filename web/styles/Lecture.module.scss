@@ -57,7 +57,7 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 }
 
 .lectureVideoTitle, .lectureTitle {
-  border-bottom: 1px solid $sub-color;
+  border-bottom: 2px solid $sub-color;
   margin-bottom: 40px;
   padding-bottom: 35px
 }
@@ -83,8 +83,13 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
 }
 
-.lectureAuthor, .lectureDescribe, .lectureBlock {
+.lectureAuthor, .lectureDescribe, .lectureBlock, .lectureNotice {
   margin-bottom: 20px;
+}
+
+.lectureNoticeSpace {
+  height:100px;
+  background-color: $main-color;
 }
 
 .lectureInfoList { // 강의 정보 페이지에 있는 강의 목록
