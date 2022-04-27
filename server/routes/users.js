@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../lib/mysql')
+const {sendJSONObjectResult} = require('../lib/send')
 
 module.exports = function (passport) {
     // user 로그인 테스트 페이지
@@ -60,5 +61,18 @@ module.exports = function (passport) {
                     res.send({result: true})
             })
     })
+
+    router.get("/name/:id", (req, res) => {
+        const id = req.params.id
+
+        connection.query("SELECT name FROM user WHERE id = ?",
+            [id],
+            (err, result) => {
+                sendJSONObjectResult(res, err, result)
+            })
+    })
+
     return router
+
+
 }

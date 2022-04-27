@@ -25,3 +25,7 @@ Content-Type: application/json
   "detail": "안녕하세요 예제 이름입니다. :)",
   "phone": "010-0000-0000"
 }
+
+### Name
+GET http://localhost:3000/users/name/ileilliat@gmail.com
+Content-Type: application/json
