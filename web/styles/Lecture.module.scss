@@ -172,7 +172,7 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   }
 
   .myLectureNavP + .myLectureNavP {
-    border-left: 1px solid $sub-color;
+    border-left: 1px solid #c3c3c4;
   }
 }
 
@@ -258,9 +258,19 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
 .CertificationInfo {
   width: 760px;
+  display: flex;
+  justify-content: space-between;
+  align-items: inherit;
   h1 {
     font-size: 21px;
-    margin-top: 20px;
-    margin-bottom: 10px;
   }
+}
+
+.certificationCompleteQRLocation {
+  display: flex;
+  width: 800px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }

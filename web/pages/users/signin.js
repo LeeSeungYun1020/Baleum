@@ -54,12 +54,12 @@ const signin = () => {
                 <form onSubmit={submit}>
                     <div>
                         <input className={styles.textBox} type={"email"} id={"id"} name={"id"} required minLength={"4"}
-                               autoComplete={"email"} placeholder={"EMAIL"} onChange={onIdChange}/>
+                               autoComplete={"email"} placeholder={"이메일"} onChange={onIdChange}/>
                     </div>
                     <div>
                         <input className={styles.textBox} type={"password"} id={"pw"} name={"pw"} required
                                minLength={"4"}
-                               autoComplete={"password"} placeholder={"Password"} onChange={onPwChange}/>
+                               autoComplete={"password"} placeholder={"비밀번호"} onChange={onPwChange}/>
                     </div>
                     <input className={styles.submitBox} type={"submit"} value={"로그인"}/>
                 </form>
