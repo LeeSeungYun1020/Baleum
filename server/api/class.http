@@ -34,7 +34,7 @@ Content-Type: application/json
 
 
 ### Class notice
-GET http://localhost:3000/class/notice/1
+GET http://localhost:3000/class/notice/class/1
 Content-Type: application/json
 
 
