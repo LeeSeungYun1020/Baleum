@@ -23,6 +23,11 @@ GET http://localhost:3000/class/my
 Content-Type: application/json
 
 
+### Teach class
+GET http://localhost:3000/class/my/teach
+Content-Type: application/json
+
+
 ### Is before taking class
 GET http://localhost:3000/class/isBefore/5
 Content-Type: application/json

@@ -7,6 +7,15 @@ Content-Type: application/json
   "pw": "lsy1020"
 }
 
+### Sign in2
+POST http://localhost:3000/users/signin
+Content-Type: application/json
+
+{
+  "id": "fabi88@naver.com",
+  "pw": "lsy1020"
+}
+
 ### Sign out
 POST http://localhost:3000/users/signout
 Content-Type: application/json
