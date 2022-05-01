@@ -3,7 +3,7 @@ import Loading from "../Loading";
 import LectureListComponent from "./LectureListComponent";
 import BlockList from "./BlockList";
 import axios from "axios";
-import {SERVER_URL, ROUTE_NOTICE_LIST_ID} from "../../data/global";
+import {SERVER_URL, ROUTE_NOTICE_LIST_URL, ROUTE_NOTICE_ID} from "../../data/global";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
@@ -71,9 +71,12 @@ const LectureInfo = ({lecture}) => {
                 <p>{lecture.detail}</p>
             </div>
             <div className={styles.lectureNotice}>
-                <h3>강의 공지</h3>
+                <Link href={{
+                    pathname: ROUTE_NOTICE_LIST_URL,
+                    query: {classId: lecture.id}
+                }}><a><h3>강의 공지</h3></a></Link>
                 <div className={styles.lectureNoticeSpace}>{noticeExist ? notice.map((list, index) => <Link key={index} href={{
-                    pathname: ROUTE_NOTICE_LIST_ID,
+                    pathname: ROUTE_NOTICE_ID,
                     query: { classId: list.classId, noticeId: list.id}
                 }}><a>{list.id} {list.title}</a></Link>) : <p>등록된 공지사항이 없습니다.</p>}</div>
             </div>

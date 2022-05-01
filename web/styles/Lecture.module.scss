@@ -54,12 +54,15 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   margin: 0 auto;
   padding: 74px 40px 120px;
   width: 840px;
+  h3 {
+    margin-bottom: 10px;
+  }
 }
 
 .lectureVideoTitle, .lectureTitle {
   border-bottom: 2px solid $sub-color;
   margin-bottom: 40px;
-  padding-bottom: 35px
+  padding-bottom: 35px;
 }
 
 .lectureBlock { // 일단 임시로 공간 만듦
@@ -289,4 +292,8 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 .lectureNoticeContent {
   margin-top: 20px;
   min-height: 445px;
+}
+
+.lectureNoNotice {
+  font-weight: bolder;
 }
