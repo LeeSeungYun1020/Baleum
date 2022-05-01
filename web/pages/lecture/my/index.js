@@ -43,7 +43,7 @@ const Lecture = () => {
                     setItem(response.data);
                 }
                 else {
-                    const response = await axios.get(`${SERVER_URL}/class/my/${id}`, {withCredentials: true});
+                    const response = await axios.get(`${SERVER_URL}/class/my/teach`, {withCredentials: true});
                     // console.log(response)
                     setItem(response.data);
                 }

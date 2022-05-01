@@ -50,7 +50,7 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   }
 }
 
-.lectureVideo, .lectureInfo {
+.lectureVideo, .lectureInfo, .lectureNoticePage {
   margin: 0 auto;
   padding: 74px 40px 120px;
   width: 840px;
@@ -264,6 +264,7 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 .CertificationInfo {
   width: 760px;
   display: flex;
+  margin: 30px auto;
   justify-content: space-between;
   align-items: inherit;
   h1 {
@@ -278,4 +279,14 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   align-items: center;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+.lectureNoticeDiv {
+  border: 1px solid $sub-color;
+  padding: 20px;
+}
+
+.lectureNoticeContent {
+  margin-top: 20px;
+  min-height: 445px;
 }
