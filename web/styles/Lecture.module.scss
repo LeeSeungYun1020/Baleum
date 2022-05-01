@@ -88,8 +88,8 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 }
 
 .lectureNoticeSpace {
-  height:100px;
   background-color: $main-color;
+  padding: 20px 20px 20px 30px;
 }
 
 .lectureInfoList { // 강의 정보 페이지에 있는 강의 목록

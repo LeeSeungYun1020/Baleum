@@ -15,6 +15,7 @@ const LectureInfo = ({lecture}) => {
     const router = useRouter();
     const [isBefore, setIsBefore] = useState(true); // 수강신청 하기 전 강의인지 true이면 수강신청 안한거
     const [notice, setNotice] = useState(); // 강의 공지
+    const [noticeExist, setNoticeExist] = useState(false); // 공지 없으면 F
     const [loading, setLoading] = useState(false); // 데이터 로딩
     const onClick = () => {
         axios.post(`${SERVER_URL}/class/enrol/${lecture.id}`, {}, {withCredentials: true})
@@ -42,10 +43,11 @@ const LectureInfo = ({lecture}) => {
                 const response2 = await axios.get(`${SERVER_URL}/class/notice/class/${lecture.id}`, {withCredentials: true});
                 console.log(response2);
                 if(response2.data[0].result){
-                    setNotice(response2);
+                    setNotice(response2.data);
+                    setNoticeExist(true);
                 }
                 else {
-                    setNotice("등록된 공지사항이 없습니다.");
+                    setNoticeExist(false);
                 }
             } catch (e) {
                 router.push("/");
@@ -68,7 +70,7 @@ const LectureInfo = ({lecture}) => {
             </div>
             <div className={styles.lectureNotice}>
                 <h3>강의 공지</h3>
-                <div className={styles.lectureNoticeSpace}>ㅎㅎ</div>
+                <div className={styles.lectureNoticeSpace}>{noticeExist ? notice.map((list, index) => <p key={index}>{list.id} {list.title}</p>) : <p>등록된 공지사항이 없습니다.</p>}</div>
             </div>
             <h3>내 진행 블록</h3>
             <div className={styles.lectureBlock}>
