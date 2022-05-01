@@ -11,8 +11,9 @@ Class category list,class,강의 종류(카테고리) 목록,GET,/class/category
 Class classification by category,class,강의 종류(카테고리)별 강의 리스트,GET,/class/category/:classCategory,,"[{class, result: Boolean}, ...]"
 Search class,class,강의 조회(검색),GET,/class/search/:query,,"[{class, result: Boolean}, ...]"
 Class enrolment,class,수강 신청,POST,/class/enrol/:classId,/login required/,{result: Boolean}
-Taking class,class,학습 목록(내 강의),GET,/class/my,/login required/,"[{class, result: Boolean}, ...]"
-Is Before Taking class,class,수강 신청 전인 학습,GET,/class/isBefore/:classId,/login required/,{result: Boolean}
+Taking class,class,수강 중인 내 강의,GET,/class/my,/login required/,"[{class, result: Boolean}, ...]"
+Teach class,class,내가 만든 강의,GET,/class/my/teach,/login required/,
+Is Before Taking class,class,수강 신청 전인 학습인지 확인,GET,/class/isBefore/:classId,/login required/,{result: Boolean}
 Class process,class,학습 과정(강의 진도),GET,/class/process/:userId/:classId ,,"[{process, result: Boolean}, ...]"
 Class completed process,class,완료한 학습 과정,GET,/class/process/:userId,,"[{process, result: Boolean}, ...]"
 Class notice,class,강의별 공지,GET,/class/notice/class/:classId,,"[{notice, result: Boolean}, ...]"
