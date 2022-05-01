@@ -93,6 +93,19 @@ router.get('/my', (req, res) => {
     }
 })
 
+router.get('/my/teach', (req, res) => {
+    if (req.user) {
+        connection.query(`SELECT c.*, u.name as teacher
+                          FROM class c
+                                   JOIN user u on c.userId = u.id
+                          WHERE c.userId = ?`, [req.user.id], (err, result) => {
+            sendJSONArrayResult(res, err, result)
+        })
+    } else {
+        res.send([{"result": false, "reason": "user login required"}])
+    }
+})
+
 router.get('/isBefore/:classId', (req, res) => {
     if (req.user) {
         connection.query(`SELECT *
