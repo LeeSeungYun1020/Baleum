@@ -8,7 +8,7 @@ import LectureTopNav from "../../../../components/Lecture/LectureTopNav";
 
 const notice = () => {
     const router = useRouter()
-    const {classId, noticeId} = router.query ;// 경로 /lecture/notice/[classId]/[noticeId]
+    const {id, noticeId} = router.query ; // 경로 /lecture/[id]/notice/[noticeId]
     if (!noticeId) {
         return <></>
     }
@@ -20,7 +20,7 @@ const notice = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response1 = await axios.get(`${SERVER_URL}/class/info/${classId}`,{withCredentials: true})
+                const response1 = await axios.get(`${SERVER_URL}/class/info/${id}`,{withCredentials: true})
                 if(response1.data[0].result) {
                      setLecture(response1.data[0])
                     if(!response1.data[noticeId-1]) {
@@ -30,7 +30,7 @@ const notice = () => {
                  else {
                      router.push('/')
                 }
-                const response2 = await axios.get(`${SERVER_URL}/class/notice/class/${classId}`, {withCredentials: true});
+                const response2 = await axios.get(`${SERVER_URL}/class/notice/class/${id}`, {withCredentials: true});
                 console.log(response2);
                 if(response2.data[0].result){
                     setNotice(response2.data);
@@ -54,7 +54,7 @@ const notice = () => {
         <>
             <LectureTopNav />
             <div className={styles.lecturePage}>
-                <LectureNav lecture = {lecture} id={classId} />
+                <LectureNav lecture = {lecture} id={id} />
                 {/*{content && console.log(content.url)}*/}
                 {notice &&
                 (notice[noticeId-1] ? <div className={styles.lectureNoticePage}>
