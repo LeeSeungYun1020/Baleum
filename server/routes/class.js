@@ -3,121 +3,27 @@ const router = express.Router();
 const connection = require('../lib/mysql')
 const {sendJSONArrayResult, sendJSONObjectResult} = require('../lib/send')
 const {takeIfClassCompleted, saveProcess} = require('../lib/class')
+const classController = require('../controller/classController')
+const classCategoryController = require('../controller/classCategoryController')
+const takingClassController = require('../controller/takingClassController')
 
-router.get('/list/:num', (req, res) => {
-    let num = req.params.num ?? 8
-    for (const n of num) {
-        if ('0' <= n && n <= '9')
-            continue
-        num = 8
-        break
-    }
-    connection.query(`SELECT c.*, u.name as teacher
-                      FROM class c
-                               JOIN user u on c.userId = u.id
-                      LIMIT ${num}`, (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
-})
+router.get('/info/:classId', classController.getClass)
 
-router.get('/info/:classId', (req, res) => {
-    connection.query(`SELECT c.*, u.name as teacher
-                      FROM class c
-                               JOIN user u on c.userId = u.id
-                      WHERE c.id = ?`, [req.params.classId], (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
-})
-
+router.get('/list/:num', classController.list)
 router.get('/all', (req, res) => {
-    res.redirect("/class/list/16")
+    res.redirect("/class/list/15")
 })
-
 router.get('/main', (req, res) => {
     res.redirect("/class/list/8")
 })
+router.get('/category/list', classCategoryController.getCategory)
+router.get('/category/:classCategory', classController.categoryList)
+router.get('/search/:query', classController.search)
+router.get('/my', classController.myTakingClass)
+router.get('/my/teach', classController.myTeachingClass)
 
-router.get('/category/list', (req, res) => {
-    connection.query(`SELECT name
-                      FROM classCategory`, (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
-})
-
-router.get('/category/:classCategory', (req, res) => {
-    connection.query(`SELECT c.*, u.name as teacher
-                      FROM class c
-                               JOIN user u on c.userId = u.id
-                      WHERE category = ?`, [req.params.classCategory], (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
-})
-
-router.get('/search/:query', (req, res) => {
-    const query = "%" + req.params.query + "%"
-    connection.query(`SELECT c.*, u.name as teacher
-                      FROM class c
-                               JOIN user u on c.userId = u.id
-                      WHERE c.name LIKE ?
-                         OR c.detail LIKE ?
-                         OR c.category LIKE ?
-                         OR u.name LIKE ?`, [query, query, query, query], (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
-})
-
-router.post('/enrol/:classId', (req, res) => {
-    if (req.user) {
-        connection.query(`INSERT IGNORE INTO takingClass (userId, classId)
-                          VALUES (?, ?)`, [req.user.id, req.params.classId], (err, result) => {
-            sendJSONObjectResult(res, err, result, true)
-        })
-    } else {
-        res.send({"result": false, "reason": "user login required"})
-    }
-
-})
-
-router.get('/my', (req, res) => {
-    if (req.user) {
-        connection.query(`SELECT c.*, u.name as teacher
-                          FROM class c
-                                   JOIN takingClass t on c.id = t.classId
-                                   JOIN user u on c.userId = u.id
-                          WHERE t.userId = ?
-                            AND t.isCompleted = FALSE`, [req.user.id], (err, result) => {
-            sendJSONArrayResult(res, err, result)
-        })
-    } else {
-        res.send([{"result": false, "reason": "user login required"}])
-    }
-})
-
-router.get('/my/teach', (req, res) => {
-    if (req.user) {
-        connection.query(`SELECT c.*, u.name as teacher
-                          FROM class c
-                                   JOIN user u on c.userId = u.id
-                          WHERE c.userId = ?`, [req.user.id], (err, result) => {
-            sendJSONArrayResult(res, err, result)
-        })
-    } else {
-        res.send([{"result": false, "reason": "user login required"}])
-    }
-})
-
-router.get('/isBefore/:classId', (req, res) => {
-    if (req.user) {
-        connection.query(`SELECT *
-                          FROM takingclass
-                          WHERE userId = ?
-                            AND classId = ?`, [req.user.id, req.params.classId], (err, result) => {
-            res.send({result: result.length < 1})
-        })
-    } else {
-        res.send({"result": false, "reason": "user login required"})
-    }
-})
+router.get('/isBefore/:classId', takingClassController.isBefore)
+router.post('/enrol/:classId', takingClassController.enrol)
 
 router.get('/notice/class/:classId', (req, res) => {
     connection.query(`SELECT *
