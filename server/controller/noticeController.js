@@ -52,7 +52,8 @@ module.exports = {
         if (req.user) {
             connection.query(`DELETE
                               FROM notice
-                              WHERE id = ?`, [req.user.id], (err, result) => {
+                              WHERE id = ?
+                                AND userId = ?`, [req.params.id, req.user.id], (err, result) => {
                 sendJSONObjectResult(res, err, result, true)
             })
         } else {
