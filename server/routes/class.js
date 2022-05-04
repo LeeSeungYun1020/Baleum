@@ -1,8 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const connection = require('../lib/mysql')
-const {sendJSONArrayResult, sendJSONObjectResult} = require('../lib/send')
-const {takeIfClassCompleted, saveProcess} = require('../lib/class')
 const classController = require('../controller/classController')
 const classCategoryController = require('../controller/classCategoryController')
 const takingClassController = require('../controller/takingClassController')
@@ -35,8 +32,6 @@ router.get('/notice/read/:id', noticeController.read)
 router.delete('/notice/delete/:id', noticeController.delete)
 
 router.get('/process/:userId/:classId', processController.list)
-// TODO: 완료한 학습 과정 실제 사용하는지 확인
-router.get('/process/:userId', processController.completedList)
 
 router.get('/contents/:classId/:contentId', contentController.get)
 router.get('/contents/:classId', contentController.list)

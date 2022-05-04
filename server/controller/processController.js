@@ -14,18 +14,6 @@ module.exports = {
         })
     },
 
-    completedList: (req, res) => {
-        // 사용자별 완료된 강의만 표시
-        connection.query(`SELECT p.*, c.type, c.title
-                          FROM process p
-                                   JOIN content c ON p.classId = c.classId AND p.contentId = c.contentId
-                          WHERE p.userId = ?
-                            AND (p.state = '수강 완료' OR p.state = '채점 완료')
-                          ORDER BY p.date`, [req.params.userId], (err, result) => {
-            sendJSONArrayResult(res, err, result)
-        })
-    },
-
     // 영상 학습 완료
     videoDone: (req, res) => {
         if (req.user) {

@@ -15,7 +15,6 @@ Taking class,class,수강 중인 내 강의,GET,/class/my,/login required/,"[{cl
 Teach class,class,내가 만든 강의,GET,/class/my/teach,/login required/,
 Is Before Taking class,class,수강 신청 전인 학습인지 확인,GET,/class/isBefore/:classId,/login required/,{result: Boolean}
 Class process,class,학습 과정(강의 진도),GET,/class/process/:userId/:classId ,,"[{process, result: Boolean}, ...]"
-Class completed process,class,완료한 학습 과정,GET,/class/process/:userId,,"[{process, result: Boolean}, ...]"
 Class notice,class,강의별 공지,GET,/class/notice/class/:classId,,"[{notice, result: Boolean}, ...]"
 Class notice create,class,강의 공지 작성,POST,/class/notice/create,"classId, title, contents, /login required/",{result: Boolean}
 Class notice update,class,강의 공지 수정,GET,/class/notice/update/:id,"title, contents, /login required/",{result: Boolean}
