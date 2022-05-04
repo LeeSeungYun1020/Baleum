@@ -8,6 +8,7 @@ const classCategoryController = require('../controller/classCategoryController')
 const takingClassController = require('../controller/takingClassController')
 const noticeController = require('../controller/noticeController')
 const processController = require('../controller/processController')
+const contentController = require('../controller/contentController')
 
 router.get('/info/:classId', classController.getClass)
 
@@ -37,54 +38,15 @@ router.get('/process/:userId/:classId', processController.list)
 // TODO: 완료한 학습 과정 실제 사용하는지 확인
 router.get('/process/:userId', processController.completedList)
 
-router.get('/contents/:classId/:contentId', (req, res) => {
-    connection.query(`SELECT *
-                      FROM content
-                      WHERE classId = ?
-                        AND contentId = ?`, [req.params.classId, req.params.contentId], (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
-})
-
-router.get('/contents/:classId', (req, res) => {
-    connection.query(`SELECT *
-                      FROM content
-                      WHERE classId = ?`, [req.params.classId], (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
-})
+router.get('/contents/:classId/:contentId', contentController.get)
+router.get('/contents/:classId', contentController.list)
 
 router.post('/done/video', processController.videoDone)
 router.post('/done/test', processController.testDone)
 // TODO: 문제 테스트 부분 개정 필요
 router.post('/done/test/score', processController.testDone)
 
-router.get('/complete/list/:userId', (req, res) => {
-    connection.query(`SELECT c.*, u.name as teacher, t.completedDate, t.blockHash, t.transactionHash
-                      FROM class c
-                               JOIN takingClass t on c.id = t.classId
-                               JOIN user u on c.userId = u.id
-                      WHERE t.userId = ?
-                        AND t.isCompleted = TRUE`, [req.params.userId], (err, result) => {
-        sendJSONArrayResult(res, err, result)
-    })
-})
-
-router.get('/complete/:userId/:classId', (req, res) => {
-    connection.query(`SELECT t.isCompleted
-                      FROM class c
-                               JOIN takingClass t on c.id = t.classId
-                      WHERE t.userId = ?
-                        AND t.classId = ?
-                        AND t.isCompleted = TRUE`, [req.params.userId, req.params.classId], (err, result) => {
-        if (err || result.length === 0)
-            res.send([{result: false, isCompleted: false}])
-        else {
-            result[0]["result"] = true
-            result[0]["isCompleted"] = result[0]["isCompleted"] === 1;
-            res.send(result)
-        }
-    })
-})
+router.get('/complete/list/:userId', takingClassController.completedList)
+router.get('/complete/:userId/:classId', takingClassController.isCompleted)
 
 module.exports = router;
