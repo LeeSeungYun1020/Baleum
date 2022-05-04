@@ -28,6 +28,35 @@ GET http://localhost:3000/class/my/teach
 Content-Type: application/json
 
 
+### Create class
+POST http://localhost:3000/class/create
+Content-Type: application/json
+
+{
+  "name": "테스트 강의",
+  "detail": "테스트 강의입니다.",
+  "category": "투자",
+  "image": "some"
+}
+
+
+### Update class
+POST http://localhost:3000/class/update/19
+Content-Type: application/json
+
+{
+  "name": "테스트 강의...",
+  "detail": "!테스트 강의입니다!",
+  "category": "투자",
+  "image": "some"
+}
+
+
+### Delete class
+DELETE http://localhost:3000/class/delete/19
+Content-Type: application/json
+
+
 ### Is before taking class
 GET http://localhost:3000/class/isBefore/5
 Content-Type: application/json
