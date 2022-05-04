@@ -13,11 +13,14 @@ Search class,class,강의 조회(검색),GET,/class/search/:query,,"[{class, res
 Class enrolment,class,수강 신청,POST,/class/enrol/:classId,/login required/,{result: Boolean}
 Taking class,class,수강 중인 내 강의,GET,/class/my,/login required/,"[{class, result: Boolean}, ...]"
 Teach class,class,내가 만든 강의,GET,/class/my/teach,/login required/,
+Class create,class,새 강의 생성,POST,/class/create,"name, detail, category, image(String), /login required/",{result: Boolean}
+Class update,class,기존 강의 정보 변경,POST,/class/update/:classId,"name, detail, category, image(String), /login required/",{result: Boolean}
+Class delete,class,강의 삭제,DELETE,/class/delete/:classId,/login required/,{result: Boolean}
 Is Before Taking class,class,수강 신청 전인 학습인지 확인,GET,/class/isBefore/:classId,/login required/,{result: Boolean}
 Class process,class,학습 과정(강의 진도),GET,/class/process/:userId/:classId ,,"[{process, result: Boolean}, ...]"
 Class notice,class,강의별 공지,GET,/class/notice/class/:classId,,"[{notice, result: Boolean}, ...]"
 Class notice create,class,강의 공지 작성,POST,/class/notice/create,"classId, title, contents, /login required/",{result: Boolean}
-Class notice update,class,강의 공지 수정,GET,/class/notice/update/:id,"title, contents, /login required/",{result: Boolean}
+Class notice update,class,강의 공지 수정,POST,/class/notice/update/:id,"title, contents, /login required/",{result: Boolean}
 Class notice read,class,강의 공지 열람,GET,/class/notice/read/:id,,{notice}
 Class notice delete,class,강의 공지 삭제,DELETE,/class/notice/delete/:id,/login required/,{result: Boolean}
 Class content,class,강의 컨텐츠(수강),GET,/class/contents/:classId/:contentId,,"{content, result: Boolean}"

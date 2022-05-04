@@ -1,5 +1,5 @@
 const connection = require("../lib/mysql")
-const {sendJSONArrayResult} = require("../lib/send")
+const {sendJSONArrayResult, sendJSONObjectResult} = require("../lib/send")
 
 function isNumber(num) {
     for (const n of num) {
@@ -88,5 +88,48 @@ module.exports = {
         }
     },
 
+    // 강의 생성
+    create: (req, res) => {
+        // name, detail, category, image 모두 string으로 들어옴
+        if (req.user) {
+            connection.query(`INSERT INTO class (name, detail, userId, category, image)
+                              VALUES (?, ?, ?, ?,
+                                      ?)`, [req.body.name, req.body.detail, req.user.id, req.body.category, req.body.image], (err, result) => {
+                sendJSONObjectResult(res, err, result, true)
+            })
+        } else {
+            res.send({"result": false, "reason": "user login required"})
+        }
+    },
 
+    // 강의 정보 수정
+    update: (req, res) => {
+        if (req.user) {
+            connection.query(`UPDATE class
+                              SET name     = ?,
+                                  detail   = ?,
+                                  category = ?,
+                                  image    = ?
+                              WHERE id = ?
+                                AND userId = ?`, [req.body.name, req.body.detail, req.body.category, req.body.image, req.params.id, req.user.id], (err, result) => {
+                sendJSONObjectResult(res, err, result, true)
+            })
+        } else {
+            res.send({"result": false, "reason": "user login required"})
+        }
+    },
+
+    // 강의 삭제
+    delete: (req, res) => {
+        if (req.user) {
+            connection.query(`DELETE
+                              FROM class
+                              WHERE id = ?
+                                AND userId = ?`, [req.params.id, req.user.id], (err, result) => {
+                sendJSONObjectResult(res, err, result, true)
+            })
+        } else {
+            res.send({"result": false, "reason": "user login required"})
+        }
+    },
 }
