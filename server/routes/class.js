@@ -36,6 +36,7 @@ router.delete('/notice/delete/:id', noticeController.delete)
 
 router.get('/process/:userId/:classId', processController.list)
 
+router.post('/contents/:classId/add', contentController.add)
 router.get('/contents/:classId/:contentId', contentController.get)
 router.get('/contents/:classId', contentController.list)
 
