@@ -95,7 +95,8 @@ module.exports = {
             connection.query(`INSERT INTO class (name, detail, userId, category, image)
                               VALUES (?, ?, ?, ?,
                                       ?)`, [req.body.name, req.body.detail, req.user.id, req.body.category, req.body.image], (err, result) => {
-                sendJSONObjectResult(res, err, result, true)
+                console.log(result)
+                res.send({"result": result.affectedRows === 1, "classId": result.insertId})
             })
         } else {
             res.send({"result": false, "reason": "user login required"})
