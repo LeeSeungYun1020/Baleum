@@ -62,7 +62,7 @@ const notice = () => {
                        (noticeExist ?
                                    <div className={styles.lectureNoticeDiv}> {notice.map((list, index) => <Link key={index} href={{
                                pathname: ROUTE_NOTICE_ID,
-                               query: { id: list.id, noticeId: index+1}
+                               query: { id: id, noticeId: index+1}
                                    }}><a>{list.id} {list.title}</a></Link>)}</div> : <p className={styles.lectureNoNotice}>등록된 공지사항이 없습니다.</p>)
                        }
                    </div>

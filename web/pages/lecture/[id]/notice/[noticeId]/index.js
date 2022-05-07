@@ -1,10 +1,11 @@
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
-import LectureNav from "../../../../components/Lecture/LectureNav";
-import styles from "../../../../styles/Lecture.module.scss";
-import {SERVER_URL} from "../../../../data/global";
-import LectureTopNav from "../../../../components/Lecture/LectureTopNav";
+import LectureNav from "../../../../../components/Lecture/LectureNav";
+import styles from "../../../../../styles/Lecture.module.scss";
+import {SERVER_URL} from "../../../../../data/global";
+import LectureTopNav from "../../../../../components/Lecture/LectureTopNav";
+import {LoginContext} from "../../../../_app";
 
 const notice = () => {
     const router = useRouter()
@@ -15,17 +16,29 @@ const notice = () => {
     const [lecture, setLecture] = useState();
     const [notice, setNotice] = useState();
     const [loading, setLoading] = useState(false); // 데이터 로딩
-
+    const {currentUserId} = useContext(LoginContext)
+    const deleteClick = e => {
+        e.preventDefault();
+        if(window.confirm("공지사항을 삭제하시겠습니까?")) {
+            axios.delete(`${SERVER_URL}/class/notice/delete/${notice[noticeId-1].id}`, {withCredentials: true})
+                .then(response => {
+                    console.log(response)
+                    if (response.data.result) {
+                        alert("공지사항이 삭제되었습니다.")
+                    } else {
+                        alert("잠시후 다시 시도해주세요.")
+                    }
+                })
+        }
+    }
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
                 const response1 = await axios.get(`${SERVER_URL}/class/info/${id}`,{withCredentials: true})
+                console.log(response1)
                 if(response1.data[0].result) {
                      setLecture(response1.data[0])
-                    if(!response1.data[noticeId-1]) {
-                        router.push('/')
-                    }
                  }
                  else {
                      router.push('/')
@@ -35,9 +48,9 @@ const notice = () => {
                 if(response2.data[0].result){
                     setNotice(response2.data);
                 }
-                else {
-                    router.push('/')
-                }
+                // else {
+                //     router.push('/')
+                // }
             } catch (e) {
                 router.push('/');
             }
@@ -63,6 +76,8 @@ const notice = () => {
                                 <h2>{notice[noticeId-1].title}</h2>
                                 <h3>작성일자: {notice[noticeId-1].date.split('T')[0]}</h3>
                                 <h3 className={styles.lectureNoticeContent}>{notice[noticeId-1].contents}</h3>
+                                {(currentUserId===notice[noticeId-1].userId) && <div><button>수정</button><button onClick={deleteClick}>삭제</button></div>}
+                    /
                             </div>
                 </div> :
                     <></>

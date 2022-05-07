@@ -4,7 +4,8 @@ import {createContext, useState} from "react";
 export const LoginContext = createContext({
   isLogin: false,
   id: null,
-  pw: null
+  pw: null,
+  currentUserId: null
 })
 
 const Store = (props) => {
@@ -12,9 +13,9 @@ const Store = (props) => {
     const [isLogin, setIsLogin] = useState(sessionStorage.getItem("isLogin") || false);
     const [id, setId] = useState(sessionStorage.getItem("id") || null);
     const [pw, setPw] = useState(sessionStorage.getItem("pw") || null);
-
+    const [currentUserId, setCurrentUserId] = useState(sessionStorage.getItem("id") || null);
     return (
-        <LoginContext.Provider value = {{isLogin, id, pw, setIsLogin, setId, setPw}}>
+        <LoginContext.Provider value = {{isLogin, id, pw, currentUserId, setIsLogin, setId, setPw, setCurrentUserId}}>
           {props.children}
         </LoginContext.Provider>
     )
@@ -23,9 +24,9 @@ const Store = (props) => {
     const [isLogin, setIsLogin] = useState(false);
     const [id, setId] = useState(null);
     const [pw, setPw] = useState(null);
-
+    const [currentUserId, setCurrentUserId] = useState(null);
     return (
-        <LoginContext.Provider value = {{isLogin, id, pw, setIsLogin, setId, setPw}}>
+        <LoginContext.Provider value = {{isLogin, id, pw, currentUserId, setIsLogin, setId, setPw, setCurrentUserId}}>
           {props.children}
         </LoginContext.Provider>
     )

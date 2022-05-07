@@ -9,7 +9,7 @@ import {useRouter} from 'next/router'
 
 const signin = () => {
     const router = useRouter()
-    const {id, pw, setIsLogin, setId, setPw} = useContext(LoginContext)
+    const {id, pw, setIsLogin, setId, setPw, setCurrentUserId} = useContext(LoginContext)
     const submit = e => {
         e.preventDefault();
         axios.post(`${SERVER_URL}/users/signin`, {
@@ -22,6 +22,7 @@ const signin = () => {
                     setId(id);
                     setPw(pw);
                     setIsLogin(true);
+                    setCurrentUserId(id);
                     sessionStorage.setItem("isLogin", true);
                     sessionStorage.setItem("id", id);
                     sessionStorage.setItem("pw", pw);
