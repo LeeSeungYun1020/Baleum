@@ -91,6 +91,8 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 }
 
 .lectureNoticeSpace {
+  display: flex;
+  flex-direction: column;
   background-color: $main-color;
   padding: 20px 20px 20px 30px;
 }
@@ -285,6 +287,8 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 }
 
 .lectureNoticeDiv {
+  display: flex;
+  flex-direction: column;
   border: 1px solid $sub-color;
   padding: 20px;
 }

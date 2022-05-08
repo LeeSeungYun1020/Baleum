@@ -6,7 +6,7 @@ import styles from "../../../../../styles/Lecture.module.scss";
 import {SERVER_URL} from "../../../../../data/global";
 import LectureTopNav from "../../../../../components/Lecture/LectureTopNav";
 import {LoginContext} from "../../../../_app";
-
+import Link from "next/link"
 const notice = () => {
     const router = useRouter()
     const {id, noticeId} = router.query ; // 경로 /lecture/[id]/notice/[noticeId]
@@ -76,8 +76,10 @@ const notice = () => {
                                 <h2>{notice[noticeId-1].title}</h2>
                                 <h3>작성일자: {notice[noticeId-1].date.split('T')[0]}</h3>
                                 <h3 className={styles.lectureNoticeContent}>{notice[noticeId-1].contents}</h3>
-                                {(currentUserId===notice[noticeId-1].userId) && <div><button>수정</button><button onClick={deleteClick}>삭제</button></div>}
-                    /
+                                {(currentUserId===notice[noticeId-1].userId) && <div><button><Link href={{
+                                    pathname: `/lecture/[id]/notice/update/[noticeUpdateId]`,
+                                    query: { id: id, noticeUpdateId: JSON.stringify(notice[noticeId-1])}
+                                }}><a>수정</a></Link></button><button onClick={deleteClick}>삭제</button></div>}
                             </div>
                 </div> :
                     <></>
