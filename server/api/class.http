@@ -28,6 +28,35 @@ GET http://localhost:3000/class/my/teach
 Content-Type: application/json
 
 
+### Create class
+POST http://localhost:3000/class/create
+Content-Type: application/json
+
+{
+  "name": "테스트 강의",
+  "detail": "테스트 강의입니다.",
+  "category": "투자",
+  "image": "some"
+}
+
+
+### Update class
+POST http://localhost:3000/class/update/19
+Content-Type: application/json
+
+{
+  "name": "테스트 강의...",
+  "detail": "!테스트 강의입니다!",
+  "category": "투자",
+  "image": "some"
+}
+
+
+### Delete class
+DELETE http://localhost:3000/class/delete/19
+Content-Type: application/json
+
+
 ### Is before taking class
 GET http://localhost:3000/class/isBefore/5
 Content-Type: application/json
@@ -84,6 +113,31 @@ Content-Type: application/json
 GET http://localhost:3000/class/process/ileilliat@gmail.com
 Content-Type: application/json
 
+
+### Class contents add
+POST http://localhost:3000/class/contents/24/add
+Content-Type: application/json
+
+[
+  {
+    "contentId": 1,
+    "type": "영상",
+    "title": "새로운 영상1",
+    "url": "https://www.youtube.com/watch?v=wvQm3qf3CEo"
+  },
+  {
+    "contentId": 2,
+    "type": "영상",
+    "title": "새로운 영상2",
+    "url": "https://www.youtube.com/watch?v=wvQm3qf3CEo"
+  },
+  {
+    "contentId": 3,
+    "type": "영상",
+    "title": "새로운 영상3",
+    "url": "https://www.youtube.com/watch?v=wvQm3qf3CEo"
+  }
+]
 
 ### Class content
 GET http://localhost:3000/class/contents/1/1
