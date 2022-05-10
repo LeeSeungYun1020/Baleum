@@ -150,12 +150,12 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   }
 
   button {
-    width: 80px;
+    width: 90px;
     color: $main-color;
     height: 40px;
     border: none;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 
@@ -300,4 +300,9 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
 .lectureNoNotice {
   font-weight: bolder;
+}
+
+.myCreateLectureButtonDiv {
+  flex-direction: column;
+  float: right;
 }

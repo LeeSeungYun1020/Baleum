@@ -4,9 +4,10 @@ import LectureListComponent from "./LectureListComponent";
 import BlockList from "./BlockList";
 import axios from "axios";
 import {SERVER_URL, ROUTE_NOTICE_LIST_URL, ROUTE_NOTICE_ID} from "../../data/global";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
+import {LoginContext} from "../../pages/_app";
 
 const LectureInfo = ({lecture}) => {
     if(!lecture) {
@@ -15,6 +16,7 @@ const LectureInfo = ({lecture}) => {
         )
     }
     const router = useRouter();
+    const {currentUserId} = useContext(LoginContext)
     const [isBefore, setIsBefore] = useState(true); // 수강신청 하기 전 강의인지 true이면 수강신청 안한거
     const [notice, setNotice] = useState(); // 강의 공지
     const [noticeExist, setNoticeExist] = useState(false); // 공지 없으면 F
@@ -43,7 +45,7 @@ const LectureInfo = ({lecture}) => {
                     setIsBefore(false);
                 }
                 const response2 = await axios.get(`${SERVER_URL}/class/notice/class/${lecture.id}`, {withCredentials: true});
-                console.log(response2);
+                // console.log(response2);
                 if(response2.data[0].result){
                     setNotice(response2.data);
                     setNoticeExist(true);
@@ -64,7 +66,7 @@ const LectureInfo = ({lecture}) => {
     return (
         <div className={styles.lectureInfo}>
             <h1 className={styles.lectureTitle}>{lecture.name}</h1>
-            {isBefore && <button className={styles.lectureRegisterBtn} onClick={onClick}>수강 신청</button>}
+            {(lecture.userId !== currentUserId) && isBefore && <button className={styles.lectureRegisterBtn} onClick={onClick}>수강 신청</button>}
             <h2 className={styles.lectureAuthor}>{lecture.teacher}</h2>
             <div className={styles.lectureDescribe}>
                 <h3>강의 요약</h3>
