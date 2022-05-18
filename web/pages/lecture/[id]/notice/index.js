@@ -33,7 +33,7 @@ const notice = () => {
                     router.push('/')
                 }
                 const response2 = await axios.get(`${SERVER_URL}/class/notice/class/${id}`, {withCredentials: true});
-                // console.log(response2);
+                console.log(response2);
                 if(response2.data[0].result){
                     setNotice(response2.data);
                     setNoticeExist(true);
@@ -66,10 +66,10 @@ const notice = () => {
                        (noticeExist ?
                                    <div className={styles.lectureNoticeDiv}> {notice.map((list, index) => <Link key={index} href={{
                                pathname: ROUTE_NOTICE_ID,
-                               query: { id: id, noticeId: index+1}
-                                   }}><a>{list.id} {list.title}</a></Link>)}</div> : <p className={styles.lectureNoNotice}>등록된 공지사항이 없습니다.</p>)
+                               query: { id: id, noticeId: list.id}
+                                   }}><a>{index + 1} {list.title}</a></Link>)}</div> : <p className={styles.lectureNoNotice}>등록된 공지사항이 없습니다.</p>)
                        }
-                       {userId === currentUserId && <button><Link href={`/lecture/${id}/notice/write`}><a>공지사항 작성</a></Link></button>}
+                       {userId === currentUserId && <button className={styles.noticeButton}><Link href={`/lecture/${id}/notice/write`}><a>작성</a></Link></button>}
                    </div>
             </div>
         </>)

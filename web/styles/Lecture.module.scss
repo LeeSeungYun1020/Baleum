@@ -291,6 +291,7 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   flex-direction: column;
   border: 1px solid $sub-color;
   padding: 20px;
+  margin-bottom: 10px;
 }
 
 .lectureNoticeContent {
@@ -305,4 +306,39 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 .myCreateLectureButtonDiv {
   flex-direction: column;
   float: right;
+}
+
+.noticeButton {
+  width: 90px;
+  border: $main-color 2px solid;
+  font-weight: bolder;
+  color: $main-color;
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  margin-left: 10px;
+  float: right;
+  cursor: pointer;
+}
+
+.noticeUpdateInput {
+  input {
+    width: 100%;
+    height: 50px;
+    font-size: 1em;
+    border: 2px solid $sub-color;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+  }
+  textarea {
+    width: 100%;
+    height: 500px;
+    font-size: 1em;
+    border: 2px solid $sub-color;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
 }

@@ -20,11 +20,12 @@ const notice = () => {
     const deleteClick = e => {
         e.preventDefault();
         if(window.confirm("공지사항을 삭제하시겠습니까?")) {
-            axios.delete(`${SERVER_URL}/class/notice/delete/${notice[noticeId-1].id}`, {withCredentials: true})
+            axios.delete(`${SERVER_URL}/class/notice/delete/${notice.id}`, {withCredentials: true})
                 .then(response => {
-                    console.log(response)
+                    // console.log(response)
                     if (response.data.result) {
                         alert("공지사항이 삭제되었습니다.")
+                        router.push(`/lecture/${id}/notice`)
                     } else {
                         alert("잠시후 다시 시도해주세요.")
                     }
@@ -36,7 +37,7 @@ const notice = () => {
             setLoading(true);
             try {
                 const response1 = await axios.get(`${SERVER_URL}/class/info/${id}`,{withCredentials: true})
-                console.log(response1)
+                // console.log(response1)
                 if(response1.data[0].result) {
                      setLecture(response1.data[0])
                  }
@@ -44,13 +45,18 @@ const notice = () => {
                      router.push('/')
                 }
                 const response2 = await axios.get(`${SERVER_URL}/class/notice/class/${id}`, {withCredentials: true});
-                console.log(response2);
                 if(response2.data[0].result){
-                    setNotice(response2.data);
+                    for(let i = 0; i < response2.data.length; i++) {
+                        if(response2.data[i].id == noticeId) {
+                            setNotice(response2.data[i]);
+                            // console.log(response2.data[i]);
+                            break;
+                        }
+                    }
                 }
-                // else {
-                //     router.push('/')
-                // }
+                else {
+                    router.push('/')
+                }
             } catch (e) {
                 router.push('/');
             }
@@ -65,27 +71,25 @@ const notice = () => {
     }
     return (
         <>
-            <LectureTopNav />
+            <LectureTopNav/>
             <div className={styles.lecturePage}>
-                <LectureNav lecture = {lecture} id={id} />
-                {/*{content && console.log(content.url)}*/}
+                <LectureNav lecture={lecture} id={id}/>
                 {notice &&
-                (notice[noticeId-1] ? <div className={styles.lectureNoticePage}>
-                            <h1 className={styles.lectureTitle}>강의 공지</h1>
-                            <div className={styles.lectureNoticeDiv}>
-                                <h2>{notice[noticeId-1].title}</h2>
-                                <h3>작성일자: {notice[noticeId-1].date.split('T')[0]}</h3>
-                                <h3 className={styles.lectureNoticeContent}>{notice[noticeId-1].contents}</h3>
-                                {(currentUserId===notice[noticeId-1].userId) && <div><button><Link href={{
-                                    pathname: `/lecture/[id]/notice/update/[noticeUpdateId]`,
-                                    query: { id: id, noticeUpdateId: JSON.stringify(notice[noticeId-1])}
-                                }}><a>수정</a></Link></button><button onClick={deleteClick}>삭제</button></div>}
-                            </div>
-                </div> :
-                    <></>
-                )}
+                <div className={styles.lectureNoticePage}>
+                    <h1 className={styles.lectureTitle}>강의 공지</h1>
+                    <div className={styles.lectureNoticeDiv}>
+                        <h2>{notice.title}</h2>
+                        <h3>작성일자: {notice.date.split('T')[0]}</h3>
+                        <h3 className={styles.lectureNoticeContent}>{notice.contents}</h3>
+                        {(currentUserId===notice.userId) && <div><button className={styles.noticeButton}><Link href={{
+                            pathname: `/lecture/[id]/notice/update/[noticeUpdateId]`,
+                            query: {id: id, noticeUpdateId: JSON.stringify(notice)}
+                        }}><a>수정</a></Link></button><button className={styles.noticeButton} onClick={deleteClick}>삭제</button></div>}
+                    </div>
+                </div>
+                }
             </div>
-        </>)
+        </>
+    )
 }
-
-export default notice
+export default notice;

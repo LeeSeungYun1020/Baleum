@@ -4,7 +4,7 @@ import {useRouter} from "next/router";
 import axios from "axios";
 import {SERVER_URL} from "../../../../data/global";
 import LectureNav from "../../../../components/Lecture/LectureNav";
-// import styles from "../../../../styles/Users.module.scss";
+import styles from "../../../../styles/lecture.module.scss";
 
 const write = () => {
     const router = useRouter();
@@ -71,13 +71,19 @@ const write = () => {
         )
     }
     return (
-        <div>
+        <div className={styles.lecturePage}>
             <LectureNav lecture = {lecture} id = {id}/>
-            <div>
+            <div className={styles.lectureNoticePage}>
                 <form onSubmit={onSubmit}>
-                    <input type={"text"} id={"title"} name={"title"} required onChange={titleChange}/>
-                    <input type={"text"} id={"contents"} name={"contents"} required onChange={contentsChange}/>
-                    <input type={"submit"} value={"완료"}/>
+                    <div className={styles.noticeUpdateInput}>
+                        <input type={"text"} id={"title"} name={"title"} required onChange={titleChange} placeholder={"제목"}/>
+                    </div>
+                    <div className={styles.noticeUpdateInput}>
+                        <textarea id={"contents"} name={"contents"} required onChange={contentsChange} placeholder={"내용"}/>
+                    </div>
+                    <div className={styles.noticeUpdateSubmit}>
+                        <input className={styles.noticeButton} type={"submit"} value={"완료"}/>
+                    </div>
                 </form>
             </div>
         </div>
