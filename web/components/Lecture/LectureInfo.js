@@ -79,8 +79,8 @@ const LectureInfo = ({lecture}) => {
                 }}><a><h3>강의 공지</h3></a></Link>
                 <div className={styles.lectureNoticeSpace}>{noticeExist ? notice.map((list, index) => <Link key={index} href={{
                     pathname: ROUTE_NOTICE_ID,
-                    query: { id: list.classId, noticeId: index+1}
-                }}><a>{list.id} {list.title}</a></Link>) : <p>등록된 공지사항이 없습니다.</p>}</div>
+                    query: { id: list.classId, noticeId: list.id}
+                }}><a>{index + 1} {list.title}</a></Link>) : <p>등록된 공지사항이 없습니다.</p>}</div>
             </div>
             <h3>내 진행 블록</h3>
             <div className={styles.lectureBlock}>
