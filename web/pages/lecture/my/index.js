@@ -26,6 +26,10 @@ const Lecture = () => {
     const clickMake = () => {
         setNum(2);
     }// 강의 생성
+    const onMakeClick = (e) => {
+        e.preventDefault();
+        router.push('/lecture/my/create');
+    }
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -83,12 +87,12 @@ const Lecture = () => {
                             <><QRCode value={`${CLIENT_URL}/certification/${id}`} style ={{marginBottom: 30, cursor: "pointer"}} onClick={onQRClick} size={100}/>
                                 {item.map((item, index) => <MyLectureComponent key={index} lecture = {item} />)}
                             </> : <>
-                                <button>강의 만들기</button>
+                                <button className={styles.makeButton} onClick={onMakeClick}>강의 만들기</button>
                                 {item.map((item, index) => <MyCreateLectureComponent key={index} lecture = {item} />)}
                             </> ))
                         :
                         <div className={styles.noLectureComponent}>
-                            {(num===0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : (num === 1 ? <><QRCode value={`${CLIENT_URL}/certification/${id}`} style ={{marginBottom: 30, cursor: "pointer"}} onClick={onQRClick} size={100}/><h3>수강 완료한 강의가 존재하지 않습니다.</h3></> : <><button>강의 만들기</button><h3>생성한 강의가 존재하지 않습니다.</h3></>))}
+                            {(num===0 ?<h3>수강 중인 강의가 존재하지 않습니다.</h3> : (num === 1 ? <><QRCode value={`${CLIENT_URL}/certification/${id}`} style ={{marginBottom: 30, cursor: "pointer"}} onClick={onQRClick} size={100}/><h3>수강 완료한 강의가 존재하지 않습니다.</h3></> : <><button className={styles.makeButton} onClick={onMakeClick}>강의 만들기</button><h3>생성한 강의가 존재하지 않습니다.</h3></>))}
                         </div>}
             </div>
             </section>
