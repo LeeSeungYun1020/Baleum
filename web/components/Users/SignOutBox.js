@@ -5,7 +5,7 @@ import {useContext} from "react";
 import {LoginContext} from "../../pages/_app";
 
 const SignOutBox = () => {
-    const {setIsLogin, setId, setPw} = useContext(LoginContext)
+    const {setIsLogin, setId, setPw, setCurrentUserId} = useContext(LoginContext)
     const click = () => {
         axios.post(`${SERVER_URL}/users/signout`, {}, {withCredentials: true})
             .then (response => {
@@ -13,6 +13,7 @@ const SignOutBox = () => {
                     setIsLogin(false);
                     setId(null);
                     setPw(null);
+                    setCurrentUserId(null);
                     sessionStorage.clear()
                 }
             })

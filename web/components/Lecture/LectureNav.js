@@ -1,7 +1,6 @@
 import styles from "../../styles/Lecture.module.scss";
 import Link from "next/link";
-import {ROUTE_LECTURE_ID, SERVER_URL} from "../../data/global";
-import Loading from "../Loading";
+import {ROUTE_LECTURE_ID, SERVER_URL} from "../../data/global"
 import LectureNavListComponent from "./LectureNavListComponent";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -22,7 +21,7 @@ const LectureNav = ({lecture, id}) => {
     },[])
     if(!lecture) {
         return (
-            <Loading />
+            <></>
         )
     }
     return (

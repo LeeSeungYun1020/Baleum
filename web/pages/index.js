@@ -52,9 +52,9 @@ export default function Home() {
                 {/*여기는 공지사항, ... 네비게이션 영역*/}
                 <nav className={styles.subNav}>
                     <ul>
-                        <li><a>공지사항</a></li>
-                        <li><a>소개 페이지</a></li>
-                        <li><a>사용 방법</a></li>
+                        <li className={styles.subNavLi}><a>공지사항</a></li>
+                        <li className={styles.subNavLi}><a>소개 페이지</a></li>
+                        <li className={styles.subNavLi}><a>사용 방법</a></li>
                     </ul>
                 </nav>
                 <div>

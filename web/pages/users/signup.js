@@ -67,21 +67,21 @@ const signup = () => {
                 <form onSubmit={submit}>
                     <div>
                         <input className={styles.textBox} type={"text"} id={"name"} name={"name"} required minLength={"2"}
-                               autoComplete={"name"} placeholder={"성함"} onChange={nameChange}/>
+                               autoComplete={"name"} placeholder={"이름"} onChange={nameChange}/>
                     </div>
                     <div>
                         <input className={styles.textBox} type={"email"} id={"id"} name={"id"} required minLength={"4"}
-                               autoComplete={"email"} placeholder={"ID"} onChange={idChange}/>
+                               autoComplete={"email"} placeholder={"이메일"} onChange={idChange}/>
                     </div>
                     <div>
                         <input className={styles.textBox} type={"password"} id={"pw"} name={"pw"} required
                                minLength={"4"}
-                               autoComplete={"password"} placeholder={"Password"} onChange={pwChange}/>
+                               autoComplete={"password"} placeholder={"비밀번호"} onChange={pwChange}/>
                     </div>
                     <div>
                         <input className={styles.textBox} type={"password"} id={"pw"} name={"pw"} required
                                minLength={"4"}
-                              placeholder={"Password Confirm"} onChange={confirmPwChange}/>
+                              placeholder={"비밀번호 확인"} onChange={confirmPwChange}/>
                     </div>
                     {pw !== confirmPw && <div><p>비밀번호가 일치하지 않습니다.</p></div>}
                     <div>

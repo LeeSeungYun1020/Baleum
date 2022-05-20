@@ -4,7 +4,7 @@ import Link from 'next/link'
 import classNames from 'classnames/bind';
 import {useContext} from "react";
 import {LoginContext} from "../pages/_app";
-import {FaUserCircle} from "react-icons/fa";
+import {FaSearch, FaUserCircle} from "react-icons/fa";
 
 export const siteTitle = "바름"
 
@@ -34,16 +34,18 @@ export default function Layout({children}) {
                     </Link>
                     {isLogin &&
                     <div className={styles.myLectureTab}>
-                        <Link href="/lecture/my"><a>내 강의 <FaUserCircle/></a></Link>
+                        <ul>
+                        <li><Link href="/search"><a>강의 검색 <FaSearch color={"#ACC7B4"}/></a></Link></li>
+                        <li><Link href="/lecture/my"><a>내 강의 <FaUserCircle/></a></Link></li>
+                        </ul>
                     </div>
                     }
                 </div>
-                <nav className={styles.nav}>
-                    <ul className={styles.navList}>
-                        <li className={styles.navTab}><Link href="/"><a>과정</a></Link></li>
-                        <li className={styles.navTab}><Link href="/search"><a>강의</a></Link></li>
-                    </ul>
-                </nav>
+                {/*<nav className={styles.nav}>*/}
+                {/*    <ul className={styles.navList}>*/}
+                {/*        <li className={styles.navTab}><Link href="/search"><a>강의</a></Link></li>*/}
+                {/*    </ul>*/}
+                {/*</nav>*/}
             </header>
             <main className={`${styles.inner} ${styles.main}`}>{children}</main>
             <footer className={classNames({[styles.footer]: true, [styles.inner]: true})}>

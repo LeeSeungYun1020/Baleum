@@ -9,7 +9,7 @@ import {useRouter} from 'next/router'
 
 const signin = () => {
     const router = useRouter()
-    const {id, pw, setIsLogin, setId, setPw} = useContext(LoginContext)
+    const {id, pw, setIsLogin, setId, setPw, setCurrentUserId} = useContext(LoginContext)
     const submit = e => {
         e.preventDefault();
         axios.post(`${SERVER_URL}/users/signin`, {
@@ -22,6 +22,7 @@ const signin = () => {
                     setId(id);
                     setPw(pw);
                     setIsLogin(true);
+                    setCurrentUserId(id);
                     sessionStorage.setItem("isLogin", true);
                     sessionStorage.setItem("id", id);
                     sessionStorage.setItem("pw", pw);
@@ -54,12 +55,12 @@ const signin = () => {
                 <form onSubmit={submit}>
                     <div>
                         <input className={styles.textBox} type={"email"} id={"id"} name={"id"} required minLength={"4"}
-                               autoComplete={"email"} placeholder={"EMAIL"} onChange={onIdChange}/>
+                               autoComplete={"email"} placeholder={"이메일"} onChange={onIdChange}/>
                     </div>
                     <div>
                         <input className={styles.textBox} type={"password"} id={"pw"} name={"pw"} required
                                minLength={"4"}
-                               autoComplete={"password"} placeholder={"Password"} onChange={onPwChange}/>
+                               autoComplete={"password"} placeholder={"비밀번호"} onChange={onPwChange}/>
                     </div>
                     <input className={styles.submitBox} type={"submit"} value={"로그인"}/>
                 </form>

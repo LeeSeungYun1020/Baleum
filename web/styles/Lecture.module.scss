@@ -50,16 +50,19 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   }
 }
 
-.lectureVideo, .lectureInfo {
+.lectureVideo, .lectureInfo, .lectureNoticePage {
   margin: 0 auto;
   padding: 74px 40px 120px;
   width: 840px;
+  h3 {
+    margin-bottom: 10px;
+  }
 }
 
 .lectureVideoTitle, .lectureTitle {
-  border-bottom: 1px solid $sub-color;
+  border-bottom: 2px solid $sub-color;
   margin-bottom: 40px;
-  padding-bottom: 35px
+  padding-bottom: 35px;
 }
 
 .lectureBlock { // 일단 임시로 공간 만듦
@@ -83,8 +86,15 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
 }
 
-.lectureAuthor, .lectureDescribe, .lectureBlock {
+.lectureAuthor, .lectureDescribe, .lectureBlock, .lectureNotice {
   margin-bottom: 20px;
+}
+
+.lectureNoticeSpace {
+  display: flex;
+  flex-direction: column;
+  background-color: $main-color;
+  padding: 20px 20px 20px 30px;
 }
 
 .lectureInfoList { // 강의 정보 페이지에 있는 강의 목록
@@ -140,12 +150,12 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   }
 
   button {
-    width: 80px;
+    width: 90px;
     color: $main-color;
     height: 40px;
     border: none;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 
@@ -172,7 +182,7 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   }
 
   .myLectureNavP + .myLectureNavP {
-    border-left: 1px solid $sub-color;
+    border-left: 1px solid #c3c3c4;
   }
 }
 
@@ -258,9 +268,77 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
 .CertificationInfo {
   width: 760px;
+  display: flex;
+  margin: 30px auto;
+  justify-content: space-between;
+  align-items: inherit;
   h1 {
     font-size: 21px;
-    margin-top: 20px;
+  }
+}
+
+.certificationCompleteQRLocation {
+  display: flex;
+  width: 800px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.lectureNoticeDiv {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $sub-color;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.lectureNoticeContent {
+  margin-top: 20px;
+  min-height: 445px;
+}
+
+.lectureNoNotice {
+  font-weight: bolder;
+}
+
+.myCreateLectureButtonDiv {
+  flex-direction: column;
+  float: right;
+}
+
+.noticeButton {
+  width: 90px;
+  border: $main-color 2px solid;
+  font-weight: bolder;
+  color: $main-color;
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  margin-left: 10px;
+  float: right;
+  cursor: pointer;
+}
+
+.noticeUpdateInput {
+  input {
+    width: 100%;
+    height: 50px;
+    font-size: 1em;
+    border: 2px solid $sub-color;
+    border-radius: 8px;
     margin-bottom: 10px;
+    padding-left: 10px;
+  }
+  textarea {
+    width: 100%;
+    height: 500px;
+    font-size: 1em;
+    border: 2px solid $sub-color;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
   }
 }
