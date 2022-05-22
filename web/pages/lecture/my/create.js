@@ -7,6 +7,9 @@ import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import axios from "axios";
 import {SERVER_URL} from "../../../data/global";
 import ContentList from "../../../components/Lecture/ContentList";
+import {siteTitle} from "../../../components/layout";
+import Layout from "../../../components/layout";
+import Head from "next/head";
 
 const create = () => {
     const [image, setImage] = useState();
@@ -118,8 +121,13 @@ const create = () => {
     }
 
     return (
+        <Layout>
+            <Head>
+                <title>{siteTitle}</title>
+            </Head>
+            <section>
         <div className={styles.createLecturePage}>
-            <div>
+            <div className={styles.createLectureDiv}>
                 <h1>강의 정보 입력</h1>
                 <p>강의를 잘 표현하는 제목과 이미지 등록</p>
             </div>
@@ -132,11 +140,16 @@ const create = () => {
 
                 <div>
                     <form onSubmit={onLectureSubmit}>
+                        <div className={styles.createComponentDiv}>
                     <h2>강의명</h2>
-                    <input type={"text"} id={"LectureTitle"} required onChange={onTitleChange} placeholder={"강의명"} disabled={disable}/>
-                    <h2>강의 요약</h2>
-                    <textarea id={"detail"} required onChange={onDetailChange} placeholder={"강의 요약"} disabled={disable}/>
-                    <h2>카테고리 분류</h2>
+                    <input className={styles.myLectureCreateInput} type={"text"} id={"LectureTitle"} required onChange={onTitleChange} placeholder={"강의명"} disabled={disable}/>
+                        </div>
+                        <div className={styles.createComponentDiv}>
+                            <h2>강의 요약</h2>
+                    <textarea id={"detail"} className={styles.myLectureCreateInput} required onChange={onDetailChange} placeholder={"강의 요약"} disabled={disable}/>
+                        </div>
+                        <div className={styles.createComponentDiv}>
+                            <h2>카테고리 분류</h2>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label" disabled={disable}>카테고리</InputLabel>
                         <Select
@@ -152,7 +165,8 @@ const create = () => {
                             <MenuItem value={"프로그래밍"}>프로그래밍</MenuItem>
                         </Select>
                     </FormControl>
-                        <input type={"submit"} value={"등록"} disabled={disable}/>
+                        </div>
+                        <input className={styles.createSubmit} type={"submit"} value={"등록"} disabled={disable}/>
                     </form>
                 </div>
             </div>
@@ -167,6 +181,8 @@ const create = () => {
                 <button onClick={onContentComplete}>등록 완료</button>
             </div>
         </div>
+            </section>
+        </Layout>
     )
 }
 

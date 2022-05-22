@@ -360,11 +360,11 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 }
 
 .createPreviewImage {
-  width: 252px;
-  height: 200px;
+  width: 378px;
+  height: 300px;
   img {
-    width: 252px;
-    height: 200px;
+    width: 378px;
+    height: 300px;
   }
   div {
     width: 100%;
@@ -377,15 +377,50 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 }
 
 .createLecturePage {
-  width: 800px;
   display: flex;
   flex-direction: column;
   margin: auto;
   align-items: center;
+  button, .createSubmit {
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    border: 2px solid $main-color;
+    color: $main-color;
+    background-color: white;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+  input[type="file"] {
+    color: $main-color;
+    font-weight: bolder;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;}
+  p {
+    font-weight: bolder;
+    color: $font-color;
+  }
+}
+
+
+.myLectureCreateInput {
+  border-radius: 4px;
+  border: 2px solid $sub-color;
+  width: 670px;
+  height: 40px;
 }
 
 .createLectureComponent {
   display: flex;
+  width: 100%;
+  justify-content: space-between;
+  textarea {
+    height: 200px;
+  }
 }
 
 .contentListComponent {
@@ -393,9 +428,15 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
   flex-direction: column;
 }
 
-//.input {
-//  border-radius: 4px;
-//  border: 2px solid $sub-color;
-//  width: 500px;
-//  height: 40px;
-//}
+.createLectureArea {
+  margin-left: 25px;
+}
+
+.createLectureDiv {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.createComponentDiv {
+  margin-bottom: 10px;
+}
