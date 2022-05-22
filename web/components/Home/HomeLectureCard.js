@@ -11,7 +11,7 @@ const HomeLectureCard = ({lecture}) => {
         router.push(`/lecture/${lecture.id}`)
     }
     return (
-        <Card sx={{maxWidth: 252}} className={styles.lectureCard} onClick={onClick}>
+        <Card sx={{width: 252}} className={styles.lectureCard} onClick={onClick}>
             <CardActionArea>
                 <CardMedia
                     component="img"

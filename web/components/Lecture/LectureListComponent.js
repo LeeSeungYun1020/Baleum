@@ -5,12 +5,12 @@ import Link from "next/link";
 import {ROUTE_LECTURE_LIST_ID} from "../../data/global";
 import styles from "../../styles/Lecture.module.scss";
 import {LoginContext} from "../../pages/_app";
-const LectureListComponent = (lecture) => {
-    const {isLogin} = useContext(LoginContext);
+const LectureListComponent = ({lecture, isBefore}) => {
+    const {isLogin, currentUserId} = useContext(LoginContext);
     const [contents, setContents] = useState();
     useEffect(() => {
-        // console.log(lecture)
-        axios.get(`${SERVER_URL}/class/contents/${lecture.lecture.id}`, {withCredentials: true})
+        console.log(lecture)
+        axios.get(`${SERVER_URL}/class/contents/${lecture.id}`, {withCredentials: true})
             .then(response => {
                 // console.log(response)
                 if (response.data[0]) {
@@ -19,13 +19,10 @@ const LectureListComponent = (lecture) => {
                 }
             })
             .catch(err => console.log(err))
-        // console.log(lecture.isBefore)
     }, [lecture])
     return (
         <ul>
-            {/*{console.log(contents)}*/}
-            {/*{console.log(lecture)}*/}
-            {contents ? (lecture.isBefore || !isLogin ? contents.map((list, index) => <li key={index}><p className={styles.LectureContentType}>{list.type}</p><p>{list.title}</p></li>)
+            {contents ? ((isBefore && lecture.userId !== currentUserId || !isLogin) ? contents.map((list, index) => <li key={index}><p className={styles.LectureContentType}>{list.type}</p><p>{list.title}</p></li>)
          : contents.map((list, index) =>
             <Link key={index} href={{
                 pathname: ROUTE_LECTURE_LIST_ID,

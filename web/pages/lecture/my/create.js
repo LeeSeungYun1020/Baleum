@@ -2,15 +2,27 @@ import React, {useState} from "react";
 import FileBase64 from "react-file-base64";
 import styles from "../../../styles/Lecture.module.scss"
 import {BsImage} from "react-icons/bs";
+import {AiFillPlusCircle} from "react-icons/ai";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import axios from "axios";
 import {SERVER_URL} from "../../../data/global";
+import ContentList from "../../../components/Lecture/ContentList";
 const create = () => {
     const [image, setImage] = useState();
-    const [title, setTitle] = useState();
+    const [LectureTitle, setLectureTitle] = useState();
     const [category, setCategory] = useState();
     const [detail, setDetail] = useState(); // 강의 요약
-    const [contents, setContents] = useState(); // 강의 컨텐츠
+    const [content, setContent] = useState({
+        contentId: 0,
+        title: '',
+        url: '',
+        type: "영상"
+    }); // 강의 컨텐츠 여러개
+    const [contents, setContents] = useState([]); // 강의 컨텐츠 뭉텡이
+    const [classId, setClassId] = useState();
+    const {title, url} = content;
+    const [disable, setDisable] = useState(false);
+    const [countList, setCountList] = useState([0]);
     const getFiles = (files) => {
         if (files) {
             setImage(files.base64.split("base64,")[1]);
@@ -19,11 +31,30 @@ const create = () => {
     const onCategoryChange = (e) => {
         setCategory(e.target.value);
     }
-
+    const onAddClick = () => {
+        let countArr = [...countList];
+        let counter = countArr.slice(-1)[0];
+        counter += 1;
+        countArr.push(counter);
+        setCountList(countArr);
+        const content = {
+            classId:counter,
+            title: title,
+            url: url,
+            type: "영상"
+        };
+        setContents(contents.concat(content));
+        setContent({
+            contentId: 0,
+            title: '',
+            url: '',
+            type: "영상"
+        });
+    }
     const onLectureSubmit = (e) => {
         e.preventDefault();
         axios.post(`${SERVER_URL}/class/create`, {
-            name: title,
+            name: LectureTitle,
             detail: detail,
             category: category,
             image: image
@@ -31,12 +62,17 @@ const create = () => {
             .then(response => {
                 if(response.data.result){
                     alert("강의가 생성되었습니다.");
+                    setDisable(true);
+                    setClassId(response.data.classId);
+                }
+                else {
+                    alert("잠시후 다시 시도해주세요.");
                 }
             })
     }
 
     const onTitleChange = (e) => {
-        setTitle(e.target.value);
+        setLectureTitle(e.target.value);
     }
 
     const onDetailChange = (e) => {
@@ -44,7 +80,42 @@ const create = () => {
     }
 
     const onContentsChange = (e) => {
+        const {name, value} = e.target;
+        setContent({
+            ...content,
+            [name]: value,
+        })
+        // console.log(name, value);
+    }
 
+    const onContentComplete = () => {
+        let countArr = [...countList];
+        let counter = countArr.slice(-1)[0];
+        counter += 1;
+        // countArr.push(counter);
+        // setCountList(countArr);
+        const content = {
+            classId: counter,
+            title: title,
+            url: url,
+            type: "영상"
+        };
+        setContents(contents.concat(content));
+    }
+    const onContentSubmit = (e) => {
+        e.preventDefault();
+        console.log(contents);
+        axios.post(`${SERVER_URL}/class/contents/${classId}/add`, {
+            content: contents
+        }, {withCredentials: true})
+            .then(response => {
+                if(response.data.result){
+                    alert("강의 컨텐츠가 등록되었습니다.");
+                }
+                else {
+                    alert("잠시후 다시 시도해주세요.");
+                }
+            })
     }
 
     return (
@@ -57,23 +128,23 @@ const create = () => {
                 <div className={styles.createPreviewImage}>
                     <h2>커버 이미지</h2>
                     {image ? <img src={"data:image/png;base64," + image} alt={"커버 이미지"}/> : <div><BsImage color={"#f1f1f1"} style={{width: "52px", height: "auto"}}/></div>}
-                    <FileBase64 onDone={getFiles} id={"image"} name={"image"}/>
+                    {!disable && <FileBase64 onDone={getFiles} id={"image"} name={"image"}/>}
                 </div>
 
                 <div>
                     <form onSubmit={onLectureSubmit}>
                     <h2>강의명</h2>
-                    <input type={"text"} id={"title"} required onChange={onTitleChange} placeholder={"강의명"}/>
+                    <input type={"text"} id={"LectureTitle"} required onChange={onTitleChange} placeholder={"강의명"} disabled={disable}/>
                     <h2>강의 요약</h2>
-                    <textarea id={"detail"} required onChange={onDetailChange} placeholder={"강의 요약"}/>
+                    <textarea id={"detail"} required onChange={onDetailChange} placeholder={"강의 요약"} disabled={disable}/>
                     <h2>카테고리 분류</h2>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
+                        <InputLabel id="demo-simple-select-label" disabled={disable}>카테고리</InputLabel>
                         <Select
                             id={category}
                             value={category}
                             label="카테고리"
-                            onChange={onCategoryChange}
+                            onChange={onCategoryChange} disabled={disable}
                         >
                             <MenuItem value={"글쓰기"}>글쓰기</MenuItem>
                             <MenuItem value={"디자인"}>디자인</MenuItem>
@@ -82,9 +153,19 @@ const create = () => {
                             <MenuItem value={"프로그래밍"}>프로그래밍</MenuItem>
                         </Select>
                     </FormControl>
-                        <input type={"submit"} value={"등록"}/>
+                        <input type={"submit"} value={"등록"} disabled={disable}/>
                     </form>
                 </div>
+            </div>
+            <div>
+                <form onSubmit={onContentSubmit}>
+                <ContentList countList={countList} onChange={onContentsChange}/>
+                    <input type={"submit"} value={"완료"}/>
+                </form>
+                <button onClick={onAddClick}>
+                    <AiFillPlusCircle/>추가
+                </button>
+                <button onClick={onContentComplete}>등록 완료</button>
             </div>
         </div>
     )
