@@ -30,7 +30,12 @@ module.exports = {
         }
         connection.query(`INSERT INTO content (classId, contentId, type, title, url)
                           VALUES ${valuesString.slice(0, -1)}`, values, (err, result) => {
-            res.send({"result": result.affectedRows === req.body.length})
+            // console.log(err)
+            if (err) {
+                res.send({"result": false})
+            } else {
+                res.send({"result": result.affectedRows === req.body.length})
+            }
         })
     },
 }
