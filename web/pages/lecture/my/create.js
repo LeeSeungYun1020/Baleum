@@ -7,6 +7,7 @@ import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import axios from "axios";
 import {SERVER_URL} from "../../../data/global";
 import ContentList from "../../../components/Lecture/ContentList";
+
 const create = () => {
     const [image, setImage] = useState();
     const [LectureTitle, setLectureTitle] = useState();
@@ -38,7 +39,7 @@ const create = () => {
         countArr.push(counter);
         setCountList(countArr);
         const content = {
-            classId:counter,
+            contentId: counter,
             title: title,
             url: url,
             type: "영상"
@@ -95,7 +96,7 @@ const create = () => {
         // countArr.push(counter);
         // setCountList(countArr);
         const content = {
-            classId: counter,
+            contentId: counter,
             title: title,
             url: url,
             type: "영상"
@@ -105,9 +106,7 @@ const create = () => {
     const onContentSubmit = (e) => {
         e.preventDefault();
         console.log(contents);
-        axios.post(`${SERVER_URL}/class/contents/${classId}/add`, {
-            content: contents
-        }, {withCredentials: true})
+        axios.post(`${SERVER_URL}/class/contents/${classId}/add`, contents, {withCredentials: true})
             .then(response => {
                 if(response.data.result){
                     alert("강의 컨텐츠가 등록되었습니다.");
