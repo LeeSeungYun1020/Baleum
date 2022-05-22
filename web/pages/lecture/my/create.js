@@ -10,8 +10,10 @@ import ContentList from "../../../components/Lecture/ContentList";
 import {siteTitle} from "../../../components/layout";
 import Layout from "../../../components/layout";
 import Head from "next/head";
+import {useRouter} from "next/router";
 
 const create = () => {
+    const router = useRouter();
     const [image, setImage] = useState();
     const [LectureTitle, setLectureTitle] = useState();
     const [category, setCategory] = useState();
@@ -105,6 +107,7 @@ const create = () => {
             type: "영상"
         };
         setContents(contents.concat(content));
+        alert("강의 컨텐츠가 등록되었습니다.");
     }
     const onContentSubmit = (e) => {
         e.preventDefault();
@@ -112,7 +115,8 @@ const create = () => {
         axios.post(`${SERVER_URL}/class/contents/${classId}/add`, contents, {withCredentials: true})
             .then(response => {
                 if(response.data.result){
-                    alert("강의 컨텐츠가 등록되었습니다.");
+                    alert("성공적으로 강의가 등록되었습니다.");
+                    router.push('/lecture/my');
                 }
                 else {
                     alert("잠시후 다시 시도해주세요.");
@@ -166,19 +170,21 @@ const create = () => {
                         </Select>
                     </FormControl>
                         </div>
-                        <input className={styles.createSubmit} type={"submit"} value={"등록"} disabled={disable}/>
+                        <input className={styles.createSubmit} type={"submit"} value={"강의 등록"} disabled={disable}/>
                     </form>
                 </div>
             </div>
-            <div>
+            <div className={styles.contentCreateDiv}>
                 <form onSubmit={onContentSubmit}>
-                <ContentList countList={countList} onChange={onContentsChange}/>
-                    <input type={"submit"} value={"완료"}/>
+                    <div className={styles.contentCreateArea}>
+                    <ContentList countList={countList} onChange={onContentsChange} disable={disable}/>
+                    <button type={"button"} onClick={onAddClick}>
+                        <AiFillPlusCircle/>추가
+                    </button>
+                    <button type={"button"} onClick={onContentComplete}>컨텐츠 등록 완료</button>
+                    </div>
+                <input className={styles.createCompleteButton} type={"submit"} value={"생성 완료"}/>
                 </form>
-                <button onClick={onAddClick}>
-                    <AiFillPlusCircle/>추가
-                </button>
-                <button onClick={onContentComplete}>등록 완료</button>
             </div>
         </div>
             </section>
