@@ -183,7 +183,9 @@ const create = () => {
                     </button>
                     <button type={"button"} onClick={onContentComplete}>컨텐츠 등록 완료</button>
                     </div>
+                    <div className={styles.createCompleteArea}>
                 <input className={styles.createCompleteButton} type={"submit"} value={"생성 완료"}/>
+                    </div>
                 </form>
             </div>
         </div>

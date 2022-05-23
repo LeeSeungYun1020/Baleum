@@ -2,6 +2,7 @@ import styles from "../../styles/Lecture.module.scss"
 import {useRouter} from "next/router";
 import {ROUTE_LECTURE_ID, SERVER_URL} from "../../data/global";
 import axios from "axios";
+import Link from "next/link";
 // import {useContext} from "react";
 // import {LoginContext} from "../../pages/_app";
 
@@ -14,6 +15,10 @@ const MyCreateLectureComponent = ({lecture, onRemove}) => {
             pathname: ROUTE_LECTURE_ID,
             query: {id: lecture.id}
         })
+    }
+
+    const onUpdate = (e) => {
+        e.stopPropagation()
     }
 
     const onDelete = (e) => {
@@ -35,7 +40,10 @@ const MyCreateLectureComponent = ({lecture, onRemove}) => {
     return (<div className={styles.myLectureComponent} onClick={onClick}>
         <div className={styles.myLectureInfoText}>
             <div className={styles.myCreateLectureButtonDiv}>
-                <button>강의 수정</button>
+                <button onClick={onUpdate}><Link href={{
+                    pathname: `/lecture/my/update/[lectureUpdate]`,
+                    query: {lectureUpdate: JSON.stringify(lecture)}
+                }}><a>강의 수정</a></Link></button>
                 <button onClick={onDelete}>강의 삭제</button>
             </div>
             {/*모두가 볼 수 있는 사용자의 이 과목 학습 인증서로 넘어감*/}

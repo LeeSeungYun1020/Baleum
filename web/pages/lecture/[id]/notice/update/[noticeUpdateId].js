@@ -13,7 +13,7 @@ const update = () => {
     if(!id || !noticeUpdateId) {
         return <></>
     }
-    const notice = JSON.parse(noticeUpdateId)
+    const notice = JSON.parse(noticeUpdateId);
     const {currentUserId} = useContext(LoginContext);
     const [loading, setLoading] = useState(false);
     const [lecture, setLecture] = useState();
