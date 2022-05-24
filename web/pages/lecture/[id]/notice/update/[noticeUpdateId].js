@@ -5,6 +5,7 @@ import axios from "axios";
 import {SERVER_URL} from "../../../../../data/global";
 import LectureNav from "../../../../../components/Lecture/LectureNav";
 import styles from "../../../../../styles/Lecture.module.scss";
+import LectureTopNav from "../../../../../components/Lecture/LectureTopNav";
 
 const update = () => {
     const router = useRouter();
@@ -12,7 +13,7 @@ const update = () => {
     if(!id || !noticeUpdateId) {
         return <></>
     }
-    const notice = JSON.parse(noticeUpdateId)
+    const notice = JSON.parse(noticeUpdateId);
     const {currentUserId} = useContext(LoginContext);
     const [loading, setLoading] = useState(false);
     const [lecture, setLecture] = useState();
@@ -71,22 +72,25 @@ const update = () => {
         )
     }
     return (
-        <div className={styles.lecturePage}>
-            <LectureNav lecture = {lecture} id = {id}/>
-            <div className={styles.lectureNoticePage}>
-                <form onSubmit={onSubmit}>
-                    <div className={styles.noticeUpdateInput}>
-                        <input type={"text"} id={"title"} name={"title"} required onChange={titleChange} placeholder={"제목"} value={title}/>
-                    </div>
-                    <div className={styles.noticeUpdateInput}>
-                        <textarea id={"contents"} name={"contents"} required onChange={contentsChange} placeholder={"내용"} value={contents}/>
-                    </div>
-                    <div className={styles.noticeUpdateSubmit}>
-                        <input className={styles.noticeButton} type={"submit"} value={"완료"}/>
-                    </div>
-                </form>
+        <>
+            <LectureTopNav />
+            <div className={styles.lecturePage}>
+                <LectureNav lecture = {lecture} id = {id}/>
+                <div className={styles.lectureNoticePage}>
+                    <form onSubmit={onSubmit}>
+                        <div className={styles.noticeUpdateInput}>
+                            <input type={"text"} id={"title"} name={"title"} required onChange={titleChange} placeholder={"제목"} value={title}/>
+                        </div>
+                        <div className={styles.noticeUpdateInput}>
+                            <textarea id={"contents"} name={"contents"} required onChange={contentsChange} placeholder={"내용"} value={contents}/>
+                        </div>
+                        <div className={styles.noticeUpdateSubmit}>
+                            <input className={styles.noticeButton} type={"submit"} value={"완료"}/>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

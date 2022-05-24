@@ -151,11 +151,13 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
 
   button {
     width: 90px;
+    font-weight: bolder;
     color: $main-color;
     height: 40px;
     border: none;
     border-radius: 8px;
     margin-top: 10px;
+    cursor: pointer;
   }
 }
 
@@ -341,4 +343,143 @@ $font-color: #331B3F; // 메인컬러 배경의 폰트 색상
     padding-left: 10px;
     padding-top: 10px;
   }
+}
+
+.makeButton {
+  width: 90px;
+  border: $main-color 2px solid;
+  font-weight: bolder;
+  color: $main-color;
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  margin-left: 10px;
+  float: right;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.createPreviewImage {
+  width: 378px;
+  height: 300px;
+  img {
+    width: 378px;
+    height: 300px;
+  }
+  div {
+    width: 100%;
+    height: 100%;
+    border: 2px solid $sub-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.createLecturePage {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  button, .createSubmit {
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    border: 2px solid $main-color;
+    color: $main-color;
+    background-color: white;
+    font-weight: bolder;
+    cursor: pointer;
+    margin-right: 10px;
+    float: right;
+  }
+  input[type="file"] {
+    color: $main-color;
+    font-weight: bolder;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;}
+  p {
+    font-weight: bolder;
+    color: $font-color;
+  }
+}
+
+
+.myLectureCreateInput {
+  border-radius: 4px;
+  border: 2px solid $sub-color;
+  width: 670px;
+  height: 40px;
+}
+
+.createLectureComponent {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  textarea {
+    height: 200px;
+  }
+}
+
+.contentListComponent {
+  display: flex;
+  flex-direction: column;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  input {
+    border-radius: 4px;
+    border: 2px solid $sub-color;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 50px;
+  }
+}
+
+.createLectureArea {
+  margin-left: 25px;
+}
+
+.createLectureDiv {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.createComponentDiv {
+  margin-bottom: 10px;
+}
+
+.contentLabel {
+  font-weight: bolder;
+}
+
+.createCompleteButton {
+  width: 250px;
+  height: 50px;
+  background-color: $main-color;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  border: $main-color;
+  cursor: pointer;
+}
+
+.contentCreateArea {
+  margin-bottom: 30px;
+}
+
+.contentCreateDiv {
+  width: 100%;
+}
+
+.createCompleteArea {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 70px;
 }

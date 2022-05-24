@@ -6,13 +6,13 @@ import {ROUTE_LECTURE_LIST_ID} from "../../data/global";
 import {LoginContext} from "../../pages/_app";
 import {useRouter} from "next/router";
 
-const LectureNavListComponent = (lecture) => {
+const LectureNavListComponent = ({lecture, isBefore}) => {
     const [contents, setContents] = useState();
     const router = useRouter();
-    const {isLogin} = useContext(LoginContext);
+    const {isLogin, currentUserId} = useContext(LoginContext);
     useEffect(() => {
         // console.log(lecture)
-        axios.get(`${SERVER_URL}/class/contents/${lecture.lecture.id}`, {withCredentials: true})
+        axios.get(`${SERVER_URL}/class/contents/${lecture.id}`, {withCredentials: true})
             .then(response => {
                 // console.log(response.data)
                 if (response.data[0]) {
@@ -35,7 +35,7 @@ const LectureNavListComponent = (lecture) => {
     return (
         <ul>
             {contents ? (
-                lecture.isBefore||!isLogin ? contents.map((list, index) => (
+                isBefore && lecture.userId !== currentUserId ||!isLogin ? contents.map((list, index) => (
                     <li key={index}>
                         <p>{list.title}</p>
                     </li>

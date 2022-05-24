@@ -33,7 +33,7 @@ const notice = () => {
                     router.push('/')
                 }
                 const response2 = await axios.get(`${SERVER_URL}/class/notice/class/${id}`, {withCredentials: true});
-                console.log(response2);
+                // console.log(response2);
                 if(response2.data[0].result){
                     setNotice(response2.data);
                     setNoticeExist(true);
